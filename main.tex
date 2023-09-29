@@ -1,0 +1,29 @@
+\documentclass[11pt, oneside]{book} % better for compiling just as PDF
+% \documentclass[11pt, twoside]{book} % better for physical prints
+
+\input{prefix}  % Place all packages and function definitions in the prefix file
+
+\begin{document}
+% Do not add page numbers
+\pagenumbering{gobble}
+\input{0-title_page}
+
+\tableofcontents
+    % Start page number on abstract
+    \cleardoublepage
+    \pagenumbering{arabic}
+    \input{1-abstract}
+    \input{2-introduction}
+    \input{3-objectives}
+    \input{4-materials_and_methods}
+    \input{5-results}
+    \input{6-discussion}
+    \input{7-conclusions}
+    % Stop page number after last numbered chapter
+    \cleardoublepage
+    \pagenumbering{gobble}
+    \input{8-references}
+    \input{9a-appendix_i}
+    \input{9b-appendix_ii}
+
+\end{document}
