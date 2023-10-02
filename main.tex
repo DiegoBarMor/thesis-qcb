@@ -1,29 +1,32 @@
-\documentclass[11pt, oneside]{book} % better for compiling just as PDF
-% \documentclass[11pt, twoside]{book} % better for physical prints
+\documentclass[11pt, oneside]{book} % for compiling digital distributions
+% \documentclass[11pt, twoside]{book} % for compiling for physical prints
+\input{prefix}
 
-\input{prefix}  % Place all packages and function definitions in the prefix file
+\begin{document} % full document should have min 26, max 85 pages, excluding reference list and any appendices
+  \pagenumbering{gobble} % don't add page numbers
+  \input{0-title_page}
 
-\begin{document}
-% Do not add page numbers
-\pagenumbering{gobble}
-\input{0-title_page}
+  \tableofcontents
 
-\tableofcontents
-    % Start page number on abstract
-    \cleardoublepage
-    \pagenumbering{arabic}
-    \input{1-abstract}
-    \input{2-introduction}
-    \input{3-objectives}
-    \input{4-materials_and_methods}
-    \input{5-results}
-    \input{6-discussion}
-    \input{7-conclusions}
-    % Stop page number after last numbered chapter
-    \cleardoublepage
-    \pagenumbering{gobble}
-    \input{8-references}
-    \input{9a-appendix_i}
-    \input{9b-appendix_ii}
+  \cleardoublepage \pagenumbering{arabic} % start page number on abstract
+  \input{1-abstract}
+  \input{2-introduction}
+  \input{3-objectives}
+  \input{4-materials_and_methods}
+  \input{5-results}
+  \input{6-discussion}
+  \input{7-conclusions}
+
+  \cleardoublepage \pagenumbering{gobble} % stop page number after last numbered chapter
+  \input{8-references}
+  \input{9a-appendix_i}
+  \input{9b-appendix_ii}
 
 \end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TEMPLATES
+% \begin{figure}[H]
+%   \centering
+%   \includegraphics[width=1\textwidth]{figures/name}
+%   \caption{\label{fig:name} Description. }
+% \end{figure}

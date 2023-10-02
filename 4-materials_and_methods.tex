@@ -1,3 +1,43 @@
-\chapter{Materials and methods}
+%%% detailed description of the protocols, software and algorithms used for the project
+\chapter{Materials and methods} % at least 3 pages, maximum 10 pages; if more pages are needed, include an Appendix
 
-[TEMPLATE: detailed description of the protocols, software and algorithms used for the project (at least 3 pages, maximum 10 pages; if more pages are needed, include an Appendix).]
+[TODO: couple of sentences to introduce the sections]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Physical characterization}
+  [TODO: brief introduction about the need of modelling the physical properties of the pocket into potential functions, to later generate 3D grids]
+
+  \subsection{Stacking potential}
+    [TODO: description of the model based in distance and alpha angles]
+    [TODO: description of the data mining of PDB and statistical analysis of structures to get an idea of the shape and parameters of the model]
+
+  \subsection{Hydrogen bonds potential}
+    [TODO: description of a simple model based in a gaussian that takes only distance as parameter and assumes simultaneous positions where the ligand can have an ideal angle for the given distance]
+    [TODO: description of how both acceptors and donors potentials are simplified by neglecting the actual position of the hydrogens, as their positions are many times flexible enough]
+
+  \subsection{Electrostatic potential}
+    [TODO: brief description of how APBS maps smoothly to the same concept of potential grid]
+    [TODO: brief description of how APBS could need normalization (eg log10) because of the large range of values] --> but this was conceived
+    \textcolor{red}{AFTER} seeing the results, should it still be here in "materials and methods" or in results?
+    % \subsubsection{Normalizing the APBS grid}
+
+  \subsection{Hydrophobicity potential}
+    [TODO: brief description of how Alex's approach to Hydrophobicity was adatped for the UnityMol pipeline]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{UnityMol}
+  [TODO: brief technical details about implementing things in UnityMol (editing via the GUI and C\# scripting)]
+
+  \subsection{Graphical User Interface}
+    [TODO: describe how the user interacts with the pocket sphere mode of UnityMol via the new GUI submenu]
+
+  \subsection{Potentials calculation}
+    [TODO: describe how UnityMol communicates with an external Python script to calculate the potential grids]
+
+  \subsection{Implementing the "cloud" representation}
+    [TODO: describe the proposed method of visualizing the grids, by representing the grid as a "cloud" where color/opacity of the points is proportional to the relative grid values]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+[QUESTION: should things like a brief explanation of how the original APBS works go in the introduction or in materials and methods? same for isosurfaces]
