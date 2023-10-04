@@ -47,7 +47,7 @@
     Computational methods behind binding affinity calculations often involve \textbf{energy functions}, which are based either on physical description of these interactions or on statistical analyses of experimentally characterized ligands. \textit{Physical energy functions} can contain terms common in molecular dynamics force fields, such as: bond stretching; angles bending, rotation and torsion; coulombic interactions; van der Waals attraction; exchange repulsion and others. On the other hand, \textit{statistical energy functions} often rely on distances between atoms to build an empirical potential of mean force, by taking into account the physicochemical properties that affect binding affinity \cite{binding_affinity_2016}.
 
   \subsection{Electrostatics}
-    Binding affinity is greatly affected by the electrostatic interactions between positively and negatively charged groups in oposing molecules (figure \ref{fig:intro/electrostatics}). This contribution is even higher when intermolecular ion pairs (salt bridges) are formed. It is important to note that under physiological conditions, the presence of ions in the solvent further impact the electrostatic behaviour of the molecules. As RNA molecules are highly negatively charged, cations tend to condense near their surface. On the other hand, proteins tend to attract both anions and cations, but with less intensity. Either way, the long range nature of electrostatic forces and the abundance of charged amino and nucleic acids make this interactions particularly relevant \cite{electrostatics_2020, electrostatics_2019, apbs_2004}.
+    Binding affinity is greatly affected by the \textbf{electrostatic interactions} between positively and negatively charged groups in oposing molecules (figure \ref{fig:intro/electrostatics}). This contribution is even higher when intermolecular ion pairs (salt bridges) are formed. It is important to note that under physiological conditions, the presence of ions in the solvent further impact the electrostatic behaviour of the molecules. As RNA molecules are highly negatively charged, cations tend to condense near their surface. On the other hand, proteins tend to attract both anions and cations, but with less intensity. Either way, the long range nature of electrostatic forces and the abundance of charged amino and nucleic acids make this interactions particularly relevant \cite{electrostatics_2020, electrostatics_2019, apbs_2004}.
 
     \begin{figure}[H]
       \centering
@@ -63,7 +63,7 @@
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.5\textwidth]{figures/intro/stacking_configs.png}
-      \caption{\label{fig:intro/stacking_configs} [WIP] description. Adapted from \cite{stacking_general_2020}.}
+      \caption{\label{fig:intro/stacking_configs} [TODO] description. Adapted from \cite{stacking_general_2020}.}
     \end{figure}
 
     The spatial configuration of the aromatic rings play a fundamental role in stacking interactions. This can be summarized by three spatial degrees of freedom: distance, $\alpha$ angle and $\beta$ angle. The $\alpha$ angle describes how tilted the center of geometry is from one ring with respect to the other ring, while $\beta$ is the angle between the vectors normal to the planes (figures \ref{fig:intro/stacking_configs} and \ref{fig:intro/stacking_angles}) \cite{stacking_general_2020, rna_2015}.
@@ -71,10 +71,10 @@
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.5\textwidth]{figures/intro/stacking_angles.png}
-      \caption{\label{fig:intro/stacking_angles} [WIP] description. Adapted from \cite{rna_2015}.}
+      \caption{\label{fig:intro/stacking_angles} [TODO] description. Adapted from \cite{rna_2015}.}
     \end{figure}
 
-    The traditional \textbf{$\pi$-$\pi$ stacking} is considered to be optimal when $\alpha>0$ (but still a low value) and $\beta \approx 0$, yielding a \textit{parallel-offset} geometry. The alternative \textbf{CH-$\pi$ stacking} also represents an energetic local minimum, with $\alpha \approx 0$ and $\beta \approx 90 \textdegree$, which corresponds to a \textit{perpendicular} geometry (figure \ref{fig:intro/stacking_configs}) \cite{stacking_general_2020}.
+    The traditional \textbf{$\pi$-$\pi$ stacking} is considered to be optimal when $\alpha>0$ (but still a low value) and $\beta \approx 0$, yielding a \textit{parallel-offset} geometry. The alternative \textbf{CH-$\pi$ stacking} also represents an energetic local minimum, with $\alpha \approx 0$ and $\beta \approx 90^{\circ}$, which corresponds to a \textit{perpendicular} geometry (figure \ref{fig:intro/stacking_configs}) \cite{stacking_general_2020}.
 
     It is also noteworthy that aromatic rings can also interact in other similar ways to $\pi$-$\pi$ and CH-$\pi$ stacking. These include \textit{cation-$\pi$}, \textit{amid-$\pi$}, \textit{amid-$\pi$} and \textit{halogen-$\pi$} \cite{stacking_binding_2020, electrostatics_2020}.
 
@@ -108,19 +108,53 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Molecular Visualization}
   \subsection{Molecular Visualization Software}
-    [TODO: talk about visualization packages]
+    Due to the nanoscopic nature of molecules, the field of molecular biology relies heavily on technologies to collect and gather insights from the structures and behaviour of these tiny systems. A great source of qualitative analysis and insight out of these data is enabled by the great variety of \textbf{molecular visualization software} and techniques that have been developed over the decades \cite{visualization_2018}.
 
-    \subsubsection{UnityMol}
-    [TODO: introduce UnityMol]
+    Molecular visualization is a huge topic constantly in evolution, with different parties developing different software packages or techniques to approach general or specific visualization purposes. Some of the most consolidated software environments are \textit{Chimera}, \textit{PyMOL}, \textit{PMV} and \textit{VMD} \cite{visualization_2018}. The Protein Data Bank lists a great variety of other software related to molecular graphics: \textit{BioBlender}, \textit{BioViz Studio}, \textit{CCP4mg}, \textit{Cn3D}, \textit{CrystalMaker}, \textit{ePMV}, \textit{EzMol}, \textit{Foldit}, \textit{ICM-Browser}, \textit{IcmJS}, \textit{iMol}, \textit{Jmol}, \textit{Mage and Kinemages}, \textit{Marvin}, \textit{MembraneEditor}, \textit{MOE}, \textit{Molecule World}, \textit{Molecules}, \textit{MolScript}, \textit{MolviZ.org}, \textit{Nanome}, \textit{PDBWORDS}, \textit{Perse Visualizer}, \textit{POLYVIEW}, \textit{Prosat}, \textit{Protein Imager}, \textit{QTree}, \textit{QuteMol}, \textit{RasMol}, \textit{Raster3D}, \textit{RasTop}, \textit{RCSB MBT Viewers}, \textit{RmscopII}, \textit{Schrödinger Product Suites}, \textit{SPADE}, \textit{STRAP}, \textit{Swiss PDB viewer}, \textit{UGENE}, \textit{WebMol}, \textit{YASARA}, \textit{Zeus} and \textit{ZMM} \cite{visualization_web}.
 
-  \subsection{Visualization of the physicochemical properties}
-    [TODO: Methods already employed for visualizing the physical properties described before (hbonds, stacking...)]
+    Molecular visualization involves dealing with complex three-dimensional graphical data, oftentimes in a high-performant interactive way, which for large systems can be very computationally expensive. This challenge is shared with other fields in multimedia development, a notable one being the videogame industry. To take advantage of the highly optimized techniques used in videogame development, some molecular visualization tools have been built on top of \textit{game engines}. Tools such as \textit{UDock}, \textit{UnityMol} and \textit{CellVIEW} have been built using the notorious game engine \textit{Unity3D} \cite{visualization_2018, unitymol_2015, unitymol_web}.
 
-    \subsubsection{Surfaces Visualization}
-      [TODO: Usual approach of studying the pockets (ie description of the surfaces)]
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.5\textwidth]{figures/intro/unitymol.jpg}
+      \caption{\label{fig:intro/unitymol} Visualization of a protein interacting with ligands using UnityMol. Adapted from \cite{unitymol_web}.}
+    \end{figure}
 
-    \subsubsection{Volumetric Visualization}
-      [TODO: introduce isosurfaces]
+    The molecular viewer \textbf{UnityMol} covers the basic functionalities of molecular visualization (figure \ref{fig:intro/unitymol}), while also serving as an environment for prototyping new representation techniques for specific systems or properties. It can be used to visualize proteins, nucleic acids, polysaccharides, ligands, molecular dynamics trajectories, among others. It also takes advantage of graphical and computational resources provided by the engine, such as shader GPU programs (for optimized structure representations) and the VRTK framework (for developing a \textit{virtual reality} approach to molecular visualization) \cite{unitymol_2015, unitymol_web}.
+
+  \subsection{Molecular Representations}
+    Molecular visualizers employ different data visualization techniques to portray the structural and physicochemical information of the biological systems in an intuitive and ergonomic way. Visual cues are exploited for this purpose, such as shapes, contours, color-codes, opacities, labels, animations (in the case of molecular dynamics trajectories), among others. These tecnhiques allow to build \textbf{representations} of the molecules, called this way because they seek to represent the spatial three-dimensional data into an intuitive and tangent object that can be observed and interacted with. Classical examples of representations include \textit{ball and stick}, \textit{cartoon}, \textit{licorice}, \textit{line}, \textit{point}, \textit{ribbon}, \textit{rocket}, \textit{spacefill}, \textit{surface} and \textit{trace} (note that names can change on different software implementations) \cite{representations_web}. Insightful observations can be obtained by alternating between this representations in different parts of a molecular system of interest.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.5\textwidth]{figures/intro/rep_cartoon.png}
+      \caption{\label{fig:intro/rep_cartoon} [TODO] description. Adapted from \cite{representations_2021}.}
+    \end{figure}
+
+    The \textbf{licorice} representation highlights the \textit{bond topology} of the molecules and is often color coded according to each atom, so it is best suited for small molecule ligands or closeups of pocket structures (figures \ref{fig:intro/pocket}, \ref{fig:intro/pharmacophores}, \ref{fig:intro/electrostatics}, \ref{fig:intro/hbonds}, \ref{fig:intro/hbonds_po}, \ref{fig:intro/hydrophobic}, \ref{fig:intro/unitymol}, \ref{fig:intro/rep_cartoon}, \ref{fig:intro/rep_surfaces}). The \textbf{cartoon} representation summarizes the \textit{secondary structure} of macromolecules into simpler shapes. This is usually associated to proteins (figures \ref{fig:intro/rep_cartoon}, \ref{fig:intro/rep_surfaces}) but can also be applied to nucleic acids, polysaccharides, lipids and other macromolecules.
+
+    For the \textbf{surface} representations, the volume occupied by the electronic clouds of the atoms is estimated by an algorithm, then a contour is drawn around this volume to obtain a tangible shape that emphasizes the overal \textit{three-dimensional shape} of the molecule (figures \ref{fig:intro/pocket}, \ref{fig:intro/electrostatics}, \ref{fig:intro/unitymol}, \ref{fig:intro/rep_surfaces}). More or less precise algorithms can be used to calculate this estimation, depending if precision or performance is to be prioritized. Alternatively, a \textbf{spacefill} representation can be employed, where a sphere is drawn around each atom with a theoretical radius that depends on the element (figures \ref{fig:intro/hydrophobic}, \ref{fig:intro/rep_surfaces}).
+
+  \subsection{Visualization of Physicochemical Properties}
+    Apart from the spatial configuration of the molecules, the physicochemical properties of the system are also of interest for many applications, such as protein-ligand interactions. As such, the visualization of these data should also be considered when developing molecular visualizers. The \textbf{electrostatics} of the molecules is usually portrayed by color-coding surface representations, where different colors correspond to different sign and intensity of surface charges (figures \ref{fig:intro/electrostatics}, \ref{fig:intro/rep_surfaces}). Similarly, \textbf{hydrophobicity} is many times represented also by color-coding the surfaces of the molecules, according to theoretical or empirical hydrophobic qualities of the residues or functional groups involved (figure \ref{fig:intro/rep_surfaces}).
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.5\textwidth]{figures/intro/rep_surfaces.png}
+      \caption{\label{fig:intro/rep_surfaces} [TODO] description. Adapted from \cite{representations_2018}.}
+    \end{figure}
+
+    In the case of \textbf{hydrogen bonds}, the common approach is to represent them as dotted lines between the acceptor and donor atoms (figures \ref{fig:intro/hbonds}, \ref{fig:intro/hbonds_po}, \ref{fig:intro/rep_cartoon}). On the other hand, \textbf{stacking} interactions are not usually represented in any particular way. Instead, visualizers rely on the users to observe the proximity and positioning between aromatic rings and judge in an approximate manner whether stacking can be present or not.
+
+    Interestingly, visualizers tend to focus on \textit{surface} representations when displaying physicochemical properties. However, some of these properties are inherently \textit{volumetric}, such as electrostatics and hydrophobicity. Also, when studying pocket-ligand interactions, pharmacophores further encapsulate hydrogen bonds and stacking as elements that occupy a volume of propensity. Indeed, the volume surrounded by the target pocket can be considered to contain the physicochemical properties required to study and design target-ligand interactions, but this is not exploited much in current molecular visualization.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.5\textwidth]{figures/intro/isosurfaces.png}
+      \caption{\label{fig:intro/isosurfaces} [TODO] description. Adapted from \cite{isosurfaces_web}.}
+    \end{figure}
+
+    A notable exception is the use of a volumetric representation known as \textbf{isosurface}. This technique for visualizing three-dimensional grids of data use an adjustable treshold value to draw a contour around points with similar values, which yields a representation similar to a \textit{surface} one (figure \ref{fig:intro/isosurfaces}) \cite{isosurfaces_web}. Isosurfaces are sometimes used to represent solvent exclusion cavities when studying the hydrophobicity of a system (figure \ref{fig:intro/hydrophobic}).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
