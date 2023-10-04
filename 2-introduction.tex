@@ -14,7 +14,7 @@
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.5\textwidth]{figures/intro/pocket.png}
-      \caption{\label{fig:intro/pocket} Ligand bound to the pocket of a protein (PDB:1h7l).}
+      \caption{\label{fig:intro/pocket} Ligand bound to the pocket of a protein (PDB: 1h7l).}
     \end{figure}
 
     Once the structure of the target is well known, an appropriate \textbf{binding pocket} must be identified. This refers to a small cavity in the target where a ligand should bind to produce the desired effect (figure \ref{fig:intro/pocket}). Once this binding site is identified, different SBDD techniques can be performed, such as \textit{virtual screening}, \textit{de novo drug design}, \textit{molecular docking} and \textit{pharmacophore modeling}, among others \cite{drug_discovery_2014, structure_based_2019, pharmacophore_and_VS_2022}.
@@ -30,34 +30,97 @@
       \caption{\label{fig:intro/pharmacophores} Summary of the main pharmacophoric features. 1) hydrogen bond acceptors, 2) hydrogen bond donors, 3) negatively charged, 4) positively charged, 5) hydrophobic, 6) aromatic, 7) exclusion volume. Adapted from \cite{pharmacophore_and_VS_2022}.}
     \end{figure}
 
-    Pharmacophores can be modeled in either LBDD and SBDD pipelines. In the case of a structure-based approach, the pharmacophore can be obtained by different strategies. A completely target-based method can be employed, in which the pharmacophoric features are inferred by performing an analysis of the binding pocket's structure \cite{pharmacophore_and_VS_2022, virtual_screening_2019}.
+    Pharmacophores can be modeled in either LBDD or SBDD pipelines. In the case of a structure-based approach, the pharmacophore can be obtained by different strategies. A completely target-based method can be employed, in which the pharmacophoric features are inferred by performing an analysis of the binding pocket's structure \cite{pharmacophore_and_VS_2022, virtual_screening_2019}.
 
     A more experimental approach involves molecular docking of different molecules from a ligand dataset, clustering the fragments with best affinity and extracting pharmacophore features from these clusters. Another straightforward and still effective strategy can be followed when experimental structures of target-ligand complexes are available. In this case, the pharmacophore features can be built based on this ligand, whose bioactive conformation is already known \cite{virtual_screening_2019}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Protein and RNA Binding Sites}
-  [TODO: How do ligands bind to pockets? physicochemical properties behind the pocket-ligand interactions in proteins and RNAs]
+\section{Physicochemical Properties of the Binding Sites}
+  \subsection{Binding Affinity}
+    From a chemical point of view, the interaction between ligand and target binding site can be considered as a \textit{binding reaction}, where the substrates are the ligand and the target, and the product is the target-ligand complex. The free energy of such reaction is therefore associated with how strongly the ligand binds to the target \cite{binding_affinity_2016, binding_affinity_web}.
 
-  \subsection{Hydrogen Bonds}
-    [TODO]
+    This concept, denominated \textbf{binding affinity}, is usually measured by the equilibrium dissociation constant $K_D$. At smaller $K_D$ values there is a greater binding affinity between ligand and target, while at larger $K_D$ values their interaction is weaker. As so, knowing which factors affect the binding affinity is key to designing optimal pocket-ligand interactions \cite{binding_affinity_web}.
 
-  \subsection{Stacking}
-    [TODO]
+    Binding affinity is mainly influenced by non-covalent intermolecular interactions between the target pocket and the ligand. This include \textit{ionic or electrostatic interactions}, \textit{stacking}, \textit{hydrogen bonds}, \textit{hydrophobic effects and van der Waals forces}, \textit{metal bonding}, \textit{desolvation}, among others \cite{binding_affinity_2016, binding_affinity_web, electrostatics_2020, stacking_binding_2020, stacking_trp_2022, hbonds_2023, hydrophobic_2017, hydrophobic_2022}.
+
+    Computational methods behind binding affinity calculations often involve \textbf{energy functions}, which are based either on physical description of these interactions or on statistical analyses of experimentally characterized ligands. \textit{Physical energy functions} can contain terms common in molecular dynamics force fields, such as: bond stretching; angles bending, rotation and torsion; coulombic interactions; van der Waals attraction; exchange repulsion and others. On the other hand, \textit{statistical energy functions} often rely on distances between atoms to build an empirical potential of mean force, by taking into account the physicochemical properties that affect binding affinity \cite{binding_affinity_2016}.
 
   \subsection{Electrostatics}
-    [TODO]
+    Binding affinity is greatly affected by the electrostatic interactions between positively and negatively charged groups in oposing molecules (figure \ref{fig:intro/electrostatics}). This contribution is even higher when intermolecular ion pairs (salt bridges) are formed. It is important to note that under physiological conditions, the presence of ions in the solvent further impact the electrostatic behaviour of the molecules. As RNA molecules are highly negatively charged, cations tend to condense near their surface. On the other hand, proteins tend to attract both anions and cations, but with less intensity. Either way, the long range nature of electrostatic forces and the abundance of charged amino and nucleic acids make this interactions particularly relevant \cite{electrostatics_2020, electrostatics_2019, apbs_2004}.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.5\textwidth]{figures/intro/electrostatics.png}
+      \caption{\label{fig:intro/electrostatics} Electrostatic interaction between ligand (biotin) and target protein (streptavidin) forming a complex (PDB: 3RY2). Blue) negative electrostatic potential, Red) positive electrostatic potential. Adapted from \cite{electrostatics_2019}.}
+    \end{figure}
+
+    A standard method for studying biomolecular electrostatics consists of solving the Poisson-Boltzmann equation of continuum electrostatics, which incorporates information about the molecular shape and charge distribution. This is best solved numerically with a grid-based and finitely-discretized approach. The \textbf{Adaptive Poisson–Boltzmann Solver} (APBS) software provides a flexible and powerful pipeline for this purpose \cite{apbs_2004, apbs_2018, apbs_web}.
+
+  \subsection{Stacking}
+    The presence of $\pi$-stacking interactions can also contribute to a higher binding affinity in ligand binding. This kind of interaction is traditionally considered to happen between two \textit{aromatic groups}, which are notable for their planarity and $\pi$-electron cloud over and under the aromatic ring plane. Whenever their spatial placement allow for this clouds to interact in a particular way, a \textbf{stacking interaction} occurs. The chemical details behind this phenomenon are still not fully understood and is still object of debate, which also means their quantification and modeling is not straightforward \cite{stacking_binding_2020, stacking_trp_2022, stacking_general_2020}.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.5\textwidth]{figures/intro/stacking_configs.png}
+      \caption{\label{fig:intro/stacking_configs} [WIP] description. Adapted from \cite{stacking_general_2020}.}
+    \end{figure}
+
+    The spatial configuration of the aromatic rings play a fundamental role in stacking interactions. This can be summarized by three spatial degrees of freedom: distance, $\alpha$ angle and $\beta$ angle. The $\alpha$ angle describes how tilted the center of geometry is from one ring with respect to the other ring, while $\beta$ is the angle between the vectors normal to the planes (figures \ref{fig:intro/stacking_configs} and \ref{fig:intro/stacking_angles}) \cite{stacking_general_2020, rna_2015}.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.5\textwidth]{figures/intro/stacking_angles.png}
+      \caption{\label{fig:intro/stacking_angles} [WIP] description. Adapted from \cite{rna_2015}.}
+    \end{figure}
+
+    The traditional \textbf{$\pi$-$\pi$ stacking} is considered to be optimal when $\alpha>0$ (but still a low value) and $\beta \approx 0$, yielding a \textit{parallel-offset} geometry. The alternative \textbf{CH-$\pi$ stacking} also represents an energetic local minimum, with $\alpha \approx 0$ and $\beta \approx 90 \textdegree$, which corresponds to a \textit{perpendicular} geometry (figure \ref{fig:intro/stacking_configs}) \cite{stacking_general_2020}.
+
+    It is also noteworthy that aromatic rings can also interact in other similar ways to $\pi$-$\pi$ and CH-$\pi$ stacking. These include \textit{cation-$\pi$}, \textit{amid-$\pi$}, \textit{amid-$\pi$} and \textit{halogen-$\pi$} \cite{stacking_binding_2020, electrostatics_2020}.
+
+  \subsection{Hydrogen Bonds}
+    Another kind of interaction fundamental for the structure of macromolecules and their binding affinity to ligands is the presence of \textbf{hydrogen bonds}. These are weak interactions that happen between so-called \textit{donor} and \textit{acceptor} atom pairs, under an appropriate distance and angle. A \textbf{donor} is an electronegative atom such as nitrogen (N), oxygen (O) or fluor (F) covalently bound to a hydrogen (H) atom, while an \textbf{acceptor} is an electronegative atom with a lone pair of electrons or a negative charge (figure \ref{fig:intro/hbonds}) \cite{hbonds_2023}.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.5\textwidth]{figures/intro/hbonds.png}
+      \caption{\label{fig:intro/hbonds} Hydrogen bond interactions between N-H groups acting as donors and oxygen atoms from aminoacids acting as receptors. Adapted from \cite{hbonds_2023}.}
+    \end{figure}
+
+    In proteins, oxygen and nitrogen atoms in both the backbone of the polypeptide and in the functional group of the aminoacids can act as donors or acceptors. The most common hydrogen bond interactions in proteins are of the form N-H...O, while O-H...O and N-H...N can also be commonly observed \cite{hbonds_2023}. In RNA, oxygen and nitrogen atoms in the nucleic bases take these roles (which sometimes leads to the notorious \textit{base pair} interaction) \cite{rna_2015} while oxygen atoms in the phosphate groups of their backbone could also act as acceptors in some cases \cite{hbonds_2023} (figure \ref{fig:intro/hbonds_po}).
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.5\textwidth]{figures/intro/hbonds_po.png}
+      \caption{\label{fig:intro/hbonds_po} Hydrogen bond interactions between N-H and O-H groups acting as donors and a phosphate group acting as receptor. Adapted from \cite{hbonds_2023}.}
+    \end{figure}
 
   \subsection{Hydrophobicity}
-    [TODO]
+    The arrangement or displacement of water molecules near the surfaces of targets and ligands is also a very relevant factor that affects binding affinity \cite{hydrophobic_2017, hydrophobic_2022}. In structural terms, the dynamics of water can affect the structure and rigidity of the macromolecules, which sometimes affects the shape and flexibility of the pockets and therefore their binding affinity \cite{hydrophobic_2022}. In some instances, water is displaced from specific regions and energetically favorable interactions between non-polar groups emerge, which is commonly known as the \textbf{hydrophobic effect}. Hydrophobicity is mostly relevant in the case of some target proteins, where it is commonly associated to the formation of these \textit{solvent exclusion} (water displacement) cavities, usually buried inside the protein to avoid contact with the outside water (figure \ref{fig:intro/hydrophobic}) \cite{hydrophobic_2017}.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.5\textwidth]{figures/intro/hydrophobic.png}
+      \caption{\label{fig:intro/hydrophobic} Volumetric representation of a solvent exclusion cavity inside of a metalloprotease (thermolysin). Adapted from \cite{hydrophobic_2017}.}
+    \end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Molecular Visualization Software}
-  [TODO: Usual approach of studying the pockets (ie description of the surfaces)]
+\section{Molecular Visualization}
+  \subsection{Molecular Visualization Software}
+    [TODO: talk about visualization packages]
 
-  [TODO: Methods already employed for visualizing the physical properties described before (hbonds, stacking...)]
+    \subsubsection{UnityMol}
+    [TODO: introduce UnityMol]
 
-  \subsection{UnityMol}
-    [TODO: Introduction to UnityMol]
+  \subsection{Visualization of the physicochemical properties}
+    [TODO: Methods already employed for visualizing the physical properties described before (hbonds, stacking...)]
+
+    \subsubsection{Surfaces Visualization}
+      [TODO: Usual approach of studying the pockets (ie description of the surfaces)]
+
+    \subsubsection{Volumetric Visualization}
+      [TODO: introduce isosurfaces]
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
