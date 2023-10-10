@@ -1,41 +1,91 @@
 %%% detailed description of the protocols, software and algorithms used for the project
-\chapter{Materials and methods} % at least 3 pages, maximum 10 pages; if more pages are needed, include an Appendix
+\chapter{Materials and methods} % at least 3 pages, maximum 10 pages
 
-[TODO: couple of sentences to introduce the sections]
+[TODO: brief description of the computational environments used? Python, C\#, VMD]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Characterization of Physicochemical Properties}
-  [TODO: brief introduction about the need of modelling the physical properties of the pocket into potential functions, to later generate 3D grids]
+  \subsection{Stacking Potential}
+    \subsubsection{Obtaining the Datasets}
+      For modeling the stacking potential, the shape and parameters of a statistical energy function were empirically determined. A large dataset of protein, protein/ligand, protein/nucleic and protein/nucleic/ligand systems was downloaded from the Protein Data Bank (PDB) \cite{pdb_2003}. First of all, the PDB ids for these systems were obtained by submitting two queries to the database:
 
-  \subsection{Stacking potential}
-    [TODO: description of the model based in distance and alpha angles]
-    [TODO: description of the data mining of PDB and statistical analysis of structures to get an idea of the shape and parameters of the model]
+      \begin{itemize}
+        \item \textbf{For protein and protein/ligand}: \textcolor{teal}{"entry polymer types = protein only" \& "number of assemblies = 1" \& "experimental method = X-ray diffraction" \& "data collection resolution < 2.5 \AA"}
+        \item \textbf{For protein/nucleic and protein/nucleic/ligand}: \textcolor{teal}{"entry polymer types = protein/NA" \& "number of assemblies = 1" \& "experimental method = X-ray diffraction" \& "data collection resolution < 2.5 \AA"}
+      \end{itemize}
 
-  \subsection{Hydrogen bonds potential}
-    [TODO: description of a simple model based in a gaussian that takes only distance as parameter and assumes simultaneous positions where the ligand can have an ideal angle for the given distance]
-    [TODO: description of how both acceptors and donors potentials are simplified by neglecting the actual position of the hydrogens, as their positions are many times flexible enough]
+      These PDB ids were used to programatically download the dataset by means of bash scripts and interacting with the PDB's API. Then, a Python script was employed for extracting ligand names from the PDB files. These names were similarly used for downloading a dataset of CIF ligand description files from PDB.
 
-  \subsection{Electrostatic potential}
-    [TODO: brief description of how APBS maps smoothly to the same concept of potential grid]
-    [TODO: brief description of how APBS could need normalization (eg log10) because of the large range of values] --> but this was conceived
-    \textcolor{red}{AFTER} seeing the results, should it still be here in "materials and methods" or in results?
-    % \subsubsection{Normalizing the APBS grid}
+    \subsubsection{Detecting Aromatic Groups in Ligands}
+      For parametrizing this model, only ligands with aromatic groups are of interest. A first approach for filtering the ligands was to parse the SMILES string from the CIF files and keep only those that contained flags for presence of aromatic bonds (i.e. lowercase letters).
 
-  \subsection{Hydrophobicity potential}
-    [TODO: brief description of how Alex's approach to Hydrophobicity was adatped for the UnityMol pipeline]
+      After some issues with the first method, a second approach was also deviced. A Python script was used for inspecting the bonds topology described in the CIF files. A ligand was considered to be candidate for aromaticity if its structure had cycles after discarding tetrahedral atoms (i.e. those with four bonds). In this case, information about the individually detected cycles was stored in a CSV file.
+
+      Ligands where the two methods coincided were considered to have an aromatic group for the next steps. Cases where the methods disagreed were manually inspected to decide whether to consider them aromatic or not.
+
+    \subsubsection{Coarse-grained Description of Aromatic Groups}
+      Before sampling the aromatic interactions, all aromatic groups are simplified into a coarse-grained description. For each aromatic group, a particle is defined at the \textbf{center of geometry} (COG) of the group (i.e. the average position of the atoms that conform it). In cases where an aromatic group is made by two adjacent aromatic rings (such as tryptophan or adenine), the center of geometry of the whole group is considered as a single point. The \textbf{normal vector} of the aromatic plane (i.e. the three-dimensional vector perpendicular to the plane) is also calculated for each group (figure \ref{fig:methods/aromatic}).
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{figures/methods/aromatic.png}
+        \caption{\label{fig:methods/aromatic} Aromatic groups and their coarse grained representation. Blue) aminoacid aromatic rings, Red) nucleic acid aromatic rings, Silver) center of geometry, Bronze) normal vector. PDB: 1iqj.}
+      \end{figure}
+
+      For performing these calculations, the PDB files are parsed with the Python package \textbf{MDAnalysis} (MDA) \cite{mda_2016, mda_2011}. Atoms corresponding to aromatic groups are selected by a query that specifies the aromatic residue names and the specific atom names that compose their aromatic rings. This information is stored in lookup tables, which are straightforward in the case of amino and nucleic acids, although \textit{synonyms} must be covered (i.e. a residue having more than one possible name, such as adenine been identified as \textbf{A} or \textbf{ADE} in different PDB files).
+
+      Additionally, some synonyms used by MDA for amino or nucleic acids are actually used by PDB for unrelated ligands (for example \textbf{THY} refers to thymine according to MDA but to a ligand according to PDB). This ligand information is stored in the look up tables just for good measure. Finally, the look up table for the ligands is simply the curated CSV file obtained from the ligand dataset in the previous step. Note that, whenever a ligand has more than one separate aromatic group in their structure, each group is reported as a separate row. The lookup tables employed for protein (table \ref{tab:methods/aromatic_prot}), nucleic (table \ref{tab:methods/aromatic_nucleic}) and the first twenty rows for ligands (table \ref{tab:methods/aromatic_ligand}) are available at Appendix I.
+
+    \subsubsection{Sampling of Aromatic Interactions}
+      Two aromatic groups were considered to interact when their corresponding coarse-grained particles where under a certain distance range, set to be between {3 \AA} and {6.5 \AA} following the observations of similar data analysis studies \cite{aromatic_2018}. To obtain all aromatic interactions present in a PDB file, an all-to-all pairwise confrontation was done between the aromatic groups of the system. For those under the spatial proximity of interest, the distance and the $\alpha$ and $\beta$ angles were calculated.
+
+      Note that, given two particles $i$ and $j$, the distance and $\beta$ values are the same for the $i-j$ and $j-i$ interactions, however the $\alpha$ values my differ between $i-j$ and $j-i$. Therefore, for each pair of aromatic groups, two interaction datapoints are produced, with duplicate distance and $\beta$ values and possibly unique $\alpha$ values. This process was performed over the entire dataset of PDB files, employing multithreading to speed up the process.
+
+    \subsubsection{Model Definition}
+      After filling the interactions dataframe, standard data visualization techniques were performed to observe how the distance, $\alpha$ and $\beta$ values interacted. Observing the histograms obtained from these data allowed for extracting an empirical shape and parameters for the distribution of stacking interactions, needed for defining the stacking potential model.
+
+  \subsection{Hydrogen Bonds Potential}
+    Theoretically, modeling hydrogen bond interactions depends on the distances and angle between acceptor, donor and the hydrogen atom. However, when generating a statistical potential field, only acceptor or donor+hydrogen are available, as by definition the potential field is built to estimate the most probable configurations for the missing second half of the interaction. This means that, if the potential field is built without introducing simplifications, it would require a four dimensional space (three spatial dimensions plus the \textit{hydrogen bond angle} dimension) to properly describe the interaction.
+
+    Therefore, for modeling the hydrogen bond interactions, an assumption is made that only hydrogen bonds with an ideal angle of approximately $180^{\circ}$ are considered. The model is further simplified by neglecting the position of any hydrogen atoms in the PDB structure, based in the idea that usually the positions of the hydrogen atoms vary much fast than that of the donor atoms, which means it is better to base the model only on where the donors and acceptors might be.
+
+    With this in mind, the hydrogen bond potential model was defined as a \textbf{sum of univariate normal distributions} centered in the acceptor and donor atoms of the structure of interest. The only parameter considered by the model was the distance from any given acceptor or donor atom to any point in the three-dimensional space. The parameters for the probability distribution are $\mu = 3$ and $\sigma = 0.15$ [TODO: cite?].
+
+  \subsection{Electrostatic Potential}
+    Quantifying the electrostatic potential around atoms of a molecular system overlaps smoothly with the functionality of the APBS software. Hence, there is no need to model the interaction potential in this case and it is enough to incorporate the APBS pipeline into the workflow. However, there might be issues in the visualization stage with the fact that this potentials can vary significantly in magnitude (figure \ref{fig:methods/lapbs}.0).
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=1\textwidth]{figures/methods/lapbs.png}
+      \caption{\label{fig:methods/lapbs} [TODO: description, transpose image source? (2x3 layout instead of 3x2)]}
+    \end{figure}
+
+    Although moving the values into the logarithmic scale is the intuitive solution for this problem, it can not be done in a straightforward way, as the model  calculates actual physical values related to the charges of the system (instead of propensity values as in the previous cases) which can also be negative. To avoid negative values, the absolute value of the points is taken before applying the logarithm base 10 (figure \ref{fig:methods/lapbs}.1).
+
+    By applying this transformation, negative and positive values are obtained, which this time represent the \textit{scale} of the quantities instead of their \textit{physical} meaning; it is evident however that both are important to conserve. To achieve this, the transformed set of points is first pruned to conserve only meaningful and common values. This is done by applying two empirical cutoffs: a minimum of $-2$ and a maximum of $3$ (figure \ref{fig:methods/lapbs}.2) This procedure fixes the boundaries for the points, which in turn allows to shift their origin to 0 by substracting the value of the lower boundary (figure \ref{fig:methods/lapbs}.3).
+
+    Now that all points are positive and the scale information is still conserved, it is time to bring back the physical meaning of signed electrostatic potential. To achieve this, the points that originally corresponded to negative APBS values are simply multiplied by $-1$ to reverse their sign (figure \ref{fig:methods/lapbs}.4). In this step, all points are also scaled by a factor of $2$, with the purpose of having the boundaries at a fixed $[-10, 10]$ range, and the points neatly normalized in between (figure \ref{fig:methods/lapbs}.5).
+
+  \subsection{Hydrophobicity Potential}
+    The hydrophobicity potential was modelled in a similar way to the hydrogen bonds, as a sum of univariate normal distributions centered around every atom of interest. The parameters for the probability distribution are $\mu = 3.7$ and $\sigma = 0.15$ [TODO: cite?]. Each distribution is scaled by a hydrophobicity value, which depends on the type of residue from which the atom is part of. For aminoacids, these values correspond to the Kyte-Doolittle scale, which uses positive values to represent hydrophobic residues and negative values for hydrophilic. On the other hand, this model was not implemented for RNAs, due to their mostly hydrophilic nature.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Development of visualization methods}
+\section{Development of Visualization Methods}
   [TODO: brief technical details about implementing things in UnityMol (editing via the GUI and C\# scripting)]
 
   \subsection{Graphical User Interface}
     [TODO: describe how the user interacts with the pocket sphere mode of UnityMol via the new GUI submenu]
 
-  \subsection{Potentials calculation}
+  \subsection{Potentials Calculation}
     [TODO: describe how UnityMol communicates with an external Python script to calculate the potential grids]
 
-  \subsection{Potentials visualization}
+    % For the calculation of physicochemical properties, the models will consider a volume of interest in shape of a cube, centered around the estimated center of the binding pocket. This volume is then separated into small subunits of volume, regularly spaced in any given axis (although the amount of subunits may change between axes). The subunits are further discretized into points of a three-dimensional matrix
+
+    [python...]
+    The algorithm will consider a volume of interest in shape of a cube, centered around the estimated center of the binding pocket. This volume is then separated into small subunits of volume, regularly spaced in any given axis (although the amount of subunits may change between axes). The subunits are further discretized into points of a three-dimensional matrix
+
+  \subsection{Potentials Visualization}
     [TODO: talk about isosurfaces]
 
     \subsubsection{Cloud representation}
