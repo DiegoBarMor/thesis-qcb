@@ -1,4 +1,81 @@
+%%% used if more pages of materials and methods are required. Not included in 85 pages count.
 \chapter*{Appendix I}
-\addcontentsline{toc}{chapter}{Appendix I}  
+\addcontentsline{toc}{chapter}{Appendix I}
 
-[TEMPLATE: Used if more pages of materials and methods are required. Not included in 85 pages count.]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+  \caption{\label{tab:methods/aromatic_prot} [TODO: description].}
+  \centering
+  \begin{tabular}{cccc}
+    \hline
+    resname & ring\_type & ring\_atoms                         & discrepancy \\ \hline
+    HID     & C8N1       & CAD-CAE-CAF-CAG-CAK-CAL-CAM-CAN-NAI & False       \\
+    HIP     & C3N2       & CD2-CE1-CG-ND1-NE2                  & False       \\
+    HIS     & C3N2       & CD2-CE1-CG-ND1-NE2                  & False       \\
+    HSP     & C6         & C1-C2-C3-C4-C5-C6                   & False       \\
+    PHE     & C6         & CD1-CD2-CE1-CE2-CG-CZ               & False       \\
+    TRP     & C8N1       & CD1-CD2-CE2-CE3-CG-CH2-CZ2-CZ3-NE1  & False       \\
+    TYR     & C6         & CD1-CD2-CE1-CE2-CG-CZ               & False       \\ \hline
+  \end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+  \caption{\label{tab:methods/aromatic_nucleic} [TODO: description].}
+  \centering
+  \begin{tabular}{cccc}
+    \hline
+    resname & ring\_type & ring\_atoms                   & discrepancy \\ \hline
+    A       & C5N4       & C2-C4-C5-C6-C8-N1-N3-N7-N9    & False       \\
+    ADE     & C5N4       & C2-C4-C5-C6-C8-N1-N3-N7-N9    & False       \\
+    C       & C4N2       & C2-C4-C5-C6-N1-N3             & True        \\
+    CYT     & C4N2       & C2-C4-C5-C6-N1-N3             & True        \\
+    DA      & C5N4       & C2-C4-C5-C6-C8-N1-N3-N7-N9    & False       \\
+    DC      & C4N2       & C2-C4-C5-C6-N1-N3             & True        \\
+    DG      & C5N4       & C2-C4-C5-C6-C8-N1-N3-N7-N9    & False       \\
+    DG3     & C5N4       & C2-C4-C5-C6-C8-N1-N3-N7-N9    & False       \\
+    DT      & C4N2       & C2-C4-C5-C6-N1-N3             & True        \\
+    DT5     & C6         & C13-C14-C15-C16-C17-C18       & False       \\
+    DT5     & C5N4       & C10-C11-C7-C8-C9-N1-N2-N3-N4  & False       \\
+    G       & C5N4       & C2-C4-C5-C6-C8-N1-N3-N7-N9    & False       \\
+    RA5     & C9O1       & C1-C2-C3-C4-C5-C6-C7-C8-C9-O1 & False       \\
+    RA5     & C6         & C11-C12-C13-C14-C15-C16       & False       \\
+    RC5     & C6         & C16-C17-C18-C19-C20-C21       & False       \\
+    THY     & C3N1S1     & C2-C4-C5-N3-S1                & False       \\
+    THY     & C4N2       & C2'-C4'-C5'-C6'-N1'-N3'       & False       \\
+    U       & C4N2       & C2-C4-C5-C6-N1-N3             & True        \\
+    URA     & C4N2       & C2-C4-C5-C6-N1-N3             & True        \\ \hline
+  \end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+  \caption{\label{tab:methods/aromatic_ligand} [TODO: description].}
+  \centering
+  \begin{tabular}{cccc}
+    \hline
+    resname & ring\_type & ring\_atoms                             &  \\ \hline
+    003     & C5N1       & C17-C18-C19-C21-C22-N20                 &  \\
+    003     & C10        & C24-C25-C26-C27-C28-C29-C30-C31-C32-C33 &  \\
+    003     & C5N4       & C14-C2-C4-C5-C6-N1-N15-N16-N3           &  \\
+    006     & C6         & C32-C33-C34-C36-C37-C38                 &  \\
+    006     & C6         & C40-C41-C42-C45-C46-C47                 &  \\
+    006     & C6         & C22-C23-C24-C25-C26-C27                 &  \\
+    00A     & C6         & C1C-C2C-C3C-C4C-C5C-C6C                 &  \\
+    00A     & C5N4       & C2-C4-C5-C6-C8-N1-N3-N7-N9              &  \\
+    00G     & C8N1       & C1-C2-C3-C4-C5-C6-C8-C9-N7              &  \\
+    00G     & C4N1       & C14-C15-C16-C17-N13                     &  \\
+    00I     & C6         & CD1-CD2-CE1-CE2-CG1-CZ                  &  \\
+    00I     & C10        & C1-C10-C2-C3-C4-C5-C6-C7-C8-C9          &  \\
+    00J     & C9N1       & C18-C20-C22-C23-C3-C5-C7-C8-C9-N27      &  \\
+    00J     & C8O1       & C10-C17-C19-C21-C24-C25-C4-C6-O31       &  \\
+    00K     & C6         & C10-C11-C12-C13-C14-C15                 &  \\
+    00L     & C6         & C10-C11-C12-C13-C14-C15                 &  \\
+    00L     & C6         & C1X-C2X-C3X-C4X-C5X-C6X                 &  \\
+    00N     & C3N1S1     & C1X-C2X-C3X-N1X-S1X                     &  \\
+    00N     & C6         & C10-C11-C12-C13-C14-C15                 &  \\
+    00P     & C2N3       & C08-C12-N07-N10-N11                     &  \\ \hline
+  \end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
