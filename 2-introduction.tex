@@ -110,9 +110,9 @@
   \subsection{Molecular Visualization Software}
     Due to the nanoscopic nature of molecules, the field of molecular biology relies heavily on technologies to collect and gather insights from the structures and behaviour of these tiny systems. A great source of qualitative analysis and insight out of these data is enabled by the great variety of \textbf{molecular visualization software} and techniques that have been developed over the decades \cite{visualization_2018}.
 
-    Molecular visualization is a huge topic constantly in evolution, with different parties developing different software packages or techniques to approach general or specific visualization purposes. Some of the most consolidated software environments are \textit{Chimera}, \textit{PyMOL}, \textit{PMV} and \textit{VMD} \cite{visualization_2018}. The Protein Data Bank lists a great variety of other software related to molecular graphics: \textit{BioBlender}, \textit{BioViz Studio}, \textit{CCP4mg}, \textit{Cn3D}, \textit{CrystalMaker}, \textit{ePMV}, \textit{EzMol}, \textit{Foldit}, \textit{ICM-Browser}, \textit{IcmJS}, \textit{iMol}, \textit{Jmol}, \textit{Mage and Kinemages}, \textit{Marvin}, \textit{MembraneEditor}, \textit{MOE}, \textit{Molecule World}, \textit{Molecules}, \textit{MolScript}, \textit{MolviZ.org}, \textit{Nanome}, \textit{PDBWORDS}, \textit{Perse Visualizer}, \textit{POLYVIEW}, \textit{Prosat}, \textit{Protein Imager}, \textit{QTree}, \textit{QuteMol}, \textit{RasMol}, \textit{Raster3D}, \textit{RasTop}, \textit{RCSB MBT Viewers}, \textit{RmscopII}, \textit{Schrödinger Product Suites}, \textit{SPADE}, \textit{STRAP}, \textit{Swiss PDB viewer}, \textit{UGENE}, \textit{WebMol}, \textit{YASARA}, \textit{Zeus} and \textit{ZMM} \cite{visualization_web}.
+    Molecular visualization is a huge topic constantly in evolution, with different parties developing different software packages or techniques to approach general or specific visualization purposes. Some of the most consolidated software environments are \textit{Chimera}, \textit{PyMOL}, \textit{PMV} and \textit{VMD} \cite{visualization_2018, vmd_96}. The Protein Data Bank lists a great variety of other software related to molecular graphics: \textit{BioBlender}, \textit{BioViz Studio}, \textit{CCP4mg}, \textit{Cn3D}, \textit{CrystalMaker}, \textit{ePMV}, \textit{EzMol}, \textit{Foldit}, \textit{ICM-Browser}, \textit{IcmJS}, \textit{iMol}, \textit{Jmol}, \textit{Mage and Kinemages}, \textit{Marvin}, \textit{MembraneEditor}, \textit{MOE}, \textit{Molecule World}, \textit{Molecules}, \textit{MolScript}, \textit{MolviZ.org}, \textit{Nanome}, \textit{PDBWORDS}, \textit{Perse Visualizer}, \textit{POLYVIEW}, \textit{Prosat}, \textit{Protein Imager}, \textit{QTree}, \textit{QuteMol}, \textit{RasMol}, \textit{Raster3D}, \textit{RasTop}, \textit{RCSB MBT Viewers}, \textit{RmscopII}, \textit{Schrödinger Product Suites}, \textit{SPADE}, \textit{STRAP}, \textit{Swiss PDB viewer}, \textit{UGENE}, \textit{WebMol}, \textit{YASARA}, \textit{Zeus} and \textit{ZMM} \cite{visualization_web}.
 
-    Molecular visualization involves dealing with complex three-dimensional graphical data, oftentimes in a high-performant interactive way, which for large systems can be very computationally expensive. This challenge is shared with other fields in multimedia development, a notable one being the videogame industry. To take advantage of the highly optimized techniques used in videogame development, some molecular visualization tools have been built on top of \textit{game engines}. Tools such as \textit{UDock}, \textit{UnityMol} and \textit{CellVIEW} have been built using the notorious game engine \textit{Unity3D} \cite{visualization_2018, unitymol_2015, unitymol_web}.
+    Molecular visualization involves dealing with complex three-dimensional graphical data, oftentimes in a high-performant interactive way, which for large systems can be very computationally expensive. This challenge is shared with other fields in multimedia development, a notable one being the videogame industry. To take advantage of the highly optimized techniques used in videogame development, some molecular visualization tools have been built on top of \textit{game engines}. Tools such as \textit{UnityMol} \cite{unitymol_2015, unitymol_web}, \textit{UDock} and \textit{CellVIEW} have been built using the notorious game engine \textit{Unity3D} \cite{visualization_2018, unity_2014}.
 
     \begin{figure}[H]
       \centering
@@ -140,7 +140,7 @@
 
     \begin{figure}[H]
       \centering
-      \includegraphics[width=0.5\textwidth]{figures/intro/rep_surfaces.png}
+      \includegraphics[width=0.8\textwidth]{figures/intro/rep_surfaces.png}
       \caption{\label{fig:intro/rep_surfaces} [TODO] description. Adapted from \cite{representations_2018}.}
     \end{figure}
 
@@ -150,11 +150,20 @@
 
     \begin{figure}[H]
       \centering
-      \includegraphics[width=0.5\textwidth]{figures/intro/isosurfaces.png}
+      \includegraphics[width=0.8\textwidth]{figures/intro/isosurfaces.png}
       \caption{\label{fig:intro/isosurfaces} [TODO] description. Adapted from \cite{isosurfaces_web}.}
     \end{figure}
 
     A notable exception is the use of a volumetric representation known as \textbf{isosurface}. This technique for visualizing three-dimensional grids of data use an adjustable treshold value to draw a contour around points with similar values, which yields a representation similar to a \textit{surface} one (figure \ref{fig:intro/isosurfaces}) \cite{isosurfaces_web}. Isosurfaces are sometimes used to represent solvent exclusion cavities when studying the hydrophobicity of a system (figure \ref{fig:intro/hydrophobic}).
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{figures/intro/isosurfaces_umol.png}
+      \caption{\label{fig:intro/isosurfaces_umol} Isosurface representations of the whole APBS grid for a protein system (PDB: 1IQJ). The isosurface parameter was set to $5$, so positive charges are being displayed. Left) opaque, Middle) translucid, Right) wireframe.}
+    \end{figure}
+
+    There is already an implementation for isosurfaces in UnityMol, originally implemented for visualization of APBS potential grids for the whole system. As any other representation, UnityMol allows to configure the display of the isosurfaces in different ways. Notably, there is the possibility to draw them using \textit{opaque}, \textit{translucid} or \textit{wireframe} renderings, as portrayed in figure \ref{fig:intro/isosurfaces_umol}.
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
