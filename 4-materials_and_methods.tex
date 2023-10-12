@@ -1,7 +1,14 @@
 %%% detailed description of the protocols, software and algorithms used for the project
 \chapter{Materials and methods} % at least 3 pages, maximum 10 pages
 
-[TODO: brief description of the computational environments used? Python, C\#, VMD]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Computational environments}
+  All the calculations and data handling required for the modelling and potential calculations were performed using \textbf{Python} version 3.10.5 \cite{python_2009}. Even if it is not the most performant option, its flexibility and seamless syntaxis allow for quick experimentation when developing the models; it is well known for its powerful data visualization packages, such as \textbf{Matplotlib} \cite{python_2021}. Nevertheless, the performance of the calculations was optimized by employing the package \textbf{NumPy} for parallelizable matrix computations \cite{numpy_2020}, \textbf{pandas} for data manipulation \cite{pandas_2020} and multiprocessing techniques from the standard library.
+
+  Furthermore, for parsing PDB files, the Python package \textbf{MDAnalysis} (MDA) is used \cite{mda_2016, mda_2011}. This package allows for selecting specific atoms of the system by means of a query, which is useful for performing operations using only the atoms of interest. Matrices with values for the potentials are stored using the \textbf{JSON} \cite{json_web} and \textbf{DX} \cite{opendx_web} specifications.
+
+  The visualization software \textbf{VMD} \cite{vmd_96} was used as a reference points for testing with queries for molecular selections, representations and other aspects of the pipeline. All new molecular visualization and user interaction procedures where developed in \textbf{UnityMol} \cite{unitymol_web}, by employing the GUI-based development workflow provided by \textbf{Unity3D}. Necessary scripts were written using the language \textbf{C\#}, as required by the engine \cite{unity_2014}.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Characterization of Physicochemical Properties}
@@ -32,7 +39,7 @@
         \caption{\label{fig:methods/aromatic} Aromatic groups and their coarse grained representation. Blue) aminoacid aromatic rings, Red) nucleic acid aromatic rings, Silver) center of geometry, Bronze) normal vector. PDB: 1iqj.}
       \end{figure}
 
-      For performing these calculations, the PDB files are parsed with the Python package \textbf{MDAnalysis} (MDA) \cite{mda_2016, mda_2011}. Atoms corresponding to aromatic groups are selected by a query that specifies the aromatic residue names and the specific atom names that compose their aromatic rings. This information is stored in lookup tables, which are straightforward in the case of amino and nucleic acids, although \textit{synonyms} must be covered (i.e. a residue having more than one possible name, such as adenine been identified as \textbf{A} or \textbf{ADE} in different PDB files).
+      Atoms corresponding to aromatic groups are selected by a query that specifies the aromatic residue names and the specific atom names that compose their aromatic rings. This information is stored in lookup tables, which are straightforward in the case of amino and nucleic acids, although \textit{synonyms} must be covered (i.e. a residue having more than one possible name, such as adenine been identified as \textbf{A} or \textbf{ADE} in different PDB files).
 
       Additionally, some synonyms used by MDA for amino or nucleic acids are actually used by PDB for unrelated ligands (for example \textbf{THY} refers to thymine according to MDA but to a ligand according to PDB). This ligand information is stored in the look up tables just for good measure. Finally, the look up table for the ligands is simply the curated CSV file obtained from the ligand dataset in the previous step. Note that, whenever a ligand has more than one separate aromatic group in their structure, each group is reported as a separate row. The lookup tables employed for protein (table \ref{tab:methods/aromatic_prot}), nucleic (table \ref{tab:methods/aromatic_nucleic}) and the first twenty rows for ligands (table \ref{tab:methods/aromatic_ligand}) are available at Appendix I.
 
@@ -72,24 +79,44 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Development of Visualization Methods}
-  [TODO: brief technical details about implementing things in UnityMol (editing via the GUI and C\# scripting)]
-
   \subsection{Graphical User Interface}
-    [TODO: describe how the user interacts with the pocket sphere mode of UnityMol via the new GUI submenu]
+    A menu component was built for the Graphical User Interface (GUI) of UnityMol, to allow for an easy interaction between the user and the potentials calculation and visualization, from now on referred to as the \textbf{PSMenu}. The user is expected to load a PDB file and select a set of atoms related to a binding pocket (this would be usually a ligand already present in the system), using the standard UnityMol GUI. The user then can interact with a first instance of the PSMenu (figure \ref{fig:methods/umol_ps-start}), by providing the name of the atom selection and whether the system of interest is RNA based or not (defaults to protein based).
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.5\textwidth]{figures/methods/umol_ps-start.png}
+      \caption{\label{fig:methods/umol_ps-start} First instance of the PSMenu. It serves as an entry point for the visualization pipeline.}
+    \end{figure}
+
+    Once the user clicks the \textit{Start} button, a series of changes occur. First, the atoms from the user provide selection are taken as a reference to estimate the pocket position and dimensions. The pocket is approximated as a sphere, whose diameter corresponds to the distance between the two farthest atoms of the selection, and its center is simply the point in between these two atoms. This sphere will be referred to as \textbf{PS}, short for \textit{Pocket Sphere}, and it is by default represented as a translucid sphere on top of the pocket. Then, selections for the atoms inside and outside the PS are automatically generated, useful for assigning them different representations to highlight the pocket. Finally, the PSMenu changes to allow for the main functionalities of the visualization pipeline (figure \ref{fig:methods/umol_ps-main}).
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.5\textwidth]{figures/methods/umol_ps-main.png}
+      \caption{\label{fig:methods/umol_ps-main} Main instance of the PSMenu. It gives access to the core functionalities of the visualization pipeline.}
+    \end{figure}
+
+    The size of the PS can be increased by means of the \textit{Extra size} slider, which also updates the pocket/non-pocket selections. The translucid sphere that represents the PS can be toggled on or off with the \textit{Pocket Sphere} toggle, while the cartoon-licorice based representations can be changed to surface representations with the \textit{Surface (PDB)} toggle.
+
+    The potential fields can be calculated by clicking the \textit{Recalculate Potentials} button, although this will not display any potential by its own. THe potential field of interest can be displayed individually by clicking on its respective button, be it \textit{Stacking}, \textit{HBond Acceptors}, \textit{APBS}, \textit{Hydrophobic}, \textit{HBond Donors} or \textit{Log APBS}. The displayed potentials can be cleared from the screen by clicking on the \textit{Clear Potential} button.
+
+    The user can switch between the two volumetric representations available for the potential fields by toggling on or off the \textit{Isosurface (DX)} toggle. The \textit{Fieldlines (DX)} toggle is not described in this work, as it is in an experimental stage and it just seeks to simplify the usage of a third volumetric representation already provided by UnityMol (i.e. fieldlines).
 
   \subsection{Potentials Calculation}
-    [TODO: describe how UnityMol communicates with an external Python script to calculate the potential grids]
+    Whenever the \textit{Recalculate Potentials} from figure \ref{fig:methods/umol_ps-main} button is pressed, information about the PS (such as center, diameter, path to the PDB file and whether the system corresponds to RNA) is stored into a JSON file. A Python script is then executed to proceed with the calculation pipeline. The algorithm recovers the center and diameter of the sphere from the JSON file to approximate the binding pocket of the system as a cube in the same position. This volume is then separated into small subunits of volume, regularly spaced in any given axis (although the amount of subunits may change between axes). The subunits are further discretized into points of a three-dimensional NumPy matrix.
 
-    % For the calculation of physicochemical properties, the models will consider a volume of interest in shape of a cube, centered around the estimated center of the binding pocket. This volume is then separated into small subunits of volume, regularly spaced in any given axis (although the amount of subunits may change between axes). The subunits are further discretized into points of a three-dimensional matrix
+    The matrix is filled with values for the different potentials, by employing the models described before. Atom selections are handled by MDA, while the actual numerical operations use NumPy methods to increase performance. In the case of APBS potentials, the APBS pipeline must be followed beforehand until obtaining the DX file with the results. These are then taken by the Python scripts to perform further adjustments and operations.
 
-    [python...]
-    The algorithm will consider a volume of interest in shape of a cube, centered around the estimated center of the binding pocket. This volume is then separated into small subunits of volume, regularly spaced in any given axis (although the amount of subunits may change between axes). The subunits are further discretized into points of a three-dimensional matrix
+    Once the potential grids are populated with values, points that correspond to positions outside the actual PS observed in UnityMol are set to $0$, as they are outside the region of interest. Furthermore, grid points whose position are in close proximity to pocket atoms are also set to 0, as they are placed in a volume already occupied by said atoms and are not plausible positions for a pharmacophore. This process is referred to here as \textbf{trimming}. The distance treshold for proximity is set to {3 \AA} for trimming.
+
+    Finally, each potential grid is stored twice, both as a JSON file and as a DX file. This is not only a measure to communicate the results between Python and UnityMol, but also allows for a fast display of the different grids by just loading the precomputed data files instead of performing the potential calculations every time.
 
   \subsection{Potentials Visualization}
-    [TODO: talk about isosurfaces]
+    A first idea for how to repersent three-dimensional grids of data in an intuitive way was to generate \textit{clouds} of points, which would ideally be denser in regions where the values for the potentials are higher. This appropriately named \textbf{cloud representation} of volumetric data was implemented from scratch in UnityMol.
 
-    \subsubsection{Cloud representation}
-      [TODO: describe the proposed method of visualizing the grids, by representing the grid as a "cloud" where color/opacity of the points is proportional to the relative grid values]
+    The precomputed JSON files are loaded by a C\# script that populates a three-dimensional array with the potential values. It then takes advantage of optimized multiprocessing routines to build the vertices and triangles of a cubic mesh, giving to each vertex a color that corresponds to its respective potential value. These meshes are then handled by a shader GPU program that assigns semi-transparent colors to the triangles according to their neighbouring vertices: more saturated and opaque colors imply higher potential values. Note that grid points whose potential values are equal to 0 are still represented by vertices and triangles in the mesh, but the shader colors them totally transparent.
+
+    Alternatively, the potential grids can be visualized using an \textbf{isosurface representation}. In this case, the PSMenu only takes care of using the internal UnityMol APIs to open the DX file of interest and building the representation. For the potentials that require negative values (namely \textit{APBS}, \textit{LogAPBS} and \textit{Hydrophobicity}), two isosurface representations are built: one for the positive values and another for the negative ones. This allows to color them appropriately and further differentiate them by using distinct configurations of \textit{opaque}, \textit{translucid} or \textit{wireframe} between the two.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
