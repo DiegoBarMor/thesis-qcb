@@ -1,6 +1,6 @@
 *.pdn
 
 figures/raw/
-figures/results/
+figures/results/benchmark/
 misc/
 papers/
