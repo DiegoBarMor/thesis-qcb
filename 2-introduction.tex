@@ -55,7 +55,7 @@
       \caption{\label{fig:intro/electrostatics} Electrostatic interaction between ligand (biotin) and target protein (streptavidin) forming a complex (PDB: 3RY2). Blue) negative electrostatic potential, Red) positive electrostatic potential. Adapted from \cite{electrostatics_2019}.}
     \end{figure}
 
-    A standard method for studying biomolecular electrostatics consists of solving the Poisson-Boltzmann equation of continuum electrostatics, which incorporates information about the molecular shape and charge distribution. This is best solved numerically with a grid-based and finitely-discretized approach. The \textbf{Adaptive Poisson–Boltzmann Solver} (APBS) software provides a flexible and powerful pipeline for this purpose \cite{apbs_2004, apbs_2018, apbs_web}.
+    A standard method for studying biomolecular electrostatics consists of solving the Poisson-Boltzmann equation of continuum electrostatics, which incorporates information about the molecular shape and charge distribution. This is best solved numerically with a grid-based and finitely-discretized approach. The \textbf{Adaptive Poisson–Boltzmann Solver} (APBS) software provides a flexible and powerful pipeline for this purpose \cite{apbs_2004, apbs_2018, apbs_web, umol_apbs_2020}.
 
   \subsection{Stacking}
     The presence of $\pi$-stacking interactions can also contribute to a higher binding affinity in ligand binding. This kind of interaction is traditionally considered to happen between two \textit{aromatic groups}, which are notable for their planarity and $\pi$-electron cloud over and under the aromatic ring plane. Whenever their spatial placement allow for this clouds to interact in a particular way, a \textbf{stacking interaction} occurs. The chemical details behind this phenomenon are still not fully understood and is still object of debate, which also means their quantification and modeling is not straightforward \cite{stacking_binding_2020, stacking_trp_2022, stacking_general_2020}.
@@ -162,7 +162,7 @@
       \caption{\label{fig:intro/isosurfaces_umol} Isosurface representations of the whole APBS grid for a protein system (PDB: 1IQJ) in UnityMol. The isosurface cutoff value was set to $5$, so positive charges are being displayed. Left) opaque, Middle) translucid, Right) wireframe.}
     \end{figure}
 
-    There is already an implementation for isosurfaces in UnityMol, originally implemented for visualization of APBS potential grids for the whole system. As any other representation, UnityMol allows to configure the display of the isosurfaces in different ways. Notably, there is the possibility to draw them using \textit{opaque}, \textit{translucid} or \textit{wireframe} renderings, as portrayed in figure \ref{fig:intro/isosurfaces_umol}.
+    There is already an implementation for isosurfaces in UnityMol, originally implemented for visualization of APBS potential grids for the whole system \cite{umol_apbs_2020}. As any other representation, UnityMol allows to configure the display of the isosurfaces in different ways. Notably, there is the possibility to draw them using \textit{opaque}, \textit{translucid} or \textit{wireframe} renderings, as portrayed in figure \ref{fig:intro/isosurfaces_umol}.
 
 
 
