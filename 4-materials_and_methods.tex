@@ -12,6 +12,11 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Characterization of Physicochemical Properties}
+  \subsection{Model Conditions}
+    Standard visualization techniques involve at most four dimensions in a single time frame, namely three spatial dimensions and color/opacity. Time can be added as a fifth dimension, either by employing animations or interactive sliders. However, depending on the data, this can impact ergononomity and intuitiveness, as information can not be visualized all at once in a single time frame. Therefore, the combined amount of dimensions used by the domain (i.e. "input") and codomain (i.e. "outputs") of the potential models was fixed to maximum four.
+
+    The physicochemical properties were modelled either by means of a \textit{physical energy function} (in the case of electrostatics) or a \textit{statistical energy function} (in the case of stacking, hydrogen bonds and hydrophobicity). In both cases, the domain of the functions consisted of the three spatial dimensions of the molecular systems. This means that the codomain of the functions was limited to only one dimension, i.e. only one output. For the \textit{physical energy function}, this output corresponds to the respective physical value at each spatial coordinate, while for the \textit{statistical energy functions} the output corresponds to a propensity value of how likely an atom or group is to be at each spatial coordinate.
+
   \subsection{Stacking Potential}
     \subsubsection{Obtaining the Datasets}
       For modeling the stacking potential, the shape and parameters of a statistical energy function were empirically determined. A large dataset of protein, protein/ligand, protein/nucleic and protein/nucleic/ligand systems was downloaded from the Protein Data Bank (PDB) \cite{pdb_2003}. First of all, the PDB ids for these systems were obtained by submitting two queries to the database:
@@ -49,10 +54,10 @@
       Note that, given two particles $i$ and $j$, the distance and $\beta$ values are the same for the $i-j$ and $j-i$ interactions, however the $\alpha$ values my differ between $i-j$ and $j-i$. Therefore, for each pair of aromatic groups, two interaction datapoints are produced, with duplicate distance and $\beta$ values and possibly unique $\alpha$ values. This process was performed over the entire dataset of PDB files, employing multithreading to speed up the process.
 
     \subsubsection{Model Definition}
-      After filling the interactions dataframe, standard data visualization techniques were performed to observe how the distance, $\alpha$ and $\beta$ values interacted. Observing the histograms obtained from these data allowed for extracting an empirical shape and parameters for the distribution of stacking interactions, needed for defining the stacking potential model.
+      After filling the interactions dataframe, standard data visualization techniques were performed to observe how the distance, $\alpha$ and $\beta$ values interacted. Observing the histograms obtained from these data allowed for extracting an empirical shape and parameters for the distribution of stacking interactions, needed for defining the stacking potential model. This consisted of a \textbf{sum of probability distributions}, with said empirically defined shape and centered in the COG of each aromatic group.
 
   \subsection{Hydrogen Bonds Potential}
-    Theoretically, modeling hydrogen bond interactions depends on the distances and angle between acceptor, donor and the hydrogen atom. However, when generating a statistical potential field, only acceptor or donor+hydrogen are available, as by definition the potential field is built to estimate the most probable configurations for the missing second half of the interaction. This means that, if the potential field is built without introducing simplifications, it would require a four dimensional space (three spatial dimensions plus the \textit{hydrogen bond angle} dimension) to properly describe the interaction.
+    Theoretically, modeling hydrogen bond interactions depends on the distances and angle between acceptor, donor and the hydrogen atom. However, when generating a statistical potential field, only acceptor or donor+hydrogen are available, as by definition the potential field is built to estimate the most probable configurations for the missing second half of the interaction. This means that, if the potential field is built without introducing simplifications, the domain of the function would consist of four dimensions (three spatial dimensions plus the \textit{hydrogen bond angle} dimension) to properly describe the interaction, exceeding the maximum defined previously.
 
     Therefore, for modeling the hydrogen bond interactions, an assumption is made that only hydrogen bonds with an ideal angle of approximately $180^{\circ}$ are considered. The model is further simplified by neglecting the position of any hydrogen atoms in the PDB structure, based in the idea that usually the positions of the hydrogen atoms vary much fast than that of the donor atoms, which means it is better to base the model only on where the donors and acceptors might be.
 
@@ -64,7 +69,7 @@
     \begin{figure}[H]
       \centering
       \includegraphics[width=1\textwidth]{figures/methods/lapbs.png}
-      \caption{\label{fig:methods/lapbs} [TODO: description, transpose image source? (2x3 layout instead of 3x2)]}
+      \caption{\label{fig:methods/lapbs} [TODO: description, transpose image source? (2x3 layout instead of 3x2). change labels to alphabetical]}
     \end{figure}
 
     Although moving the values into the logarithmic scale is the intuitive solution for this problem, it can not be done in a straightforward way, as the model  calculates actual physical values related to the charges of the system (instead of propensity values as in the previous cases) which can also be negative. To avoid negative values, the absolute value of the points is taken before applying the logarithm base 10 (figure \ref{fig:methods/lapbs}.1).
