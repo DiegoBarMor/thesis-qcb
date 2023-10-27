@@ -63,20 +63,40 @@
       \begin{figure}[H]
         \centering
         \includegraphics[width=0.7\textwidth]{figures/results/visualize_stacking.png}
-        \caption{\label{fig:results/visualize_stacking} [TODO: description]. Trimming is turned off for clear visualization of the tori.}
+        \caption{\label{fig:results/visualize_stacking} [TODO: description]. Trimming is turned off for clear visualization of the tori. Grid resolution: 50x50x50. Rendered in UnityMol.}
       \end{figure}
 
       The model is a sum of the potential distribution defined by each aromatic group, which means that in actual pockets more than one pair of tori can be present. This will naturally overlap with each other in regions where multiple aromatic groups are in close vicinity (figure \ref{fig:results/visualize_stacking}.b). Points were multiple tori intersect imply a higher propensity for a pharmacophore to form one or multiple stacking interactions, potentially from both sides of the aromatic plane. The trimming step of the calculations will often cut out parts of the tori already occupied by the pocket atoms, so at the end the potential fields end up being mostly amorphous (figure [TODO: ref figure of some benchmark]).
 
   \subsection{Hydrogen Bonds Potential}
-    [TODO: show the spheres formed by the univariate gaussian model]
+    In the case of the hydrogen bonds potential, the function bases its univariate normal distributions only on distance. This simpler spatial constraint means that the potential value peaks at a given distance from the relevant atoms, which is the same in all directions. Intuitively, this generates a hollow shell around the atom, as can be seen in figure \ref{fig:results/visualize_hbonds}.a. Placing an acceptor or donor pharmacophore (whichever complements the target atom) in this shell means that a hydrogen bond interaction is plausible.
 
-    [TODO: description of the simultaneous positions where the ligand can have an ideal angle for the given distance]
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=1\textwidth]{figures/results/visualize_hbonds.png}
+      \caption{\label{fig:results/visualize_hbonds} [TODO: description, hba]. Trimming is turned off for clear visualization of the shells. Grid resolution: 50x50x50. Rendered in UnityMol.}
+    \end{figure}
+
+    Similarly to the stacking potential, several shells will most likely overlap with each other when studying actual pockets (figures \ref{fig:results/visualize_hbonds}.b and \ref{fig:results/visualize_hbonds}.c). Placing a pharmacophore in these overlapping regions should further increase the propensity of a hydrogen bond interaction, as it implies there are more acceptor/donor candidates nearby. Finally, when trimming is actually enabled, the surfaces defined by the hydrogen bond potential are further simplified and adopt an amorphous shape (figure [TODO: ref figure of some benchmark]).
 
   \subsection{Electrostatic Potential}
-    [TODO: show the christmas tree effect and compare it to logAPBS]
+    As the electrostatic potential is based in a physical energy function, its output values are less linear than those of a statistical energy function and can vary between different orders of magnitude. Very high values occur in close proximity to atoms with partial charges, while the values quickly dissipate when moving towards the unoccupied volume of the pocket. In figure \ref{fig:results/logapbs_trimming} it can be observed that, even if most values are in an order of magnitude of around $1e1$ and $1e1.5$, while few points are present around $1e2.5$.
 
-    [TODO: show the log and trimmed log plots]
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.7\textwidth]{figures/results/logapbs_trimming.png}
+      \caption{\label{fig:results/logapbs_trimming} [TODO: description].}
+    \end{figure}
+
+    This affects the cloud representation, as the colors and transparency depend on the normalized values of the potential: after normalization, only the few extreme values (around $1e2.5$) are displayed, while the majority of values inside the pocket (below $1e.5$) are drawn with a very low opacity. This is particularly evident when trimming is turned off, because a higher amount of extreme values near atoms remain unpruned (figure \ref{fig:results/logapbs_trimming}), and results in a highly focalized representation that is not very informative. This visual artifact is dubbed \textit{christmas tree effect} and is to be avoided (figure \ref{fig:results/apbs_christmas}.a).
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.7\textwidth]{figures/results/apbs_christmas.png}
+      \caption{\label{fig:results/apbs_christmas} [TODO: description]. PDB: 1IQ. Grid resolution: 52x49x46. Rendered in UnityMol.}
+    \end{figure}
+
+    Even if enabling trimming removes the majority of high values (figure \ref{fig:results/logapbs_trimming}), the presence of only a single value around $1e2.5$ is enough to influence on the normalization of colors and negatively affect the cloud representation in the same way (figure \ref{fig:results/apbs_christmas}.b). This problem is solved by either displaying the logarithmic transformation of the APBS values (figure \ref{fig:results/apbs_christmas}.c) or by using isosurfaces for either the original or log-transformed APBS values (figure \ref{fig:results/apbs_christmas}.d).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -93,6 +113,8 @@
     [TODO: trimmed vs not trimmed sphere]
 
     [TODO: cloud vs isosurface]
+
+    [TODO: 50x50x50 res vs 100x100x100 res]
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
