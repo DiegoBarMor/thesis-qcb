@@ -41,7 +41,7 @@
       \begin{figure}[H]
         \centering
         \includegraphics[width=0.5\textwidth]{figures/methods/aromatic.png}
-        \caption{\label{fig:methods/aromatic} Aromatic groups and their coarse grained representation. Blue) aminoacid aromatic rings, Red) nucleic acid aromatic rings, Silver) center of geometry, Bronze) normal vector. PDB: 1IQJ.}
+        \caption{\label{fig:methods/aromatic} Aromatic groups and their coarse grained representation. Blue) aminoacid aromatic rings, Red) nucleic acid aromatic rings, Silver) center of geometry, Bronze) normal vector. PDB: 1IQJ. Rendered in VMD.}
       \end{figure}
 
       Atoms corresponding to aromatic groups are selected by a query that specifies the aromatic residue names and the specific atom names that compose their aromatic rings. This information is stored in lookup tables, which are straightforward in the case of amino and nucleic acids, although \textit{synonyms} must be covered (i.e. a residue having more than one possible name, such as adenine been identified as \textbf{A} or \textbf{ADE} in different PDB files).
@@ -117,7 +117,7 @@
     Finally, each potential grid is stored twice, both as a JSON file and as a DX file. This is not only a measure to communicate the results between Python and UnityMol, but also allows for a fast display of the different grids by just loading the precomputed data files instead of performing the potential calculations every time.
 
   \subsection{Potentials Visualization}
-    A first idea for how to repersent three-dimensional grids of data in an intuitive way was to generate \textit{clouds} of points, which would ideally be denser in regions where the values for the potentials are higher. This appropriately named \textbf{cloud representation} of volumetric data was implemented from scratch in UnityMol.
+    A first idea for how to repersent three-dimensional grids of data in an intuitive way was to generate \textit{clouds} of points, which would ideally be denser in regions where the values for the potentials are higher. This appropriately named \textbf{cloud representation} of volumetric data was implemented from scratch in UnityMol. This method normalizes the values of the potentials to assign appropriate color and opacity levels to the points.
 
     The precomputed JSON files are loaded by a C\# script that populates a three-dimensional array with the potential values. It then takes advantage of optimized multiprocessing routines to build the vertices and triangles of a cubic mesh, giving to each vertex a color that corresponds to its respective potential value. These meshes are then handled by a shader GPU program that assigns semi-transparent colors to the triangles according to their neighbouring vertices: more saturated and opaque colors imply higher potential values. Note that grid points whose potential values are equal to 0 are still represented by vertices and triangles in the mesh, but the shader colors them totally transparent.
 
