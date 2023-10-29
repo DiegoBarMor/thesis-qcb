@@ -63,10 +63,10 @@
       \begin{figure}[H]
         \centering
         \includegraphics[width=0.7\textwidth]{figures/results/visualize_stacking.png}
-        \caption{\label{fig:results/visualize_stacking} [TODO: description]. Trimming is turned off for clear visualization of the tori. Grid resolution: 50x50x50. Rendered in UnityMol.}
+        \caption{\label{fig:results/visualize_stacking} [TODO: description]. Only sphere trimming was performed, for clear visualization of the tori. Grid resolution: 50x50x50. Rendered in UnityMol.}
       \end{figure}
 
-      The model is a sum of the potential distribution defined by each aromatic group, which means that in actual pockets more than one pair of tori can be present. This will naturally overlap with each other in regions where multiple aromatic groups are in close vicinity (figure \ref{fig:results/visualize_stacking}.b). Points were multiple tori intersect imply a higher propensity for a pharmacophore to form one or multiple stacking interactions, potentially from both sides of the aromatic plane. The trimming step of the calculations will often cut out parts of the tori already occupied by the pocket atoms, so at the end the potential fields end up being mostly amorphous (figure [TODO: ref figure of some benchmark]).
+      The model is a sum of the potential distribution defined by each aromatic group, which means that in actual pockets more than one pair of tori can be present. This will naturally overlap with each other in regions where multiple aromatic groups are in close vicinity (figure \ref{fig:results/visualize_stacking}.b). Points were multiple tori intersect imply a higher propensity for a pharmacophore to form one or multiple stacking interactions, potentially from both sides of the aromatic plane. The trimming steps of the calculations will often cut out parts of the tori already occupied by the pocket atoms, so at the end the potential fields end up being mostly amorphous (figure [TODO: ref figure of some benchmark]).
 
   \subsection{Hydrogen Bonds Potential}
     In the case of the hydrogen bonds potential, the function bases its univariate normal distributions only on distance. This simpler spatial constraint means that the potential value peaks at a given distance from the relevant atoms, which is the same in all directions. Intuitively, this generates a hollow shell around the atom, as can be seen in figure \ref{fig:results/visualize_hbonds}.a. Placing an acceptor or donor pharmacophore (whichever complements the target atom) in this shell means that a hydrogen bond interaction is plausible.
@@ -74,10 +74,12 @@
     \begin{figure}[H]
       \centering
       \includegraphics[width=1\textwidth]{figures/results/visualize_hbonds.png}
-      \caption{\label{fig:results/visualize_hbonds} [TODO: description, hba]. Trimming is turned off for clear visualization of the shells. Grid resolution: 50x50x50. Rendered in UnityMol.}
+      \caption{\label{fig:results/visualize_hbonds} [TODO: description, hba]. Only sphere trimming was performed, for clear visualization of the shells. Grid resolution: 50x50x50. Rendered in UnityMol.}
     \end{figure}
 
-    Similarly to the stacking potential, several shells will most likely overlap with each other when studying actual pockets (figures \ref{fig:results/visualize_hbonds}.b and \ref{fig:results/visualize_hbonds}.c). Placing a pharmacophore in these overlapping regions should further increase the propensity of a hydrogen bond interaction, as it implies there are more acceptor/donor candidates nearby. Finally, when trimming is actually enabled, the surfaces defined by the hydrogen bond potential are further simplified and adopt an amorphous shape (figure [TODO: ref figure of some benchmark]).
+    Similarly to the stacking potential, several shells will most likely overlap with each other when studying actual pockets (figures \ref{fig:results/visualize_hbonds}.b and \ref{fig:results/visualize_hbonds}.c). Placing a pharmacophore in these overlapping regions should further increase the propensity of a hydrogen bond interaction, as it implies there are more acceptor/donor candidates nearby.
+
+    After trimming is performed, the surfaces defined by the hydrogen bond potential are further simplified and adopt an amorphous shape (figure [TODO: ref figure of some benchmark]). Finally, due to the similarity of the potential functions, the hydrophobicity potential also yields similar spherical patterns, with the difference that these can have either positively or negative values (figure [TODO: ref figure of some benchmark]).
 
   \subsection{Electrostatic Potential}
     As the electrostatic potential is based in a physical energy function, its output values are less linear than those of a statistical energy function and can vary between different orders of magnitude. Very high values occur in close proximity to atoms with partial charges, while the values quickly dissipate when moving towards the unoccupied volume of the pocket. In figure \ref{fig:results/logapbs_trimming} it can be observed that, even if most values are in an order of magnitude of around $1e1$ and $1e1.5$, while few points are present around $1e2.5$.
@@ -88,34 +90,78 @@
       \caption{\label{fig:results/logapbs_trimming} [TODO: description].}
     \end{figure}
 
-    This affects the cloud representation, as the colors and transparency depend on the normalized values of the potential: after normalization, only the few extreme values (around $1e2.5$) are displayed, while the majority of values inside the pocket (below $1e.5$) are drawn with a very low opacity. This is particularly evident when trimming is turned off, because a higher amount of extreme values near atoms remain unpruned (figure \ref{fig:results/logapbs_trimming}), and results in a highly focalized representation that is not very informative. This visual artifact is dubbed \textit{christmas tree effect} and is to be avoided (figure \ref{fig:results/apbs_christmas}.a).
+    This affects the cloud representation, as the colors and transparency depend on the normalized values of the potential: after normalization, only the few extreme values (around $1e2.5$) are displayed, while the majority of values inside the pocket (below $1e.5$) are drawn with a very low opacity. This is particularly evident when occupancy trimming is turned off, because a higher amount of extreme values near atoms remain unpruned (figure \ref{fig:results/logapbs_trimming}), and results in a highly focalized representation that is not very informative. This visual artifact is dubbed \textit{christmas tree effect} and is to be avoided (figure \ref{fig:results/apbs_christmas}.a).
 
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.7\textwidth]{figures/results/apbs_christmas.png}
-      \caption{\label{fig:results/apbs_christmas} [TODO: description]. PDB: 1IQ. Grid resolution: 52x49x46. Rendered in UnityMol.}
+      \caption{\label{fig:results/apbs_christmas} [TODO: description]. PDB: 1IQJ. Grid resolution: 52x49x46. Rendered in UnityMol.}
     \end{figure}
 
-    Even if enabling trimming removes the majority of high values (figure \ref{fig:results/logapbs_trimming}), the presence of only a single value around $1e2.5$ is enough to influence on the normalization of colors and negatively affect the cloud representation in the same way (figure \ref{fig:results/apbs_christmas}.b). This problem is solved by either displaying the logarithmic transformation of the APBS values (figure \ref{fig:results/apbs_christmas}.c) or by using isosurfaces for either the original or log-transformed APBS values (figure \ref{fig:results/apbs_christmas}.d).
+    Even if enabling occupancy trimming removes the majority of high values (figure \ref{fig:results/logapbs_trimming}), the presence of only a single value around $1e2.5$ is enough to influence on the normalization of colors and negatively affect the cloud representation in the same way (figure \ref{fig:results/apbs_christmas}.b). This problem is solved by either displaying the logarithmic transformation of the APBS values (figure \ref{fig:results/apbs_christmas}.c) or by using isosurfaces for either the original or log-transformed APBS values (figure \ref{fig:results/apbs_christmas}.d).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Development of Visualization Methods}
   \subsection{Graphical User Interface}
-    % Pocket Sphere stuff
-    [TODO: pocket sphere and changing its size vs pocket sphere off]
+    The UnityMol GUI components were implemented for the PS pipeline, which allowed for easy manipulation of the pocket sphere size in real time, and provided both cartoon (figures \ref{fig:results/gui_sphere}.a and \ref{fig:results/gui_sphere}.b) and surface (figures \ref{fig:results/gui_sphere}.c and \ref{fig:results/gui_sphere}.d) representations of the system. It is important to note that the \textit{Extra size} slider of GUI becomes less reactive when setting the size of the pocket sphere to a large value, due to the atom selection calculations slowing down UnityMol. This slow-down is particularly noticeable when using the surface representation, as heavy calculations must be done when calculating each new variant of the surfaces.
 
-    [TODO: cartoon vs surface representation]
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{figures/results/gui_sphere.png}
+      \caption{\label{fig:results/gui_sphere} [TODO: description, UnityMol, PS radius increased by 10]. PDB: 1IQJ.}
+    \end{figure}
 
+  \subsection{Potentials Calculation}
+    For any potentials calculation, performing the sphere and occupancy trimming is fundamental, as otherwise the visualization gets saturated with irrelevant datapoints (figure \ref{fig:results/trimming_0}). The RNDS trimming can be considered as an optional step for futher polishing the visualization, at the expense of additional calculation time. An example of RNDS removing datapoints from a volume outside the pocket is presented in figure \ref{fig:results/trimming_1}. Further polishing can be performed by adding a treshold for the search distance, although this has to be done with care, to avoid removing relevant datapoints.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=1\textwidth]{figures/results/trimming_0.png}
+      \caption{\label{fig:results/trimming_0} [TODO: description]. PDB: 1EHE.}
+    \end{figure}
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=1\textwidth]{figures/results/trimming_1.png}
+      \caption{\label{fig:results/trimming_1} [TODO: description]. PDB: 1EHE.}
+    \end{figure}
+
+    Another important setting for the potentials calculation is the amount of points employed for calculating the grid, i.e. its resolution. A resolution of $50 \times 50 \times 50$ implies dealing with matrices of $125000$ datapoints, which are calculated relatively quickly (some seconds), but whose rendering consist of less intuitive shapes (figures \ref{fig:results/resolution}.a and \ref{fig:results/resolution}.c). A resolution of $100 \times 100 \times 100$ implies dealing with $1000000$ points, which increases the calculation time to the order of several seconds or even a minute, but which are displayed into better defined shapes and contours (figures \ref{fig:results/resolution}.b and \ref{fig:results/resolution}.d). It is also notable that the time for loading the matrix files and rendering the representations increase with the resolution, although not as extremely.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{figures/results/resolution.png}
+      \caption{\label{fig:results/resolution} [TODO: description]. PDB: 1IQJ.}
+    \end{figure}
 
   \subsection{Potentials Visualization}
     % Representation of the potential grids in UnityMol
-    [TODO: trimmed vs not trimmed sphere]
+    Depending on the molecular system and the potentials to be visualized, different representation methods can be more convenient or ergonomic to use. For example, comparing the electrostatic potential of \textit{PDB:1EHE} with its actual ligand position can be confusing when using only wireframe isosurfaces (figure \ref{fig:results/reprs_0}.c), as it ofuscates the ligand and the wireframe colors get mixed together. The cloud representation can be more useful for differentiating the electrostatic regions and the atoms below them, although it might still generate confusion (figure \ref{fig:results/reprs_0}.a). In this particular example, an appropriate intermediate option is mixing solid and translucid isosurfaces (figure \ref{fig:results/reprs_0}.b).
 
-    [TODO: cloud vs isosurface]
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=1\textwidth]{figures/results/reprs_0.png}
+      \caption{\label{fig:results/reprs_0} [TODO: description]. PDB: 1EHE.}
+    \end{figure}
 
-    [TODO: 50x50x50 res vs 100x100x100 res]
+    In the case of the stacking potential, comparing the ligand position is even harder when using solid or wireframe isosurfaces, as it is difficult to distinguish the aromatic rings overlapping with the potential (figures \ref{fig:results/reprs_1}.c and \ref{fig:results/reprs_1}.d), while translucid and cloud are more appropriate for this purpose (figures \ref{fig:results/reprs_1}.a and \ref{fig:results/reprs_1}.b). Note however that, if the actual shape of interest is of interest and the ligand is disregarded, the solid and wireframe isosurfaces are a better choice. Also note that the cloud representation in figure \ref{fig:results/reprs_1}.a gives less relevance to low value subregions (which can be considered noise), while the translucid isosurface from figure \ref{fig:results/reprs_1}.b gives the same homogeneous color to all points, regardless of their potential value.
 
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{figures/results/reprs_1.png}
+      \caption{\label{fig:results/reprs_1} [TODO: description]. PDB: 5KX9.}
+    \end{figure}
+
+    Even if the hydrogen bond potential have some resemblances with the stacking potential in its calculation, the practicality of its representation differs. The cloud and translucid representations are usually vague and not very intuitive (figures \ref{fig:results/reprs_2}.a and \ref{fig:results/reprs_2}.b), while the solid and wireframe representations are most likely to be preferred (figures \ref{fig:results/reprs_2}.c and \ref{fig:results/reprs_2}.d). This is due to the fact that these potentials are closer to the actual surface of the target (while the stacking extends towards the pocket center), so the ligand or pharmacophore is less obstructed during the visualization. The spherical shapes from this potential are also very evident in the solid isosurfaces.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{figures/results/reprs_2.png}
+      \caption{\label{fig:results/reprs_2} [TODO: description]. PDB: 1IQJ.}
+    \end{figure}
+
+    A final observation regarding the isosurface representations is that the user must deal with the \textit{isovalue} parameter, which can be not intuitive and generate confusion about the actual meaning of the rendered shapes. On the other hand, being able to change this parameter allows to better adjust each particular case, even if the underlying technical concept of an isovalue is not clear to the user. The cloud representation lacks this issue.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Benchmarking}
