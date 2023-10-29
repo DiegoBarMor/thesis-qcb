@@ -1,0 +1,50 @@
+display depthcue off
+display farclip set 999.0
+color scale method RWB
+color change rgb 10 0.7 0.7 0.7
+color change rgb 16 1.0 1.0 1.0
+
+mol new C:/Users/Acer/Desktop/CulebraBox/cbio/Pirate/data/prot/3ee4.pdb type pdb first 0 last -1 step 1 filebonds 1 autobonds 1 waitfor all
+mol addfile C:/Users/Acer/Desktop/CulebraBox/cbio/UnityMolX/Assets/PocketSphere/GridsData/3ee4.apbs.dx type dx first 0 last -1 step 1 filebonds 1 autobonds 1 waitfor all
+mol addfile C:/Users/Acer/Desktop/CulebraBox/cbio/UnityMolX/Assets/PocketSphere/GridsData/3ee4.apbslog.dx type dx first 0 last -1 step 1 filebonds 1 autobonds 1 waitfor all
+mol addfile C:/Users/Acer/Desktop/CulebraBox/cbio/UnityMolX/Assets/PocketSphere/GridsData/3ee4.hbaccepts.dx type dx first 0 last -1 step 1 filebonds 1 autobonds 1 waitfor all
+mol addfile C:/Users/Acer/Desktop/CulebraBox/cbio/UnityMolX/Assets/PocketSphere/GridsData/3ee4.hbdonors.dx type dx first 0 last -1 step 1 filebonds 1 autobonds 1 waitfor all
+mol addfile C:/Users/Acer/Desktop/CulebraBox/cbio/UnityMolX/Assets/PocketSphere/GridsData/3ee4.hydrophob.dx type dx first 0 last -1 step 1 filebonds 1 autobonds 1 waitfor all
+mol addfile C:/Users/Acer/Desktop/CulebraBox/cbio/UnityMolX/Assets/PocketSphere/GridsData/3ee4.stacking.dx type dx first 0 last -1 step 1 filebonds 1 autobonds 1 waitfor all
+mol delrep 0 top
+
+mol representation Licorice 0.6 14.0 100.0
+mol color Name
+mol selection {resname MYR}
+mol material Edgy
+mol addrep top
+
+mol representation NewCartoon 0.3 10.0 4.1 0
+mol color ColorID 20
+mol selection {protein and sqr(x-28.061500549316406)+sqr(y-17.65250015258789)+sqr(z-14.158500671386719)>sqr(12.54170036315918)}
+mol material Transparent
+mol addrep top
+
+mol representation Licorice 0.2 9.0 12.0
+mol color Name
+mol selection {protein and sqr(x-28.061500549316406)+sqr(y-17.65250015258789)+sqr(z-14.158500671386719)<=sqr(12.54170036315918)}
+mol material HardPlastic
+mol addrep top
+
+mol representation Licorice 0.2 9.0 12.0
+mol color Name
+mol selection {protein and sqr(x-28.061500549316406)+sqr(y-17.65250015258789)+sqr(z-14.158500671386719)<=sqr(12.54170036315918) and resname HIS PHE TYR TRP and not name C CA CB N O OH}
+mol material HardPlastic
+mol addrep top
+
+mol representation Isosurface 1.0 1 0 1 2 1
+mol color ColorID 7
+mol selection {protein}
+mol material Opaque
+mol addrep top
+
+mol representation Isosurface -1.0 1 0 0 1 1
+mol color ColorID 1
+mol selection {protein}
+mol material Opaque
+mol addrep top
