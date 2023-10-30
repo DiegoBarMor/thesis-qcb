@@ -28,7 +28,7 @@ mol addrep top
 mol representation Licorice 0.2 9.0 12.0
 mol color Name
 mol selection {protein and sqr(x-28.061500549316406)+sqr(y-17.65250015258789)+sqr(z-14.158500671386719)<=sqr(12.54170036315918)}
-mol material HardPlastic
+mol material Glass1
 mol addrep top
 
 mol representation Licorice 0.2 9.0 12.0
@@ -37,7 +37,7 @@ mol selection {protein and sqr(x-28.061500549316406)+sqr(y-17.65250015258789)+sq
 mol material HardPlastic
 mol addrep top
 
-mol representation Isosurface 1.0 1 0 1 2 1
+mol representation Isosurface 1.0 1 0 0 1 1
 mol color ColorID 7
 mol selection {protein}
 mol material Opaque

@@ -28,16 +28,16 @@ mol addrep top
 mol representation Licorice 0.2 9.0 12.0
 mol color Name
 mol selection {nucleic and sqr(x-21.474498748779297)+sqr(y--9.821499824523926)+sqr(z-18.387500762939453)<=sqr(11.750391006469727)}
-mol material HardPlastic
+mol material Glass1
 mol addrep top
 
 mol representation Licorice 0.2 9.0 12.0
 mol color Name
-mol selection {nucleic and sqr(x-21.474498748779297)+sqr(y--9.821499824523926)+sqr(z-18.387500762939453)<=sqr(11.750391006469727) and not name P OP1 OP2 O5' C5' C4' O4' C3' O3' C2' O2' C1'}
+mol selection {nucleic and sqr(x-21.474498748779297)+sqr(y--9.821499824523926)+sqr(z-18.387500762939453)<=sqr(11.750391006469727) and not name P OP1 OP2 O5' C5' C4' O4' C3' O3' C2' O2' C1 H1' H2' H3' H4' H5' H5'' HO2' H41}
 mol material HardPlastic
 mol addrep top
 
-mol representation Isosurface 1.0 1 0 1 2 1
+mol representation Isosurface 1.0 1 0 0 1 1
 mol color ColorID 7
 mol selection {nucleic}
 mol material Opaque
