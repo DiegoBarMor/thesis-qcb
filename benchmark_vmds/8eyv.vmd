@@ -21,19 +21,19 @@ mol addrep top
 
 mol representation NewCartoon 0.3 10.0 4.1 0
 mol color ColorID 20
-mol selection {nucleic and sqr(x--1.6115000247955322)+sqr(y--8.183000564575195)+sqr(z-18.33300018310547)>sqr(50.998064041137695)}
+mol selection {nucleic and sqr(x--1.6115000247955322)+sqr(y--8.183000564575195)+sqr(z-18.33300018310547)>sqr(11.998064041137696)}
 mol material Transparent
 mol addrep top
 
 mol representation Licorice 0.2 9.0 12.0
 mol color Name
-mol selection {nucleic and sqr(x--1.6115000247955322)+sqr(y--8.183000564575195)+sqr(z-18.33300018310547)<=sqr(50.998064041137695)}
+mol selection {nucleic and sqr(x--1.6115000247955322)+sqr(y--8.183000564575195)+sqr(z-18.33300018310547)<=sqr(11.998064041137696)}
 mol material Glass1
 mol addrep top
 
 mol representation Licorice 0.2 9.0 12.0
 mol color Name
-mol selection {nucleic and sqr(x--1.6115000247955322)+sqr(y--8.183000564575195)+sqr(z-18.33300018310547)<=sqr(50.998064041137695) and not name P OP1 OP2 O5' C5' C4' O4' C3' O3' C2' O2' C1 H1' H2' H3' H4' H5' H5'' HO2' H41}
+mol selection {nucleic and sqr(x--1.6115000247955322)+sqr(y--8.183000564575195)+sqr(z-18.33300018310547)<=sqr(11.998064041137696) and not name P OP1 OP2 O5' C5' C4' O4' C3' O3' C2' O2' C1 H1' H2' H3' H4' H5' H5'' HO2' H41}
 mol material HardPlastic
 mol addrep top
 
