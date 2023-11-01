@@ -33,7 +33,7 @@ mol addrep top
 
 mol representation Licorice 0.2 9.0 12.0
 mol color Name
-mol selection {protein and sqr(x-58.80550003051758)+sqr(y-39.47549819946289)+sqr(z-7.084000110626221)<=sqr(11.002988815307617) and resname HIS PHE TYR TRP and not name C CA CB N O OH}
+mol selection {protein and sqr(x-58.80550003051758)+sqr(y-39.47549819946289)+sqr(z-7.084000110626221)<=sqr(11.002988815307617) and resname HIS PHE TYR TRP and not name C CA CB N O OH "H.*"}
 mol material HardPlastic
 mol addrep top
 
