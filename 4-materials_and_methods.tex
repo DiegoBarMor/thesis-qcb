@@ -149,13 +149,13 @@
     \centering
     \begin{tabular}{ccccp{1.5in}p{1.5in}c}
       \hline
-      PDB  & Ligands & Atoms & pKD   & Description                                & Comments                                                                   & Study                            \\ \hline
+      PDB  & Ligand & Atoms & pKD   & Description                                & Comments                                                                   & Study                            \\ \hline
       1BG0 & ADP     & 2817  & -     & arginine kinase                            & negatively charged pocket - NO3 and Mg also participate in the active site & \cite{benchmark_negative_2000}    \\ \hline
       1EBY & BEB     & 1522  & 9.70  & HIV-1 protease in complex with inhibitor   & strong pocket affinity                                                     & \cite{benchmark_strong_2021}      \\ \hline
       1EHE & HEM     & 3100  & -     & cytochrome P450NOR                         & positively charged pocket                                                  & \cite{benchmark_positive_2001}    \\ \hline
       1H7L & TYD     & 1976  & -     & glycosyltransferase                        & -                                                                          & \cite{benchmark_1h7l_2001}        \\ \hline
       1IQJ & XMH     & 2241  & -     & serine protease - blood coagulation factor & -                                                                          & to be published                   \\ \hline
-      1OFZ & FUL-FUC & 4891  & 4.62  & fungal lectin                              & hydrogen bonds                                                             & \cite{hbonds_2023}                \\ \hline
+      1OFZ & FUL     & 4891  & 4.62  & fungal lectin                              & hydrogen bonds                                                             & \cite{hbonds_2023}                \\ \hline
       3DD0 & EZL     & 2074  & 9.00  & carbonic anhydrase II                      & strong pocket affinity                                                     & \cite{benchmark_strong_2021}      \\ \hline
       3EE4 & MYR     & 2320  & -     & Mn/Fe oxidase from M. tuberculosis         & hydrophobic pocket                                                         & \cite{benchmark_hydrophobic_2009} \\ \hline
       5M9W & 7GR     & 4856  & 2.24  & thermolysin in complex with inhibitor      & hydrophobic pocket                                                         & \cite{hydrophobic_2017}           \\ \hline
@@ -168,18 +168,22 @@
     \centering
     \begin{tabular}{ccccp{1.5in}p{1.5in}}
       \hline
-      PDB  & Ligands & Atoms & pKD  & Description                                                 & Comments                                                \\ \hline
+      PDB  & Ligand & Atoms & pKD  & Description                                                 & Comments                                                \\ \hline
       1AKX & ARG     & 965   & -    & HIV-2 trans activating region RNA complex with argininamide & confusing for APBS pipeline - takes ligand as a protein \\ \hline
       1I9V & NMY     & 1632  & 3.47 & phenylalanine transfer RNA                                  & -                                                       \\ \hline
       2ESJ & LIV     & 900   & -    & 16S-rRNA A site                                             & -                                                       \\ \hline
       4F8U & SIS     & 922   & -    & ribosomal decoding site                                     & -                                                       \\ \hline
+      5BJO & 747     & 1568  & -    & corn RNA aptamer in complex with DFHO                       & large SiteScore (1.090) on Hariboss                     \\ \hline
       5KX9 & 6YG     & 2323  & -    & FMN riboswitch                                              & -                                                       \\ \hline
       6TF3 & 3AT     & 1112  & -    & NAD+ riboswitch                                             & -                                                       \\ \hline
       7OAX & SPM     & 4404  & -    & RNA aptamer                                                 & large RNA                                               \\ \hline
       7OAX & V5Z     & 4404  & -    & RNA aptamer                                                 & large RNA                                               \\ \hline
-      5BJO & 747     & 1568  & -    & corn RNA aptamer in complex with DFHO                       & large SiteScore (1.090) on Hariboss                     \\ \hline
       8EYV & 747     & 1954  & -    & beetroot dimer bound to DFHO                                & largest DScore (1.187) on Hariboss                      \\ \hline
     \end{tabular}
   \end{table}
+
+  The benchmarks were rendered in VMD due to the larger customization it provides to isosurfaces, to show how different visual settings may fit different systems. The original ligand is displayed on top of the potentials as a measure of how accurate their visualization could predict an optimal pharmacophore/ligand position. The resolution was set to $100 \times 100 \times 100$ and trimming operations were enabled for all the systems.
+
+  Only isosurface representations were employed for the gridpoints, all isovalues used correponded to $1$ or $-1$ accordingly. Stacking and hydrogen bond potentials were displayed using green colors, as well as positive hydrophobicity. Blue was used for positive charges, while red was used for both negative charges and negative hydrophobicity values (i.e. hydrophilicity). The ligands were rendered with thick licorice representations, while thinner licorice was used to represent residues of interest (including aromatic groups for stacking potential visualtion). Other residues inside the pocket sphere were sometimes represented with translucent licorice, similarly, the target molecule outside the pocket sphere was displayed using translucent cartoon. Ions, if relevant, were rendered using spacefill.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
