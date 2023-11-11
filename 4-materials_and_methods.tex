@@ -142,7 +142,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Benchmarking}
-  A collection of 10 protein based (table \ref{tab:methods/benchmark_prot}) and 10 RNA based (table \ref{tab:methods/benchmark_rna}) PDB files was assembled to carry out benchmarks on the potential calculations and their visualization. The protein structures were chosen from a literature review of binding pockets with different characteristics of interest. The RNA structures were obtained as a representative set of complexes from the RNA-ligand interaction database Hariboss \cite{hariboss_2022}.
+  A collection of 10 protein based (table \ref{tab:methods/benchmark_prot}) and 10 RNA based (table \ref{tab:methods/benchmark_rna}) PDB files was assembled to carry out benchmarks on the potential calculations and their visualization. The protein structures were chosen from a literature review of binding pockets with different characteristics of interest. The RNA structures were obtained as a representative set of complexes from the RNA-ligand interaction database Hariboss \cite{hariboss_2022}. The potentials were calculated on the 20 systems, after removing any ligands and considering only the binding pocket of interest from the target macromolecules.
 
   \begin{table}[H]
     \caption{\label{tab:methods/benchmark_prot} [TODO: description].}
@@ -187,3 +187,6 @@
   Only isosurface representations were employed for the gridpoints, all isovalues used correponded to $1$ or $-1$ accordingly. Stacking and hydrogen bond potentials were displayed using green colors, as well as positive hydrophobicity. Blue was used for positive charges, while red was used for both negative charges and negative hydrophobicity values (i.e. hydrophilicity). The ligands were rendered with thick licorice representations, while thinner licorice was used to represent residues of interest (including aromatic groups for stacking potential visualtion). Other residues inside the pocket sphere were sometimes represented with translucent licorice, similarly, the target molecule outside the pocket sphere was displayed using translucent cartoon. Ions, if relevant, were rendered using spacefill.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% emphasize the procedure (removing the ligand for calculations)
+% unitymol because of the VR implementation (WIP)
