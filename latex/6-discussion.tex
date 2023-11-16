@@ -3,36 +3,29 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Characterization of Physicochemical Properties}
-  \subsection{General Considerations}
-    [TODO: performance of the calculations, how viable will it be to constantly recalculate the potentials (for trajectories or interactive changes)]
-
   \subsection{Stacking Potential}
-    [TODO: Mention the noise observed in the unfiltered sampling and the simplifications of the model]
+    Multiple assumptions were imposed when modelling the stacking potential. Considering proximity as the only basis for what could correspond to stacking lead, as expeceted, to a lot of noise in the unfiltered interaction dataset. It is not surprising that focusing mostly in the nucleic-nucleic interactions yielded much cleaner statistics for parallel stacking, as this interaction is well known to be ubiquitous in nucleic acid systems \cite{rna_2015}.
 
-    [TODO: Mention how the model works for amino-amino interactions even if these were discarded when generating it, and the main contributors are actually nucleic-nucleic interactions. ie the stacking potential seems to be generic for aromatic groups, regardless of the different structures that can be found for aromatic groups]
+    It would be expected that using only these statistics imposes a significant bias towards correctly predicting the stacking potential in RNA, while having arbitrary results with other systems. Indeed, all 5 relevant RNA benchmarks correctly predicted the stacking interactions.
 
-    [TODO: estimate parameters for each amino/nucleic ring individually?]
+    However, from the 7 relevant protein benchmarks, only two had mismatches between the potential and the ligand's aromatic groups (3DD0 and 6E9A), while the others had partial (1EHE and 5M9W) or complete overlaps (1BG0, 1H7L and 1IQJ). According to these observations, the stacking potential model seems to be generic for aromatic groups regardless of their structure, but is better suited for RNA systems.
 
-    [TODO: Discuss the observations from the benchmarks (accuracy)]
+    A possible improvement for the model would be to estimate the parameters for each aromatic residue, both for proteins and RNA systems. However, this could require a larger interaction dataset, or one built in a more refined manner, to yield significant improvements.
 
   \subsection{Hydrogen Bonds Potential}
-    [TODO: could improve significantly by focusing only on the donors and acceptors that probably aren't already participating in hbond interactions (detect base-pairing)]
+    Despite the assumptions employed to simplify the configurational aspects of hydrogen bond interactions, this model is still very nonspecific on the heteroatoms it considers for calculating the hydrogen bond potentials. The model could be improved by calculating the potentials of heteroatoms that are probably not participating already in hydrogen bond interactions. This would require detecting base-pairing for RNA systems, or employing a general hydrogen bond detection algorithm for any molecular system.
 
-    [TODO: Discuss the observations from the benchmarks (accuracy)]
+    For the protein benchmarks relevant to hydrogen bonds, only 1H7L failed to display the expected hydrogen bond interactions from literature. The hydrogen bond acceptor potential was similarly accurate for the 7 pertinent RNA systems, with only 1AKX and 1I9V having slight issues in the prediction. However, for the hydrogen bond donor potential, only 4 of the 10 RNA systems had optimal results. The systems 2ESJ, 4F8U and 6TF3 predicted some of the interactions, while 1AKX, 1I9V and 7OAX (ligand SPM) failed to do so completely.
+
+    Overall, the benchmarks show that the current model for the hydrogen bond potentials work correctly in many cases, but not always. Some improvements could be performed, for example optimizing the shape and parameters of the model via statistical methods, or by using less simplifications.
 
   \subsection{Electrostatic Potential}
-    [TODO: troublesome for fast recalculations, as it also depends on an external pipeline]
+    The protein benchmarks relevant for the electrostatic potentials (1BG0, 1EHE and 3EE4) succesfully reinforced what was expected from their respective literature sources. For other benchmarks, it was difficult discerning whether the visualization provides new insights or not, as many times the pocket was occupied by a single type of charge. This is particularly the case with RNA systems, where expectedly almost only negative charges are observed.
 
-    [TODO: doesn't work altogether for some large or weird systems]
-
-    [TODO: Discuss the observations from the benchmarks (accuracy)]
+    The dependence on an external pipeline (APBS) can also hinder further changes on the visualization workflow, both in performance (additional computation time is required for every recalculation of the potential) and development flexibility (must always adhere to the kind of molecular systems APBS can handle). For example, some very large or particular molecular systems can halt the APBS calculation, which would in turn halt the visualization workflow. This issue is unique to the electrostatic potential, as there is full control over the other models, and any special cases would be handled accordingly.
 
   \subsection{Hydrophobicity Potential}
-    [TODO: implement hydrophobicity in RNA?]
-
-    [TODO: take into account not only the residue but also the type of atom for each gaussian]
-
-    [TODO: Discuss the observations from the benchmarks (accuracy)]
+    The protein benchmarks where the hydrophobicity potential was relevant showed a great success, with only one system having suboptimal results (5M9W). Improvements can still be done for the model, for example to consider not only the residues but also the type of atom when calculating each probability distribution as hydrophobic or hydrophilic. Optimizing the shape and parameters of the model is also a relevant procedure that can be done.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -54,20 +47,33 @@
 
     [TODO: could use the ligand to trim the "occupied" potentials, perhaps interactively, by adding atoms / functional groups and recalculating the trimming mask]
 
-  \subsection{Stacking Potential}
+  \subsection{Potentials Calculation}
+    All three statistical energy functions here presented (stacking, hydrogen bonds and hydrophobicity potentials) rely on the same principle of summing up probability distributions centered in coordinate points of interest. However, the models differ on \textit{which} coordinates they employ and, more relevant for performance, \textit{how many} of them. The stacking potential needs to iterate only over the center of geometry of some residues, while the hydrogen bonds potential requires cycling through the positions of multiple heteroatoms. The longest cycles are often observed in the hydrophobicity potential, as it iterates over all the target molecule's atoms inside the PS.
+
+    This is relevant when considering that each iteration involves computing a probability distribution over a large grid, which itself is not a trivial computation. The divisions, exponentiations and square roots involved renders the procedure computationally heavy, affecting performance at higher grid resolutions. At a resolution of $100 \times 100 \times 100$, the time required for computing each potential grid is in the order of a few decaseconds.
+
+    For the visualization prototype here presented, the potential grids are calculated once per each static molecular system, so this performance is acceptable. However, if extending the visualization pipeline to dynamic systems is of interest (e.g. molecular dynamics \textbf{trajectories} or \textbf{interactive} manipulation of coordinates), computational performance becomes a relevant issue.
+
+    A straightforward strategy for improving performance for dynamic systems is to recalculate the potentials only on some timesteps, e.g. on some specific frames (trajectories) or whenever the user decides to do so (interactive visualizations). However, the time required for each calculation would still too high for many practical uses.
+
+    Another similarly lossy approach is to use lower resolutions for these cases. A resolution of $50 \times 50 \times 50$ is still informative (figure \ref{fig:results/resolution}) and is eigth times faster than the standard $100 \times 100 \times 100$, meaning a time scale of seconds per grid. The performance could also be easily improved by toggling off the RNDS trimming.
+
+    Finally, a lossless strategy to improve performance would be to reutilize some of the calculations, perhaps taking advantage of the fact that the probability distributions centered around different points are numerically similar (or identical) and only differ in their position in the grid. Similarly, the distribution for a particular residue or atom could be calculated only if its coordinates change significantly, and so on.
+
+  \subsection{Stacking Potential Visualization}
     [TODO: Discuss the observations from the benchmarks (clarity)]
 
-  \subsection{Hydrogen Bonds Potential}
+  \subsection{Hydrogen Bonds Potential Visualization}
     [TODO: Discuss the observations from the benchmarks (clarity)]
 
-  \subsection{Electrostatic Potential}
+  \subsection{Electrostatic Potential Visualization}
     [TODO: balancing between clarity and ability to observe difference in magnitudes]
 
     [TODO: "static" representation of the potentials vs using fieldlines]
 
     [TODO: Discuss the observations from the benchmarks (clarity)]
 
-  \subsection{Hydrophobicity Potential}
+  \subsection{Hydrophobicity Potential Visualization}
     [TODO: Discuss the observations from the benchmarks (clarity)]
 
 
