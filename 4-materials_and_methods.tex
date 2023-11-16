@@ -46,7 +46,7 @@
 
       Atoms corresponding to aromatic groups are selected by a query that specifies the aromatic residue names and the specific atom names that compose their aromatic rings. This information is stored in lookup tables, which are straightforward in the case of amino and nucleic acids, although \textit{synonyms} must be covered (i.e. a residue having more than one possible name, such as adenine been identified as \textbf{A} or \textbf{ADE} in different PDB files).
 
-      Additionally, some synonyms used by MDA for amino or nucleic acids are actually used by PDB for unrelated ligands (for example \textbf{THY} refers to thymine according to MDA but to a ligand according to PDB). This ligand information is stored in the look up tables just for good measure. Finally, the look up table for the ligands is simply the curated CSV file obtained from the ligand dataset in the previous step. Note that, whenever a ligand has more than one separate aromatic group in their structure, each group is reported as a separate row. The lookup tables employed for protein (table \ref{tab:methods/aromatic_prot}), nucleic (table \ref{tab:methods/aromatic_nucleic}) and the first twenty rows for ligands (table \ref{tab:methods/aromatic_ligand}) are available at Appendix I.
+      Additionally, some synonyms used by MDA for amino or nucleic acids are actually used by PDB for unrelated ligands (for example \textbf{THY} refers to thymine according to MDA but to a ligand according to PDB). This ligand information is stored in the look up tables just for good measure. Finally, the look up table for the ligands is simply the curated CSV file obtained from the ligand dataset in the previous step. Note that, whenever a ligand has more than one separate aromatic group in their structure, each group is reported as a separate row. The lookup tables employed for protein (table \ref{tab:appx1/aromatic_prot}), nucleic (table \ref{tab:appx1/aromatic_nucleic}) and the first twenty rows for ligands (table \ref{tab:appx1/aromatic_ligand}) are available at Appendix I.
 
     \subsubsection{Sampling of Aromatic Interactions}
       Two aromatic groups were considered to interact when their corresponding coarse-grained particles where under a certain distance range, set to be between {3 \AA} and {6.5 \AA} following the observations of similar data analysis studies \cite{aromatic_2018}. To obtain all aromatic interactions present in a PDB file, an all-to-all pairwise confrontation was done between the aromatic groups of the system. For those under the spatial proximity of interest, the distance and the $\alpha$ and $\beta$ angles were calculated.
@@ -142,14 +142,16 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Benchmarking}
-  A collection of 10 protein based (table \ref{tab:methods/benchmark_prot}) and 10 RNA based (table \ref{tab:methods/benchmark_rna}) PDB files was assembled to carry out benchmarks on the potential calculations and their visualization. The protein structures were chosen from a literature review of binding pockets with different characteristics of interest. The RNA structures were obtained as a representative set of complexes from the RNA-ligand interaction database Hariboss \cite{hariboss_2022}. The potentials were calculated on the 20 systems, after removing any ligands and considering only the binding pocket of interest from the target macromolecules.
+  A collection of 10 protein based (table \ref{tab:appx1/benchmark_prot}) and 10 RNA based (table \ref{tab:appx1/benchmark_rna}) PDB files was assembled to carry out benchmarks on the potential calculations and their visualization. The protein structures were chosen from a literature review of binding pockets with different characteristics of interest. The RNA structures were obtained as a representative set of complexes from the RNA-ligand interaction database Hariboss \cite{hariboss_2022}.
+
+  The potentials were calculated on the 20 systems, after removing any ligands and considering only the binding pocket of interest from the target macromolecules. The pocket sphere was determined by the selection queries and \textit{Extra size} values defined in tables \ref{tab:appx1/selection_prot} and \ref{tab:appx1/selection_prot}. For the protein systems, interactions described in their experimental sources were taken as the main reference point for validation of the benchmarking. In the case of RNA systems, interactions predicted by PLIP \cite{plip_2021} were taken as reference. A summary of these predictions is provided in table \ref{tab:appx2/plip}.
 
   \begin{table}[H]
-    \caption{\label{tab:methods/benchmark_prot} [TODO: description].}
+    \caption{\label{tab:appx1/benchmark_prot} [TODO: description].}
     \centering
     \begin{tabular}{ccccp{1.5in}p{1.5in}c}
       \hline
-      PDB  & Ligand & Atoms & pKD   & Description                                & Comments                                                                   & Study                            \\ \hline
+      PDB  & Ligand  & Atoms & pKD   & Description                                & Comments                                                                   & Source                            \\ \hline
       1BG0 & ADP     & 2817  & -     & arginine kinase                            & negatively charged pocket - NO3 and Mg also participate in the active site & \cite{benchmark_negative_2000}    \\ \hline
       1EBY & BEB     & 1522  & 9.70  & HIV-1 protease in complex with inhibitor   & strong pocket affinity                                                     & \cite{benchmark_strong_2021}      \\ \hline
       1EHE & HEM     & 3100  & -     & cytochrome P450NOR                         & positively charged pocket                                                  & \cite{benchmark_positive_2001}    \\ \hline
@@ -164,11 +166,11 @@
   \end{table}
 
   \begin{table}[H]
-    \caption{\label{tab:methods/benchmark_rna} [TODO: description]. All structures are taken from Hariboss \cite{hariboss_2022}.}
+    \caption{\label{tab:appx1/benchmark_rna} [TODO: description]. All structures are taken from Hariboss \cite{hariboss_2022}.}
     \centering
     \begin{tabular}{ccccp{1.5in}p{1.5in}}
       \hline
-      PDB  & Ligand & Atoms & pKD  & Description                                                 & Comments                                                \\ \hline
+      PDB  & Ligand  & Atoms & pKD  & Description                                                 & Comments                                                \\ \hline
       1AKX & ARG     & 965   & -    & HIV-2 trans activating region RNA complex with argininamide & confusing for APBS pipeline - takes ligand as a protein \\ \hline
       1I9V & NMY     & 1632  & 3.47 & phenylalanine transfer RNA                                  & -                                                       \\ \hline
       2ESJ & LIV     & 900   & -    & 16S-rRNA A site                                             & -                                                       \\ \hline
@@ -182,11 +184,10 @@
     \end{tabular}
   \end{table}
 
-  The benchmarks were rendered in VMD due to the larger customization it provides to isosurfaces, to show how different visual settings may fit different systems. The original ligand is displayed on top of the potentials as a measure of how accurate their visualization could predict an optimal pharmacophore/ligand position. The resolution was set to $100 \times 100 \times 100$ and trimming operations were enabled for all the systems.
+  The benchmarks were rendered in VMD due to its broader isosurface customization, to show how different visual settings may fit different systems. The original ligand is displayed on top of the potentials as a measure of how accurate their visualization could predict an optimal pharmacophore/ligand position. The resolution was set to $100 \times 100 \times 100$ and trimming operations were enabled for all the systems.
 
   Only isosurface representations were employed for the gridpoints, all isovalues used correponded to $1$ or $-1$ accordingly. Stacking and hydrogen bond potentials were displayed using green colors, as well as positive hydrophobicity. Blue was used for positive charges, while red was used for both negative charges and negative hydrophobicity values (i.e. hydrophilicity). The ligands were rendered with thick licorice representations, while thinner licorice was used to represent residues of interest (including aromatic groups for stacking potential visualtion). Other residues inside the pocket sphere were sometimes represented with translucent licorice, similarly, the target molecule outside the pocket sphere was displayed using translucent cartoon. Ions, if relevant, were rendered using spacefill.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% emphasize the procedure (removing the ligand for calculations)
 % unitymol because of the VR implementation (WIP)
