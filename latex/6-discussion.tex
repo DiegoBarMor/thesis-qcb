@@ -1,0 +1,74 @@
+%%% critical analysis of the results obtained and frames them in the context of the international literature
+\chapter{Discussion} % at least 5, maximum 10 pages
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Characterization of Physicochemical Properties}
+  \subsection{General Considerations}
+    [TODO: performance of the calculations, how viable will it be to constantly recalculate the potentials (for trajectories or interactive changes)]
+
+  \subsection{Stacking Potential}
+    [TODO: Mention the noise observed in the unfiltered sampling and the simplifications of the model]
+
+    [TODO: Mention how the model works for amino-amino interactions even if these were discarded when generating it, and the main contributors are actually nucleic-nucleic interactions. ie the stacking potential seems to be generic for aromatic groups, regardless of the different structures that can be found for aromatic groups]
+
+    [TODO: estimate parameters for each amino/nucleic ring individually?]
+
+    [TODO: Discuss the observations from the benchmarks (accuracy)]
+
+  \subsection{Hydrogen Bonds Potential}
+    [TODO: could improve significantly by focusing only on the donors and acceptors that probably aren't already participating in hbond interactions (detect base-pairing)]
+
+    [TODO: Discuss the observations from the benchmarks (accuracy)]
+
+  \subsection{Electrostatic Potential}
+    [TODO: troublesome for fast recalculations, as it also depends on an external pipeline]
+
+    [TODO: doesn't work altogether for some large or weird systems]
+
+    [TODO: Discuss the observations from the benchmarks (accuracy)]
+
+  \subsection{Hydrophobicity Potential}
+    [TODO: implement hydrophobicity in RNA?]
+
+    [TODO: take into account not only the residue but also the type of atom for each gaussian]
+
+    [TODO: Discuss the observations from the benchmarks (accuracy)]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Development of Visualization Methods}
+  \subsection{General Considerations}
+    [TODO: usefulness of being able to open the potentials from different softwares]
+
+    [TODO: limitation of taking screenshots of volumetric representation]
+
+    [TODO: usefulness once it's incorporated to the VR/AR visualization workflows]
+
+    [TODO: the "potential grid" methodology provides a generic visualization technique useful for the physical properties here presented, but also for new ones. The only requirement is having a procedure for generating a volumetric grid of points. ] % ie WALD methodology
+
+    [TODO: could further explore with fieldlines representations]
+
+    [TODO: would be nice with pharmacophore visualization]
+
+    [TODO: the same visualization techniques work for whole target molecules, as well as the ligand itself]
+
+    [TODO: could use the ligand to trim the "occupied" potentials, perhaps interactively, by adding atoms / functional groups and recalculating the trimming mask]
+
+  \subsection{Stacking Potential}
+    [TODO: Discuss the observations from the benchmarks (clarity)]
+
+  \subsection{Hydrogen Bonds Potential}
+    [TODO: Discuss the observations from the benchmarks (clarity)]
+
+  \subsection{Electrostatic Potential}
+    [TODO: balancing between clarity and ability to observe difference in magnitudes]
+
+    [TODO: "static" representation of the potentials vs using fieldlines]
+
+    [TODO: Discuss the observations from the benchmarks (clarity)]
+
+  \subsection{Hydrophobicity Potential}
+    [TODO: Discuss the observations from the benchmarks (clarity)]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
