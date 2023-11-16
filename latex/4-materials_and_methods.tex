@@ -61,7 +61,7 @@
 
     Therefore, for modeling the hydrogen bond interactions, an assumption is made that only hydrogen bonds with an ideal angle of approximately $180^{\circ}$ are considered. The model is further simplified by neglecting the position of any hydrogen atoms in the PDB structure, based in the idea that usually the positions of the hydrogen atoms vary much fast than that of the donor atoms, which means it is better to base the model only on where the donors and acceptors might be.
 
-    With this in mind, the hydrogen bond potential model was defined as a \textbf{sum of univariate normal distributions} centered in the acceptor and donor atoms of the structure of interest. The only parameter considered by the model was the distance from any given acceptor or donor atom to any point in the three-dimensional space. The parameters for the probability distribution are $\mu = 3$ and $\sigma = 0.15$ [TODO: cite?].
+    With this in mind, the hydrogen bond potential model was defined as a \textbf{sum of univariate normal distributions} centered in the acceptor and donor atoms of the structure of interest. The only parameter considered by the model was the distance from any given acceptor or donor atom to any point in the three-dimensional space. The parameters for the probability distribution were empirically determined to be $\mu = 3$ and $\sigma = 0.15$.
 
   \subsection{Electrostatic Potential}
     Quantifying the electrostatic potential around atoms of a molecular system overlaps smoothly with the functionality of the APBS software. Hence, there is no need to model the interaction potential in this case and it is enough to incorporate the APBS pipeline into the workflow. However, there might be issues in the visualization stage with the fact that this potentials can vary significantly in magnitude (figure \ref{fig:methods/lapbs}.0).
@@ -69,7 +69,7 @@
     \begin{figure}[H]
       \centering
       \includegraphics[width=1\textwidth]{figures/methods/lapbs.png}
-      \caption{\label{fig:methods/lapbs} [TODO: description, transpose image source? (2x3 layout instead of 3x2). change labels to alphabetical]}
+      \caption{\label{fig:methods/lapbs} [TODO: description. change labels to alphabetical]}
     \end{figure}
 
     Although moving the values into the logarithmic scale is the intuitive solution for this problem, it can not be done in a straightforward way, as the model  calculates actual physical values related to the charges of the system (instead of propensity values as in the previous cases) which can also be negative. To avoid negative values, the absolute value of the points is taken before applying the logarithm base 10 (figure \ref{fig:methods/lapbs}.1).
@@ -79,7 +79,7 @@
     Now that all points are positive and the scale information is still conserved, it is time to bring back the physical meaning of signed electrostatic potential. To achieve this, the points that originally corresponded to negative APBS values are simply multiplied by $-1$ to reverse their sign (figure \ref{fig:methods/lapbs}.4). In this step, all points are also scaled by a factor of $2$, with the purpose of having the boundaries at a fixed $[-10, 10]$ range, and the points neatly normalized in between (figure \ref{fig:methods/lapbs}.5).
 
   \subsection{Hydrophobicity Potential}
-    The hydrophobicity potential was modelled in a similar way to the hydrogen bonds, as a sum of univariate normal distributions centered around every atom of interest. The parameters for the probability distribution are $\mu = 3.7$ and $\sigma = 0.15$ [TODO: cite?]. Each distribution is scaled by a hydrophobicity value, which depends on the type of residue from which the atom is part of. For aminoacids, these values correspond to the Kyte-Doolittle scale, which uses positive values to represent hydrophobic residues and negative values for hydrophilic. On the other hand, this model was not implemented for RNAs, due to their mostly hydrophilic nature.
+    The hydrophobicity potential was modelled in a similar way to the hydrogen bonds, as a sum of univariate normal distributions centered around every atom of interest. The parameters for the probability distribution were empirically determined to be $\mu = 3.7$ and $\sigma = 0.15$. Each distribution is scaled by a hydrophobicity value, which depends on the type of residue from which the atom is part of. For aminoacids, these values correspond to the Kyte-Doolittle scale, which uses positive values to represent hydrophobic residues and negative values for hydrophilic. On the other hand, this model was not implemented for RNAs, due to their mostly hydrophilic nature.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -144,7 +144,7 @@
 \section{Benchmarking}
   A collection of 10 protein based (table \ref{tab:appx1/benchmark_prot}) and 10 RNA based (table \ref{tab:appx1/benchmark_rna}) PDB files was assembled to carry out benchmarks on the potential calculations and their visualization. The protein structures were chosen from a literature review of binding pockets with different characteristics of interest. The RNA structures were obtained as a representative set of complexes from the RNA-ligand interaction database Hariboss \cite{hariboss_2022}.
 
-  The potentials were calculated on the 20 systems, after removing any ligands and considering only the binding pocket of interest from the target macromolecules. The pocket sphere was determined by the selection queries and \textit{Extra size} values defined in tables \ref{tab:appx1/selection_prot} and \ref{tab:appx1/selection_prot}. For the protein systems, interactions described in their experimental sources were taken as the main reference point for validation of the benchmarking. In the case of RNA systems, interactions predicted by PLIP \cite{plip_2021} were taken as reference. A summary of these predictions is provided in table \ref{tab:appx2/plip}.
+  The potentials were calculated on the 20 systems, after removing any ligands and considering only the binding pocket of interest from the target macromolecules. The pocket sphere was determined by the selection queries and \textit{Extra size} values defined in tables \ref{tab:appx1/selection_prot} and \ref{tab:appx1/selection_rna}. For the protein systems, interactions described in their experimental sources were taken as the main reference point for validation of the benchmarking. In the case of RNA systems, interactions predicted by PLIP \cite{plip_2021} were taken as reference. A summary of these predictions is provided in table \ref{tab:appx2/plip}. % TODO: add link to the githubpages
 
   \begin{table}[H]
     \caption{\label{tab:appx1/benchmark_prot} [TODO: description].}

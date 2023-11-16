@@ -104,6 +104,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Development of Visualization Methods}
   \subsection{Graphical User Interface}
+    % TODO: add link to the githubpages
     The UnityMol GUI components were implemented for the PS pipeline, which allowed for easy manipulation of the pocket sphere size in real time, and provided both cartoon (figures \ref{fig:results/gui_sphere}.a and \ref{fig:results/gui_sphere}.b) and surface (figures \ref{fig:results/gui_sphere}.c and \ref{fig:results/gui_sphere}.d) representations of the system. It is important to note that the \textit{Extra size} slider of GUI becomes less reactive when setting the size of the pocket sphere to a large value, due to the atom selection calculations slowing down UnityMol. This slow-down is particularly noticeable when using the surface representation, as heavy calculations must be done when calculating each new variant of the surfaces.
 
     \begin{figure}[H]
@@ -136,7 +137,7 @@
     \end{figure}
 
   \subsection{Potentials Visualization}
-    % Representation of the potential grids in UnityMol
+    % TODO: add link to the githubpages
     Depending on the molecular system and the potentials to be visualized, different representation methods can be more convenient or ergonomic to use. For example, comparing the electrostatic potential of \textit{PDB:1EHE} with its actual ligand position can be confusing when using only wireframe isosurfaces (figure \ref{fig:results/reprs_0}.c), as it ofuscates the ligand and the wireframe colors get mixed together. The cloud representation can be more useful for differentiating the electrostatic regions and the atoms below them, although it might still generate confusion (figure \ref{fig:results/reprs_0}.a). In this particular example, an appropriate intermediate option is mixing solid and translucid isosurfaces (figure \ref{fig:results/reprs_0}.b).
 
     \begin{figure}[H]
@@ -167,6 +168,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Benchmarking}
   \subsection{Protein Systems}
+    % TODO: add link to the githubpages
     For the first system, the ligand and the NO3 group occupy an electropositive region of the pocket, while the magnesium cation is accurately placed in an electronegative region provided by the highlighted glutamates (figure \ref{fig:benchmark/1bg0}), congruent with what has been reported before \cite{benchmark_negative_2000}. Furthermore, figure \ref{fig:appx_benchmark/1bg0} shows how the aromatic group of the ligand aligns with one of the few regions of stacking potentials, while multiple oxygen an nitrogen atoms overlap with gridpoints for hydrogen bond potentials. Most of the pocket is hydrophilic, which is where the ligand, NO3 group and the ion are located.
 
     \begin{figure}[H]
@@ -246,6 +248,7 @@
     The final protein benchmark has only two stacking potential regions, which do not coincide with the aromatic groups of its ligand. However, the hydrogen bonds potentials do overlap with several of its heteroatoms. The hydrophobic and hydrophilic regions also seem to coincide in some measure to their counterparts in the ligand, althought it is difficult to discern it correctly from the representations. The ligand is located in an electronegative region, while positive charges are more prevalent towards the extremes of the pocket (figure \ref{fig:appx_benchmark/6e9a}).
 
   \subsection{RNA Systems}
+    % TODO: add link to the githubpages
     As expected for RNA systems, all of the 10 benchmarks present electronegative pockets (sometimes with few negligible positive points), so only observations regarding stacking and hydrogen bond potentials will be presented. For each system, the ligand atoms found to be relevant by PLIP (table \ref{tab:appx2/plip}) are emphasized, noting whether or not they overlap with regions of hydrogen bond potentials. In the case of stacking, the role of relevant RNA residues (according to PLIP) are also compared to what can be inferred from their respective stacking potential visualization.
 
     For the first system, the relevant ligand atom NH1 (index 975) enters in a small region of hydrogen bond acceptancy, while NH2 (index 976) does not (figure \ref{fig:benchmark/1akx}). On the other hand, the hydrogen bond donor potential does not overlap with the ligand at all, which does not correspond to the interaction suggested by PLIP. Finally, some stacking potential is present for this system, but irrelevant for the ligand of interest (figure \ref{fig:appx_benchmark/1akx}).
@@ -317,7 +320,7 @@
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.8\textwidth]{figures/results/benchmark_rna/7oax1.png}
-      \caption{\label{fig:benchmark/7oax1} Physical properties of the pocket for the RNA system PDB:7OAX (ligand: V5Z). Potentials displayed: a) stacking, d) hydrogen bond donors.}
+      \caption{\label{fig:benchmark/7oax1} Physical properties of the pocket for the RNA system PDB:7OAX (ligand: V5Z). Potentials displayed: a) stacking, b) hydrogen bond donors.}
     \end{figure}
 
     The last RNA benchmark also presents a relevant stacking interaction, revealed both by PLIP and the potential visualization: residues 16 (adenine) and 17 (guanine) perform parallel stacking to one aromatic ring of the ligand, while residue 38 (uracyl) performs to the other ring (figure \ref{fig:benchmark/8eyv}.a). Futhermore, both N13 and N18 (indices 1993 and 1998) overlap nicely with the hydrogen bond donor potential (figure \ref{fig:benchmark/8eyv}.b). The hydrogen bond acceptor potential is present in the system but its respective interaction is not described by PLIP (figure \ref{fig:appx_benchmark/8eyv}).
@@ -325,7 +328,7 @@
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.7\textwidth]{figures/results/benchmark_rna/8eyv.png}
-      \caption{\label{fig:benchmark/8eyv} Physical properties of the pocket for the RNA system PDB:8EYV. Potentials displayed: a) stacking, d) hydrogen bond donors.}
+      \caption{\label{fig:benchmark/8eyv} Physical properties of the pocket for the RNA system PDB:8EYV. Potentials displayed: a) stacking, b) hydrogen bond donors.}
     \end{figure}
 
 
