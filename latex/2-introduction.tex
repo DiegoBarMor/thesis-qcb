@@ -63,7 +63,7 @@
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.5\textwidth]{figures/intro/stacking_configs.png}
-      \caption{\label{fig:intro/stacking_configs} [TODO] description. Adapted from \cite{stacking_general_2020}.}
+      \caption{\label{fig:intro/stacking_configs} Common theoretical configurations for stacking interactions. a) "sandwich" interaction, b) parallel-offset, c) perpendicular. Adapted from \cite{stacking_general_2020}.}
     \end{figure}
 
     The spatial configuration of the aromatic rings play a fundamental role in stacking interactions. This can be summarized by three spatial degrees of freedom: distance, $\alpha$ angle and $\beta$ angle. The $\alpha$ angle describes how tilted the center of geometry is from one ring with respect to the other ring, while $\beta$ is the angle between the vectors normal to the planes (figures \ref{fig:intro/stacking_configs} and \ref{fig:intro/stacking_angles}) \cite{stacking_general_2020, rna_2015, aromatic_2018}.
@@ -71,7 +71,7 @@
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.5\textwidth]{figures/intro/stacking_angles.png}
-      \caption{\label{fig:intro/stacking_angles} [TODO] description. Adapted from \cite{rna_2015}.}
+      \caption{\label{fig:intro/stacking_angles} $\alpha$ and $\beta$ angles between the aromatic planes in stacking interactions. Adapted from \cite{rna_2015}.}
     \end{figure}
 
     The traditional \textbf{$\pi$-$\pi$ stacking} is considered to be optimal when $0^{\circ} < \alpha << 90^{\circ}$ and $\beta \approx 0^{\circ}$, yielding a \textit{parallel-offset} geometry. The alternative \textbf{CH-$\pi$ stacking} also represents an energetic local minimum, with $\alpha \approx 0^{\circ}$ and $\beta \approx 90^{\circ}$, which corresponds to a \textit{perpendicular} geometry (figure \ref{fig:intro/stacking_configs}) \cite{stacking_general_2020}.
@@ -128,7 +128,7 @@
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.5\textwidth]{figures/intro/rep_cartoon.png}
-      \caption{\label{fig:intro/rep_cartoon} [TODO] description. Adapted from \cite{representations_2021}.}
+      \caption{\label{fig:intro/rep_cartoon} Example of cartoon representation of polypeptides. Adapted from \cite{representations_2021}.}
     \end{figure}
 
     The \textbf{licorice} representation highlights the \textit{bond topology} of the molecules and is often color coded according to each atom, so it is best suited for small molecule ligands or closeups of pocket structures (figures \ref{fig:intro/pocket}, \ref{fig:intro/pharmacophores}, \ref{fig:intro/electrostatics}, \ref{fig:intro/hbonds}, \ref{fig:intro/hbonds_po}, \ref{fig:intro/hydrophobic}, \ref{fig:intro/unitymol}, \ref{fig:intro/rep_cartoon}, \ref{fig:intro/rep_surfaces}). The \textbf{cartoon} representation summarizes the \textit{secondary structure} of macromolecules into simpler shapes. This is usually associated to proteins (figures \ref{fig:intro/rep_cartoon}, \ref{fig:intro/rep_surfaces}) but can also be applied to nucleic acids, polysaccharides, lipids and other macromolecules.
@@ -136,12 +136,12 @@
     For the \textbf{surface} representations, the volume occupied by the electronic clouds of the atoms is estimated by an algorithm, then a contour is drawn around this volume to obtain a tangible shape that emphasizes the overal \textit{three-dimensional shape} of the molecule (figures \ref{fig:intro/pocket}, \ref{fig:intro/electrostatics}, \ref{fig:intro/unitymol}, \ref{fig:intro/rep_surfaces}). More or less precise algorithms can be used to calculate this estimation, depending if precision or performance is to be prioritized. Alternatively, a \textbf{spacefill} representation can be employed, where a sphere is drawn around each atom with a theoretical radius that depends on the element (figures \ref{fig:intro/hydrophobic}, \ref{fig:intro/rep_surfaces}).
 
   \subsection{Visualization of Physicochemical Properties}
-    Apart from the spatial configuration of the molecules, the physicochemical properties of the system are also of interest for many applications, such as protein-ligand interactions. As such, the visualization of these data should also be considered when developing molecular visualizers. The \textbf{electrostatics} of the molecules is usually portrayed by color-coding surface representations, where different colors correspond to different sign and intensity of surface charges (figures \ref{fig:intro/electrostatics}, \ref{fig:intro/rep_surfaces}). Similarly, \textbf{hydrophobicity} is many times represented also by color-coding the surfaces of the molecules, according to theoretical or empirical hydrophobic qualities of the residues or functional groups involved (figure \ref{fig:intro/rep_surfaces}).
+    Apart from the spatial configuration of the molecules, the physicochemical properties of the system are also of interest for many applications, such as protein-ligand interactions. As such, the visualization of these data should also be considered when developing molecular visualizers. The \textbf{electrostatics} of the molecules is usually portrayed by color-coding surface representations, where different colors correspond to different sign and intensity of surface charges (figures \ref{fig:intro/electrostatics}, \ref{fig:intro/rep_surfaces}.c). Similarly, \textbf{hydrophobicity} is many times represented also by color-coding the surfaces of the molecules, according to theoretical or empirical hydrophobic qualities of the residues or functional groups involved (figure \ref{fig:intro/rep_surfaces}.b).
 
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.8\textwidth]{figures/intro/rep_surfaces.png}
-      \caption{\label{fig:intro/rep_surfaces} [TODO] description. Adapted from \cite{representations_2018}.}
+      \caption{\label{fig:intro/rep_surfaces} Example of different representations of a protein. a) cartoon representation, b) surface representation with hydrophobicity as color code, c) surface representation with electrostatics as color code. Adapted from \cite{representations_2018}.}
     \end{figure}
 
     In the case of \textbf{hydrogen bonds}, the common approach is to represent them as dotted lines between the acceptor and donor atoms (figures \ref{fig:intro/hbonds}, \ref{fig:intro/hbonds_po}, \ref{fig:intro/rep_cartoon}). On the other hand, \textbf{stacking} interactions are not usually represented in any particular way. Instead, visualizers rely on the users to observe the proximity and positioning between aromatic rings and judge in an approximate manner whether stacking can be present or not.
@@ -151,7 +151,7 @@
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.8\textwidth]{figures/intro/isosurfaces.png}
-      \caption{\label{fig:intro/isosurfaces} [TODO] description. Adapted from \cite{isosurfaces_web}.}
+      \caption{\label{fig:intro/isosurfaces} General concept of an isosurface representation to visualize two or three dimensional data. Adapted from \cite{isosurfaces_web}.}
     \end{figure}
 
     A notable exception is the use of a volumetric representation known as \textbf{isosurface}. This technique for visualizing three-dimensional grids of data use an adjustable treshold value to draw a contour around points with similar values, which yields a representation similar to a \textit{surface} one (figure \ref{fig:intro/isosurfaces}) \cite{isosurfaces_web}. Isosurfaces are sometimes used to represent solvent exclusion cavities when studying the hydrophobicity of a system (figure \ref{fig:intro/hydrophobic}).
