@@ -1,18 +1,17 @@
 %%% briefly summarize the key outcome of the project and outlines any future directions
 \chapter{Conclusions and future perspectives} % at least 1 page, not more than 2 pages
+In this prototype, several models for quantifying the physical properties of binding pockets were proposed, as well as different techniques and approaches to the 3D visualization of these numerical values. Generally, this methodology proved to be accurate and insightful in understanding the interaction between the binding pockets and the ligands, although there are plenty of improvements and additional functionalities to be implemented.
 
-[TODO: improve the GUI by adding direct control over the calculation parameters in UnityMol (eg resolution, trimming options)]
+First of all, it is necessary to improve the pertinent UnityMol GUI, by adding direct control over the calculation parameters (e.g. resolution, trimming options) in UnityMol instead of relying in external files, so that the prototype can start to be tested by actual users. Similarly, there is still work to be done in improving the performance of the computations, perhaps involving the migration of the calculation pipeline directly into UnityMol (C\#) for easier distribution of the software.
 
-[TODO: implement calculations directly within Unity; improve performance]
+The modelling aspect behind the potentials can also be further improved, by following some of the ideas discussed in the previous chapter. Furthermore, it would be interesting to add new models for other kinds of potential grids, taking advantage of the flexibility of the visualization workflow. For example, a good starting point could be modelling different types of stacking interaction, mainly parallel and perpendicular geometries, and observe how their representations interact in space.
 
-[TODO: model different stacking types, parallel and perpendicular]
-
-[TODO: implement the "whole" mode]
-
-[TODO: implement fieldlines over shifted normalized version of the grids]
-
-[TODO: addition of new types of grids]
-
-[TODO: implement pharmacophore visualization in UnityMol]
-
-[TODO: implement pipeline involving the ligands (ligand potentials, interactive ligands for trimming)]
+Some other additional implementations can be worked on in the near future:
+\begin{itemize}
+  \item Visualization of the physical properties of the \textbf{whole volume} around the macromolecules.
+  \item Visualization the physical properties of the volume around the \textbf{ligand} instead of performing the calculations over atoms of the target macromolecule.
+  \item Improvement of the \textbf{occupancy trimming} by considering also the volume already occupied by the ligand's atoms.
+  \item \textbf{Interactive manipulation} of ligand's atoms, functional groups or pharmacophores, followed by updated recalculation and visualization of the potentials.
+  \item \textbf{Dynamic visualization} of the potentials for molecular dynamics trajectories.
+  \item Testing with how useful the \textbf{fieldlines representation} can be for visualizing the potential grids.
+\end{itemize}
