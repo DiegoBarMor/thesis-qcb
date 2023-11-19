@@ -4,28 +4,28 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% AROMATIC DETECTION PROT
 \begin{table}[H]
-  \caption{\label{tab:appx1/aromatic_prot} [TODO: description].}
+  \caption{\label{tab:appx1/aromatic_prot} Lookup table for aromatic residues in proteins, used in the sampling of stacking interactions.}
   \centering
   \begin{tabular}{cccc}
     \hline
-    resname & ring\_type & ring\_atoms                         & discrepancy \\ \hline
-    HID     & C8N1       & CAD-CAE-CAF-CAG-CAK-CAL-CAM-CAN-NAI & False       \\
-    HIP     & C3N2       & CD2-CE1-CG-ND1-NE2                  & False       \\
-    HIS     & C3N2       & CD2-CE1-CG-ND1-NE2                  & False       \\
-    HSP     & C6         & C1-C2-C3-C4-C5-C6                   & False       \\
-    PHE     & C6         & CD1-CD2-CE1-CE2-CG-CZ               & False       \\
-    TRP     & C8N1       & CD1-CD2-CE2-CE3-CG-CH2-CZ2-CZ3-NE1  & False       \\
-    TYR     & C6         & CD1-CD2-CE1-CE2-CG-CZ               & False       \\ \hline
+    Residue & Ring type  & Ring atoms                          \\ \hline
+    HID     & C8N1       & CAD-CAE-CAF-CAG-CAK-CAL-CAM-CAN-NAI \\
+    HIP     & C3N2       & CD2-CE1-CG-ND1-NE2                  \\
+    HIS     & C3N2       & CD2-CE1-CG-ND1-NE2                  \\
+    HSP     & C6         & C1-C2-C3-C4-C5-C6                   \\
+    PHE     & C6         & CD1-CD2-CE1-CE2-CG-CZ               \\
+    TRP     & C8N1       & CD1-CD2-CE2-CE3-CG-CH2-CZ2-CZ3-NE1  \\
+    TYR     & C6         & CD1-CD2-CE1-CE2-CG-CZ               \\ \hline
   \end{tabular}
 \end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% AROMATIC DETECTION NUCLEIC
 \begin{table}[H]
-  \caption{\label{tab:appx1/aromatic_nucleic} [TODO: description].}
+  \caption{\label{tab:appx1/aromatic_nucleic} Lookup table for aromatic residues in nucleic acids, used in the sampling of stacking interactions. True values for \textit{Discrepancy} denote aromatic residues that were not flagged as aromatic in their SMILES string.}
   \centering
   \begin{tabular}{cccc}
     \hline
-    resname & ring\_type & ring\_atoms                   & discrepancy \\ \hline
+    Residue & Ring type  & Ring atoms                    & Discrepancy \\ \hline
     A       & C5N4       & C2-C4-C5-C6-C8-N1-N3-N7-N9    & False       \\
     ADE     & C5N4       & C2-C4-C5-C6-C8-N1-N3-N7-N9    & False       \\
     C       & C4N2       & C2-C4-C5-C6-N1-N3             & True        \\
@@ -50,11 +50,11 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% AROMATIC DETECTION LIGAND
 \begin{table}[H]
-  \caption{\label{tab:appx1/aromatic_ligand} [TODO: description].}
+  \caption{\label{tab:appx1/aromatic_ligand} Lookup table for aromatic residues in ligands, used in the sampling of stacking interactions.}
   \centering
   \begin{tabular}{ccc}
     \hline
-    resname & ring\_type & ring\_atoms                             \\ \hline
+    Ligand  & Ring type  & Ring atoms                              \\ \hline
     003     & C5N1       & C17-C18-C19-C21-C22-N20                 \\
     003     & C10        & C24-C25-C26-C27-C28-C29-C30-C31-C32-C33 \\
     003     & C5N4       & C14-C2-C4-C5-C6-N1-N15-N16-N3           \\
@@ -80,31 +80,31 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SELECTION PROT
 \begin{table}[H]
-  \caption{\label{tab:appx1/selection_prot} [TODO: description, protein selection queries].}
+  \caption{\label{tab:appx1/selection_prot} Queries employed in UnityMol for selecting the ligand of interest for protein benchmarks.}
   \centering
   \begin{tabular}{ccc}
     \hline
-    PDB  & query                                  & extra\_size \\ \hline
-    1BG0 & resname ADP or resid 401 or resname MG & 8.0         \\
-    1EBY & resname BEB                            & 2.0         \\
-    1EHE & resname HEM                            & 3.0         \\
-    1H7L & resname TYD                            & 3.0         \\
-    1IQJ & resname XMH                            & 2.0         \\
-    1OFZ & resname FUL and resid 1313 and chain B & 12.0        \\
-    3DD0 & resname EZL                            & 6.0         \\
-    3EE4 & resname MYR                            & 8.0         \\
-    5M9W & resname 7GR                            & 5.0         \\
-    6E9A & resname J0S                            & 7.0         \\ \hline
+    PDB  & Query                                  & Extra size \\ \hline
+    1BG0 & resname ADP or resid 401 or resname MG & 8.0        \\
+    1EBY & resname BEB                            & 2.0        \\
+    1EHE & resname HEM                            & 3.0        \\
+    1H7L & resname TYD                            & 3.0        \\
+    1IQJ & resname XMH                            & 2.0        \\
+    1OFZ & resname FUL and resid 1313 and chain B & 12.0       \\
+    3DD0 & resname EZL                            & 6.0        \\
+    3EE4 & resname MYR                            & 8.0        \\
+    5M9W & resname 7GR                            & 5.0        \\
+    6E9A & resname J0S                            & 7.0        \\ \hline
   \end{tabular}
 \end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SELECTION RNA
 \begin{table}[H]
-  \caption{\label{tab:appx1/selection_rna} [TODO: description, rna selection queries].}
+  \caption{\label{tab:appx1/selection_rna} Queries employed in UnityMol for selecting the ligand of interest for RNA benchmarks.}
   \centering
   \begin{tabular}{ccc}
     \hline
-    PDB  & query                   & extra\_size \\ \hline
+    PDB  & Query                   & Extra size  \\ \hline
     1AKX & resname ARG             & 8.0         \\
     1I9V & resname NMY             & 8.0         \\
     2ESJ & resname LIV and chain A & 8.0         \\
