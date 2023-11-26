@@ -168,164 +168,184 @@
   In this section, a highlight of the most interesting benchmark observations is given. A complete list of all potential visualization for all the benchmarks is provided in Appendix II. This complete list is also available at high definition in the appendix website at \url{https://diegobarmor.github.io/thesis-qcb/}
 
   \subsection{Protein Systems}
-    For the first system, the ligand and the NO3 group occupy an electropositive region of the pocket, while the magnesium cation is accurately placed in an electronegative region provided by the highlighted glutamates (figure \ref{fig:benchmark/1bg0}), congruent with what has been reported before \cite{benchmark_negative_2000}. Furthermore, figure \ref{fig:appx_benchmark/1bg0} shows how the aromatic group of the ligand aligns with one of the few regions of stacking potentials, while multiple oxygen an nitrogen atoms overlap with gridpoints for hydrogen bond potentials. Most of the pocket is hydrophilic, which is where the ligand, NO3 group and the ion are located.
+    \subsubsection{1BG0: Arginine kinase bound to ADP}
+      The ligand and the NO3 group occupy an electropositive region of the pocket, while the magnesium cation is accurately placed in an electronegative region provided by the highlighted glutamates (figure \ref{fig:benchmark/1bg0}), congruent with what has been reported before \cite{benchmark_negative_2000}. Furthermore, figure \ref{fig:appx_benchmark/1bg0} shows how the aromatic group of the ligand aligns with one of the few regions of stacking potentials, while multiple oxygen an nitrogen atoms overlap with gridpoints for hydrogen bond potentials. Most of the pocket is hydrophilic, which is where the ligand, NO3 group and the ion are located.
 
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.5\textwidth]{figures/results/benchmark_prot/1bg0.png}
-      \caption{\label{fig:benchmark/1bg0} Electrostatic potential of the pocket for the protein system PDB:1BG0.}
-    \end{figure}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{figures/results/benchmark_prot/1bg0.png}
+        \caption{\label{fig:benchmark/1bg0} Electrostatic potential of the pocket for the protein system PDB:1BG0.}
+      \end{figure}
 
-    The system explored in figure \ref{fig:benchmark/1eby} has the particularity that its hydrophobic and hydrophilic grid points are so intertwined, it is better to visualize them separately. These hydrophobic region tends to overlap with the non-polar aromatic groups of the ligand, while the hydrophilic region overlaps more with the oxygen and nitrogen atoms.
+    \subsubsection{1EBY: HIV-1 protease in complex with the inhibitor BEA369}
+      The system explored in figure \ref{fig:benchmark/1eby} has the particularity that its hydrophobic and hydrophilic grid points are so intertwined, it is better to visualize them separately. These hydrophobic region tends to overlap with the non-polar aromatic groups of the ligand, while the hydrophilic region overlaps more with the oxygen and nitrogen atoms.
 
-    This protein lacks aromatic groups inside the pocket sphere, so there is no stacking potential in this case. The pocket is mostly electronegative, with some positive points. Both the hydrophobic and the the hydrogen bond potentials overlap with the atoms reported by \cite{benchmark_strong_2021} (figures \ref{fig:benchmark/1eby}, \ref{fig:appx_benchmark/1eby}).
+      This protein lacks aromatic groups inside the pocket sphere, so there is no stacking potential in this case. The pocket is mostly electronegative, with some positive points. Both the hydrophobic and the the hydrogen bond potentials overlap with the atoms reported by \cite{benchmark_strong_2021} (figures \ref{fig:benchmark/1eby}, \ref{fig:appx_benchmark/1eby}).
 
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.7\textwidth]{figures/results/benchmark_prot/1eby.png}
-      \caption{\label{fig:benchmark/1eby} Physical properties of the pocket for the protein system PDB:1EBY. Potentials displayed: a) hydrophobicity, b) hydrophilicity.}
-    \end{figure}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{figures/results/benchmark_prot/1eby.png}
+        \caption{\label{fig:benchmark/1eby} Physical properties of the pocket for the protein system PDB:1EBY. Potentials displayed: a) hydrophobicity, b) hydrophilicity.}
+      \end{figure}
 
-    The next system presents a positively charged cluster in its pocket, as reported by \cite{benchmark_positive_2001}. Indeed, The visualization of its electrostatic potential reveals positive charges in the region where the ligand should be placed (figure \ref{fig:benchmark/1ehe}). Furthermore, a negative charge can be observed overlapping with the cation in the middle of the heme group, which is to be expected.
+    \subsubsection{1EHE: Monooxygenase cytochrome P450S bound to a heme group with iron}
+      This system presents a positively charged cluster in its pocket, as reported by \cite{benchmark_positive_2001}. Indeed, The visualization of its electrostatic potential reveals positive charges in the region where the ligand should be placed (figure \ref{fig:benchmark/1ehe}). Furthermore, a negative charge can be observed overlapping with the cation in the middle of the heme group, which is to be expected.
 
-    The stacking potential slightly overlaps with one of the aromatic groups, while the hydrogen bond potentials are displayed on top of the ligand's heteroatoms. The hydrophobic main body of the ligand overlaps with a large region of hydrophobic potential, while the outside oxygen atoms are placed inside hydrophilic sections (figure \ref{fig:appx_benchmark/1ehe}).
+      The stacking potential slightly overlaps with one of the aromatic groups, while the hydrogen bond potentials are displayed on top of the ligand's heteroatoms. The hydrophobic main body of the ligand overlaps with a large region of hydrophobic potential, while the outside oxygen atoms are placed inside hydrophilic sections (figure \ref{fig:appx_benchmark/1ehe}).
 
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.5\textwidth]{figures/results/benchmark_prot/1ehe.png}
-      \caption{\label{fig:benchmark/1ehe} Electrostatic potential of the pocket for the protein system PDB:1EHE.}
-    \end{figure}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{figures/results/benchmark_prot/1ehe.png}
+        \caption{\label{fig:benchmark/1ehe} Electrostatic potential of the pocket for the protein system PDB:1EHE.}
+      \end{figure}
 
-    The system presented in figure \ref{fig:appx_benchmark/1h7l} contains a mostly electronegative and hydrophilic pocket. A region of stacking potential overlaps with the aromatic thymidine group, while the hydrogen bond potentials do not seem to overlap a lot with the ligand's heteroatoms. However, the potentials hint at the formation of the hydrogen bond between the ligand's hydroxylic group and an aspartate that is described in \cite{benchmark_1h7l_2001}.
+    \subsubsection{1H7L: Glycosyltransferase SpsA in complex with dTDP and magnesium}
+      The system presented in figure \ref{fig:appx_benchmark/1h7l} contains a mostly electronegative and hydrophilic pocket. A region of stacking potential overlaps with the aromatic thymidine group, while the hydrogen bond potentials do not seem to overlap a lot with the ligand's heteroatoms. However, the potentials hint at the formation of the hydrogen bond between the ligand's hydroxylic group and an aspartate that is described in \cite{benchmark_1h7l_2001}.
 
-    For the next system, the ligand's aromatic pyridine group can be seen positioned in a significant stacking potential region (figure \ref{fig:benchmark/1iqj}). It can be easily inferred from the representation that this pyridine performs an aromatic interaction from both sides of the aromatic plane, hence the preference of this positioning.
+    \subsubsection{1IQJ: Human coagulation factor Xa in complex with M55124}
+      The ligand's aromatic pyridine group can be seen positioned in a significant stacking potential region (figure \ref{fig:benchmark/1iqj}). It can be easily inferred from the representation that this pyridine performs an aromatic interaction from both sides of the aromatic plane, hence the preference of this positioning.
 
-    The electrostatics of the pocket form an interesting shape, with the ligand being present in an electronegative region surrounded by positive charges. Most of the pocket is hydrophilic, while the few hydrophobic sections neatly connect with the most hydrophobic parts of the ligand. Finally, the hydrogen bond potentials do not seem to interact much with the ligand's heteroatoms (figure \ref{fig:appx_benchmark/1iqj}).
+      The electrostatics of the pocket form an interesting shape, with the ligand being present in an electronegative region surrounded by positive charges. Most of the pocket is hydrophilic, while the few hydrophobic sections neatly connect with the most hydrophobic parts of the ligand. Finally, the hydrogen bond potentials do not seem to interact much with the ligand's heteroatoms (figure \ref{fig:appx_benchmark/1iqj}).
 
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.5\textwidth]{figures/results/benchmark_prot/1iqj.png}
-      \caption{\label{fig:benchmark/1iqj} Stacking potential of the pocket for the protein system PDB:1IQJ.}
-    \end{figure}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{figures/results/benchmark_prot/1iqj.png}
+        \caption{\label{fig:benchmark/1iqj} Stacking potential of the pocket for the protein system PDB:1IQJ.}
+      \end{figure}
 
-    The hydrogen bond potentials calculated for the next system agree with the hydrogen bonds reported in \cite{hbonds_2023} (figure \ref{fig:benchmark/1ofz}). Most of the pocket is hydrophilic, which makes sense for a carbohydrate ligand, and the pocket is completely electropositive. Although there are some regions of potential, the stacking interactions are irrelevant for this ligand (figure \ref{fig:appx_benchmark/1ofz}).
+    \subsubsection{1OFZ: Fungal lectin bound to beta-L-fucopyranose}
+      The hydrogen bond potentials calculated for this system agree with the hydrogen bonds reported in \cite{hbonds_2023} (figure \ref{fig:benchmark/1ofz}). Most of the pocket is hydrophilic, which makes sense for a carbohydrate ligand, and the pocket is completely electropositive. Although there are some regions of potential, the stacking interactions are irrelevant for this ligand (figure \ref{fig:appx_benchmark/1ofz}).
 
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.7\textwidth]{figures/results/benchmark_prot/1ofz.png}
-      \caption{\label{fig:benchmark/1ofz} Physical properties of the pocket for the protein system PDB:1OFZ. Potentials displayed: a) hydrogen bond acceptors, b) hydrogen bond donors.}
-    \end{figure}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{figures/results/benchmark_prot/1ofz.png}
+        \caption{\label{fig:benchmark/1ofz} Physical properties of the pocket for the protein system PDB:1OFZ. Potentials displayed: a) hydrogen bond acceptors, b) hydrogen bond donors.}
+      \end{figure}
 
-    The hydrophobic interactions previously reported for the next system match the potentials in figure \ref{fig:benchmark/3dd0} \cite{benchmark_strong_2021}. The reported hydrogen bonds also correspond to the visualization of their respective potentials. However, the stacking potential does not overlap with the aromatic section of the ligand. Finally, the pocket is mostly electronegative, with the exception of some positive charges (figure \ref{fig:appx_benchmark/3dd0}).
+    \subsubsection{3DD0: Carbonic anhydrase II bound to 6-ethoxy-1,3-benzothiazole-2-sulfonamide}
+      The hydrophobic interactions previously reported for this system match the potentials in figure \ref{fig:benchmark/3dd0} \cite{benchmark_strong_2021}. The reported hydrogen bonds also correspond to the visualization of their respective potentials. However, the stacking potential does not overlap with the aromatic section of the ligand. Finally, the pocket is mostly electronegative, with the exception of some positive charges (figure \ref{fig:appx_benchmark/3dd0}).
 
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.5\textwidth]{figures/results/benchmark_prot/3dd0.png}
-      \caption{\label{fig:benchmark/3dd0} Hydrophobic potential of the pocket for the protein system PDB:3DD0.}
-    \end{figure}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{figures/results/benchmark_prot/3dd0.png}
+        \caption{\label{fig:benchmark/3dd0} Hydrophobic potential of the pocket for the protein system PDB:3DD0.}
+      \end{figure}
 
-    The pocket for the next system has been reported to be hydrophobic \cite{benchmark_hydrophobic_2009}, which matches the representation of this potential in figure \ref{fig:benchmark/3ee4}. The aliphatic section of the ligand effectively overlaps with the mostly hydrophobic pocket, while the oxygen atoms at its extreme are placed in a hydrophilic region.
+    \subsubsection{3EE4: Mn/Fe oxidase bound to myristic acid}
+      This system's pocket has been reported to be hydrophobic \cite{benchmark_hydrophobic_2009}, which matches the representation of this potential in figure \ref{fig:benchmark/3ee4}. The aliphatic section of the ligand effectively overlaps with the mostly hydrophobic pocket, while the oxygen atoms at its extreme are placed in a hydrophilic region.
 
-    This oxygens also overlap with a region of hydrogen bond acceptancy, which is absent for the donors potential. The pocket is mostly electronegative, congruent with the presence of cations at the aforementioned hydrophilic region. Once more, some stacking potential is present but is not relevant for this ligand (figure \ref{fig:appx_benchmark/3ee4})
+      This oxygens also overlap with a region of hydrogen bond acceptancy, which is absent for the donors potential. The pocket is mostly electronegative, congruent with the presence of cations at the aforementioned hydrophilic region. Once more, some stacking potential is present but is not relevant for this ligand (figure \ref{fig:appx_benchmark/3ee4})
 
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.8\textwidth]{figures/results/benchmark_prot/3ee4.png}
-      \caption{\label{fig:benchmark/3ee4} Hydrophobic potential of the pocket for the protein system PDB:3EE4.}
-    \end{figure}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{figures/results/benchmark_prot/3ee4.png}
+        \caption{\label{fig:benchmark/3ee4} Hydrophobic potential of the pocket for the protein system PDB:3EE4.}
+      \end{figure}
 
-    The following system was also reported to have an hydrophobic pocket \cite{hydrophobic_2017}, although the potentials visualization show the presence of mostly hydrophilic potential regions (figure \ref{fig:benchmark/5m9w}). Nevertheless, the hydrophobic groups of the ligand do match the hydrophobic regions described by the representation. Hydrogen bonds described in \cite{hydrophobic_2017} can also be inferred by observing the hydrogen bonds potentials of the system. Furthermore, the aromatic group of the ligand slightly overlaps with a large region of stacking potential. The pocket is mostly electronegative with some positive charges present (figure \ref{fig:appx_benchmark/5m9w}).
+    \subsubsection{5M9W: Thermolysin in complex with inhibitor JC65}
+      This system was also reported to have an hydrophobic pocket \cite{hydrophobic_2017}, although the potentials visualization show the presence of mostly hydrophilic potential regions (figure \ref{fig:benchmark/5m9w}). Nevertheless, the hydrophobic groups of the ligand do match the hydrophobic regions described by the representation. Hydrogen bonds described in \cite{hydrophobic_2017} can also be inferred by observing the hydrogen bonds potentials of the system. Furthermore, the aromatic group of the ligand slightly overlaps with a large region of stacking potential. The pocket is mostly electronegative with some positive charges present (figure \ref{fig:appx_benchmark/5m9w}).
 
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.5\textwidth]{figures/results/benchmark_prot/5m9w.png}
-      \caption{\label{fig:benchmark/5m9w} Hydrophobic potential of the pocket for the protein system PDB:5M9W.}
-    \end{figure}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{figures/results/benchmark_prot/5m9w.png}
+        \caption{\label{fig:benchmark/5m9w} Hydrophobic potential of the pocket for the protein system PDB:5M9W.}
+      \end{figure}
 
-    The final protein benchmark has only two stacking potential regions, which do not coincide with the aromatic groups of its ligand. However, the hydrogen bonds potentials do overlap with several of its heteroatoms. The hydrophobic and hydrophilic regions also seem to coincide in some measure to their counterparts in the ligand, althought it is difficult to discern it correctly from the representations. The ligand is located in an electronegative region, while positive charges are more prevalent towards the extremes of the pocket (figure \ref{fig:appx_benchmark/6e9a}).
+    \subsubsection{6E9A: HIV-1 wild type protease bound to PDB:J0S}
+      The final protein benchmark has only two stacking potential regions, which do not coincide with the aromatic groups of its ligand. However, the hydrogen bonds potentials do overlap with several of its heteroatoms. The hydrophobic and hydrophilic regions also seem to coincide in some measure to their counterparts in the ligand, althought it is difficult to discern it correctly from the representations. The ligand is located in an electronegative region, while positive charges are more prevalent towards the extremes of the pocket (figure \ref{fig:appx_benchmark/6e9a}).
 
   \subsection{RNA Systems}
     As expected for RNA systems, all of the 10 benchmarks present electronegative pockets (sometimes with few negligible positive points), so only observations regarding stacking and hydrogen bond potentials will be presented. For each system, the ligand atoms found to be relevant by PLIP (table \ref{tab:appx2/plip}) are emphasized, noting whether or not they overlap with regions of hydrogen bond potentials. In the case of stacking, the role of relevant RNA residues (according to PLIP) are also compared to what can be inferred from their respective stacking potential visualization.
 
-    For the first system, the relevant ligand atom NH1 (index 975) enters in a small region of hydrogen bond acceptancy, while NH2 (index 976) does not (figure \ref{fig:benchmark/1akx}). On the other hand, the hydrogen bond donor potential does not overlap with the ligand at all, which does not correspond to the interaction suggested by PLIP. Finally, some stacking potential is present for this system, but irrelevant for the ligand of interest (figure \ref{fig:appx_benchmark/1akx}).
+    \subsubsection{1AKX: HIV-2 trans activating region RNA in complex with argininamide}
+      For this first system, the relevant ligand atom NH1 (index 975) enters in a small region of hydrogen bond acceptancy, while NH2 (index 976) does not (figure \ref{fig:benchmark/1akx}). On the other hand, the hydrogen bond donor potential does not overlap with the ligand at all, which does not correspond to the interaction suggested by PLIP. Finally, some stacking potential is present for this system, but irrelevant for the ligand of interest (figure \ref{fig:appx_benchmark/1akx}).
 
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.6\textwidth]{figures/results/benchmark_rna/1akx.png}
-      \caption{\label{fig:benchmark/1akx} Hydrogen bond acceptor potential for the RNA system PDB:1AKX.}
-    \end{figure}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.6\textwidth]{figures/results/benchmark_rna/1akx.png}
+        \caption{\label{fig:benchmark/1akx} Hydrogen bond acceptor potential for the RNA system PDB:1AKX.}
+      \end{figure}
 
-    For the system presented in figure \ref{fig:benchmark/1i9v}, atoms N7, N9 and N6 (indices 1645, 1651 and 1667 respectively) fit nicely inside in regions of high hydrogen bond acceptancy. Atom N23 (index 1674) overlaps slightly, while O12 (index 1672) is close to overlapping but does not. However, similarly to the previous case, the predicted hydrogen bond donor interactions can not be inferred from the representation. Stacking potential is once again present but not relevant for this ligand (figure \ref{fig:appx_benchmark/1i9v}).
+    \subsubsection{1I9V: Phenylalanine transfer RNA bound to neomycin}
+      For the system presented in figure \ref{fig:benchmark/1i9v}, atoms N7, N9 and N6 (indices 1645, 1651 and 1667 respectively) fit nicely inside in regions of high hydrogen bond acceptancy. Atom N23 (index 1674) overlaps slightly, while O12 (index 1672) is close to overlapping but does not. However, similarly to the previous case, the predicted hydrogen bond donor interactions can not be inferred from the representation. Stacking potential is once again present but not relevant for this ligand (figure \ref{fig:appx_benchmark/1i9v}).
 
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.6\textwidth]{figures/results/benchmark_rna/1i9v.png}
-      \caption{\label{fig:benchmark/1i9v} Hydrogen bond acceptor potential for the RNA system PDB:1I9V.}
-    \end{figure}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.6\textwidth]{figures/results/benchmark_rna/1i9v.png}
+        \caption{\label{fig:benchmark/1i9v} Hydrogen bond acceptor potential for the RNA system PDB:1I9V.}
+      \end{figure}
 
-    For the next system, all relevant atoms for the hydrogen bond acceptor potential overlap with the isosurface representation, altough atoms O62 and N32 (indices 915 and 920) are slightly offset (figure \ref{fig:benchmark/2esj}). In the case of hydrogen bond donor potential, atoms O51 and O23 (indices 909 and 924) overlap nicely with it, while N12 and N24 (indices 913 and 935) do not. Stacking potential is present but not relevant for this ligand (figure \ref{fig:appx_benchmark/2esj}).
+    \subsubsection{2ESJ: Complex between Lividomycin A and the 16S-Rrna A Site}
+      All relevant atoms for the hydrogen bond acceptor potential overlap with the isosurface representation, altough atoms O62 and N32 (indices 915 and 920) are slightly offset (figure \ref{fig:benchmark/2esj}). In the case of hydrogen bond donor potential, atoms O51 and O23 (indices 909 and 924) overlap nicely with it, while N12 and N24 (indices 913 and 935) do not. Stacking potential is present but not relevant for this ligand (figure \ref{fig:appx_benchmark/2esj}).
 
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.5\textwidth]{figures/results/benchmark_rna/2esj.png}
-      \caption{\label{fig:benchmark/2esj} Hydrogen bond acceptor potential for the RNA system PDB:2ESJ.}
-    \end{figure}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{figures/results/benchmark_rna/2esj.png}
+        \caption{\label{fig:benchmark/2esj} Hydrogen bond acceptor potential for the RNA system PDB:2ESJ.}
+      \end{figure}
 
-    All relevant atoms for hydrogen bond acceptor potential overlap with the isosurface representation for the next benchmark (figure \ref{fig:benchmark/4f8u}). In the case of hydrogen bond donor potential, atoms O51 and O53 (indices 950 and 952) overlap nicely, while N32 and N33 (indices 944 and 945) do not. Stacking potential is present but not relevant for this ligand (figure \ref{fig:appx_benchmark/4f8u}).
+    \subsubsection{4F8U: Bacterial ribosomal decoding site in complex with sisomicin (C2 form)}
+      All relevant atoms for hydrogen bond acceptor potential overlap with the isosurface representation (figure \ref{fig:benchmark/4f8u}). In the case of hydrogen bond donor potential, atoms O51 and O53 (indices 950 and 952) overlap nicely, while N32 and N33 (indices 944 and 945) do not. Stacking potential is present but not relevant for this ligand (figure \ref{fig:appx_benchmark/4f8u}).
 
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.5\textwidth]{figures/results/benchmark_rna/4f8u.png}
-      \caption{\label{fig:benchmark/4f8u} Hydrogen bond acceptor potential for the RNA system PDB:4F8U.}
-    \end{figure}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{figures/results/benchmark_rna/4f8u.png}
+        \caption{\label{fig:benchmark/4f8u} Hydrogen bond acceptor potential for the RNA system PDB:4F8U.}
+      \end{figure}
 
-    The aromatic groups of the next benchmark's ligand overlap significantly with its stacking potential. Two copies of residue 12 (guanine) seem to perform parallel stacking on one ring (from opposite sides), while the other aromatic ring is involved in parallel stacking with two copies of residue 25 (guanine) and perpendicular stacking with one copy of residue 24 (adenine) T (figure \ref{fig:benchmark/5bjo}.a). Similarly, both O1 (index 1580) and O19 (index 1596) overlap nicely with the hydrogen bond acceptor potential, with the latter being slightly offset (figure \ref{fig:benchmark/5bjo}.b). Finally, both N13 and N18 (indices 1590 and 1595) present a good overlap with the hydrogen bond donor potential (figure \ref{fig:appx_benchmark/5bjo}). All of these interactions could explain why this system has one of the largest binding affinities reported in the Hariboss database.
+    \subsubsection{5BJO: Corn RNA aptamer in complex with DFHO}
+      The aromatic groups of the ligand overlap significantly with its stacking potential. Two copies of residue 12 (guanine) seem to perform parallel stacking on one ring (from opposite sides), while the other aromatic ring is involved in parallel stacking with two copies of residue 25 (guanine) and perpendicular stacking with one copy of residue 24 (adenine) T (figure \ref{fig:benchmark/5bjo}.a). Similarly, both O1 (index 1580) and O19 (index 1596) overlap nicely with the hydrogen bond acceptor potential, with the latter being slightly offset (figure \ref{fig:benchmark/5bjo}.b). Finally, both N13 and N18 (indices 1590 and 1595) present a good overlap with the hydrogen bond donor potential (figure \ref{fig:appx_benchmark/5bjo}). All of these interactions could explain why this system has one of the largest binding affinities reported in the Hariboss database.
 
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.7\textwidth]{figures/results/benchmark_rna/5bjo.png}
-      \caption{\label{fig:benchmark/5bjo} Physical properties of the pocket for the RNA system PDB:5BJO. Potentials displayed: a) stacking, b) hydrogen bond acceptors.}
-    \end{figure}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{figures/results/benchmark_rna/5bjo.png}
+        \caption{\label{fig:benchmark/5bjo} Physical properties of the pocket for the RNA system PDB:5BJO. Potentials displayed: a) stacking, b) hydrogen bond acceptors.}
+      \end{figure}
 
-    For the next system, the three aromatic groups from the ligand overlap significantly with the stacking potential: residue 48 (adenine) performs parallel stacking and residue 49 (adenine) perpendicular stacking to one ring, residue 85 (adenine) parallel stacking to the next ring and residue 62 (guanine) parallel stacking to the last ring (figure \ref{fig:benchmark/5kx9}). Although multiple heteroatoms overlap with the hydrogen bond acceptor potential, no relevant atoms for this interaction were found by PLIP. On the other hand, the relevant atom O07 (index 2337) overlaps with a corner of the hydrogen bond donor potential region (figure \ref{fig:appx_benchmark/5kx9}).
+    \subsubsection{5KX9: FMN Riboswitch bound to PDB:6YG}
+      The three aromatic groups from the ligand overlap significantly with the stacking potential: residue 48 (adenine) performs parallel stacking and residue 49 (adenine) perpendicular stacking to one ring, residue 85 (adenine) parallel stacking to the next ring and residue 62 (guanine) parallel stacking to the last ring (figure \ref{fig:benchmark/5kx9}). Although multiple heteroatoms overlap with the hydrogen bond acceptor potential, no relevant atoms for this interaction were found by PLIP. On the other hand, the relevant atom O07 (index 2337) overlaps with a corner of the hydrogen bond donor potential region (figure \ref{fig:appx_benchmark/5kx9}).
 
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.5\textwidth]{figures/results/benchmark_rna/5kx9.png}
-      \caption{\label{fig:benchmark/5kx9} Stacking potential for the RNA system PDB:5KX9.}
-    \end{figure}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{figures/results/benchmark_rna/5kx9.png}
+        \caption{\label{fig:benchmark/5kx9} Stacking potential for the RNA system PDB:5KX9.}
+      \end{figure}
 
-    Another example of the ligand's aromatic group overlapping precisely on the predicted stacking potential region can be seen in figure \ref{fig:benchmark/6tf3}.a. In this case, residue 8 (adenine) performs parallel stacking on the aromatic group, as denoted by the well defined potential torus. For the hydrogen bond donor potential, N3 (index 1145) has a good overlap, while O2' (index 1135) is close to the potential but does not quite overlap (figure \ref{fig:benchmark/6tf3}.b). The hydrogen bond acceptor potential is again present in the system but its respective interaction is not described by PLIP (figure \ref{fig:appx_benchmark/6tf3}).
+    \subsubsection{6TF3: ADP-binding domain of the NAD+ riboswitch in complex with Cordycepin 5-triphosphate}
+      Another example of the ligand's aromatic group overlapping precisely on the predicted stacking potential region can be seen in figure \ref{fig:benchmark/6tf3}.a. In this case, residue 8 (adenine) performs parallel stacking on the aromatic group, as denoted by the well defined potential torus. For the hydrogen bond donor potential, N3 (index 1145) has a good overlap, while O2' (index 1135) is close to the potential but does not quite overlap (figure \ref{fig:benchmark/6tf3}.b). The hydrogen bond acceptor potential is again present in the system but its respective interaction is not described by PLIP (figure \ref{fig:appx_benchmark/6tf3}).
 
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.7\textwidth]{figures/results/benchmark_rna/6tf3.png}
-      \caption{\label{fig:benchmark/6tf3} Physical properties of the pocket for the RNA system PDB:6TF3. Potentials displayed: a) stacking, b) hydrogen bond donors.}
-    \end{figure}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{figures/results/benchmark_rna/6tf3.png}
+        \caption{\label{fig:benchmark/6tf3} Physical properties of the pocket for the RNA system PDB:6TF3. Potentials displayed: a) stacking, b) hydrogen bond donors.}
+      \end{figure}
 
-    For the next system, all relevant atoms overlap with the hydrogen bond acceptor potential (figure \ref{fig:benchmark/7oax0}). However the hydrogen bond donor potential regions do not overlap with the relevant atoms. Stacking potential is present but not relevant for this ligand (figure \ref{fig:appx_benchmark/7oax0}).
+    \subsubsection{7OAX: Chili RNA aptamer in complex with spermine}
+      For this system, all relevant atoms overlap with the hydrogen bond acceptor potential (figure \ref{fig:benchmark/7oax0}). However the hydrogen bond donor potential regions do not overlap with the relevant atoms. Stacking potential is present but not relevant for this ligand (figure \ref{fig:appx_benchmark/7oax0}).
 
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.5\textwidth]{figures/results/benchmark_rna/7oax0.png}
-      \caption{\label{fig:benchmark/7oax0} Hydrogen bond acceptor potential for the RNA system PDB:7OAX (ligand: SPM).}
-    \end{figure}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{figures/results/benchmark_rna/7oax0.png}
+        \caption{\label{fig:benchmark/7oax0} Hydrogen bond acceptor potential for the RNA system PDB:7OAX (ligand: SPM).}
+      \end{figure}
 
-    The stacking potential becomes again relevant for the next system, with residues 14 and 31 (both guanines) performing parallel stacking to two of the ligand's aromatic rings (figure \ref{fig:benchmark/7oax1}.a). Both N08 and O25 (indices 4459 and 4465) overlap (although slighlty offset) with the hydrogen bond donor potential (figure \ref{fig:benchmark/7oax1}.b). The relevant atom O12 (index 4464) overlaps with a dense region of hydrogen bond acceptor potential (figure \ref{fig:appx_benchmark/7oax1}).
+    \subsubsection{7OAX: Chili RNA aptamer in complex with DMHBO+}
+      The stacking potential becomes again relevant for this system, with residues 14 and 31 (both guanines) performing parallel stacking to two of the ligand's aromatic rings (figure \ref{fig:benchmark/7oax1}.a). Both N08 and O25 (indices 4459 and 4465) overlap (although slighlty offset) with the hydrogen bond donor potential (figure \ref{fig:benchmark/7oax1}.b). The relevant atom O12 (index 4464) overlaps with a dense region of hydrogen bond acceptor potential (figure \ref{fig:appx_benchmark/7oax1}).
 
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.8\textwidth]{figures/results/benchmark_rna/7oax1.png}
-      \caption{\label{fig:benchmark/7oax1} Physical properties of the pocket for the RNA system PDB:7OAX (ligand: V5Z). Potentials displayed: a) stacking, b) hydrogen bond donors.}
-    \end{figure}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{figures/results/benchmark_rna/7oax1.png}
+        \caption{\label{fig:benchmark/7oax1} Physical properties of the pocket for the RNA system PDB:7OAX (ligand: V5Z). Potentials displayed: a) stacking, b) hydrogen bond donors.}
+      \end{figure}
 
-    The last RNA benchmark also presents a relevant stacking interaction, revealed both by PLIP and the potential visualization: residues 16 (adenine) and 17 (guanine) perform parallel stacking to one aromatic ring of the ligand, while residue 38 (uracyl) performs to the other ring (figure \ref{fig:benchmark/8eyv}.a). Futhermore, both N13 and N18 (indices 1993 and 1998) overlap nicely with the hydrogen bond donor potential (figure \ref{fig:benchmark/8eyv}.b). The hydrogen bond acceptor potential is present in the system but its respective interaction is not described by PLIP (figure \ref{fig:appx_benchmark/8eyv}).
+    \subsubsection{8EYV: Beetroot dimer bound to DFHO}
+      The last RNA benchmark also presents a relevant stacking interaction, revealed both by PLIP and the potential visualization: residues 16 (adenine) and 17 (guanine) perform parallel stacking to one aromatic ring of the ligand, while residue 38 (uracyl) performs to the other ring (figure \ref{fig:benchmark/8eyv}.a). Futhermore, both N13 and N18 (indices 1993 and 1998) overlap nicely with the hydrogen bond donor potential (figure \ref{fig:benchmark/8eyv}.b). The hydrogen bond acceptor potential is present in the system but its respective interaction is not described by PLIP (figure \ref{fig:appx_benchmark/8eyv}).
 
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.7\textwidth]{figures/results/benchmark_rna/8eyv.png}
-      \caption{\label{fig:benchmark/8eyv} Physical properties of the pocket for the RNA system PDB:8EYV. Potentials displayed: a) stacking, b) hydrogen bond donors.}
-    \end{figure}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{figures/results/benchmark_rna/8eyv.png}
+        \caption{\label{fig:benchmark/8eyv} Physical properties of the pocket for the RNA system PDB:8EYV. Potentials displayed: a) stacking, b) hydrogen bond donors.}
+      \end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
