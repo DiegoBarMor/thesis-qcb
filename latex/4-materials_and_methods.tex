@@ -151,17 +151,17 @@
     \centering
     \begin{tabular}{ccccp{1.5in}p{1.5in}c}
       \hline
-      PDB  & Ligand  & Atoms & pKD   & Description                                & Comments                                                                   & Source                            \\ \hline
-      1BG0 & ADP     & 2817  & -     & arginine kinase                            & negatively charged pocket, NO3 and Mg also participate in the active site & \cite{benchmark_negative_2000}    \\ \hline
-      1EBY & BEB     & 1522  & 9.70  & HIV-1 protease in complex with inhibitor   & strong pocket affinity                                                     & \cite{benchmark_strong_2021}      \\ \hline
-      1EHE & HEM     & 3100  & -     & cytochrome P450NOR                         & positively charged pocket                                                  & \cite{benchmark_positive_2001}    \\ \hline
-      1H7L & TYD     & 1976  & -     & glycosyltransferase                        & -                                                                          & \cite{benchmark_1h7l_2001}        \\ \hline
-      1IQJ & XMH     & 2241  & -     & serine protease - blood coagulation factor & -                                                                          & to be published                   \\ \hline
-      1OFZ & FUL     & 4891  & 4.62  & fungal lectin                              & hydrogen bonds                                                             & \cite{hbonds_2023}                \\ \hline
-      3DD0 & EZL     & 2074  & 9.00  & carbonic anhydrase II                      & strong pocket affinity                                                     & \cite{benchmark_strong_2021}      \\ \hline
-      3EE4 & MYR     & 2320  & -     & Mn/Fe oxidase from M. tuberculosis         & hydrophobic pocket                                                         & \cite{benchmark_hydrophobic_2009} \\ \hline
-      5M9W & 7GR     & 4856  & 2.24  & thermolysin in complex with inhibitor      & hydrophobic pocket                                                         & \cite{hydrophobic_2017}           \\ \hline
-      6E9A & J0S     & 1705  & 11.92 & HIV-1 protease                             & strongest pocket affinity reported in PDBbind                              & \cite{pdbbind_2004}               \\ \hline
+      PDB  & Ligand  & Atoms & pKD   & Description                                & Comments                                      & Source                                   \\ \hline
+      1BG0 & ADP     & 2817  & -     & arginine kinase                            & negatively charged cluster in the pocket      & \cite{benchmark_negative_2000}           \\ \hline
+      1EBY & BEB     & 1522  & 9.70  & HIV-1 protease in complex with inhibitor   & strong pocket affinity                        & \cite{benchmark_strong_2021}             \\ \hline
+      1EHE & HEM     & 3100  & -     & cytochrome P450NOR                         & positively charged pocket                     & \cite{benchmark_positive_2001}           \\ \hline
+      1H7L & TYD     & 1976  & -     & glycosyltransferase                        & specific hydrogen bond                        & \cite{benchmark_1h7l_2001}               \\ \hline
+      1IQJ & XMH     & 2241  & -     & serine protease - blood coagulation factor & -                                             & to be published                          \\ \hline
+      1OFZ & FUL     & 4891  & 4.62  & fungal lectin                              & hydrogen bonds                                & \cite{hbonds_2023}                       \\ \hline
+      3DD0 & EZL     & 2074  & 9.00  & carbonic anhydrase II                      & strong pocket affinity                        & \cite{benchmark_strong_2021}             \\ \hline
+      3EE4 & MYR     & 2320  & -     & Mn/Fe oxidase from M. tuberculosis         & hydrophobic pocket                            & \cite{benchmark_hydrophobic_2009}        \\ \hline
+      5M9W & 7GR     & 4856  & 2.24  & thermolysin in complex with inhibitor      & hydrophobic pocket                            & \cite{hydrophobic_2017}                  \\ \hline
+      6E9A & J0S     & 1705  & 11.92 & HIV-1 protease                             & strongest pocket affinity reported in PDBbind & \cite{benchmark_6e9a_2018, pdbbind_2004} \\ \hline
     \end{tabular}
   \end{table}
 
@@ -171,7 +171,7 @@
     \begin{tabular}{ccccp{1.5in}p{1.5in}}
       \hline
       PDB  & Ligand  & Atoms & pKD  & Description                                                 & Comments                                                \\ \hline
-      1AKX & ARG     & 965   & -    & HIV-2 trans activating region RNA complex with argininamide & problematic for the APBS pipeline (considers ligand as a protein and halts) \\ \hline
+      1AKX & ARG     & 965   & -    & HIV-2 trans activating region RNA complex with argininamide & APBS pipeline considers ligand as a protein and halts   \\ \hline
       1I9V & NMY     & 1632  & 3.47 & phenylalanine transfer RNA                                  & -                                                       \\ \hline
       2ESJ & LIV     & 900   & -    & 16S-rRNA A site                                             & -                                                       \\ \hline
       4F8U & SIS     & 922   & -    & ribosomal decoding site                                     & -                                                       \\ \hline
@@ -180,7 +180,7 @@
       6TF3 & 3AT     & 1112  & -    & NAD+ riboswitch                                             & -                                                       \\ \hline
       7OAX & SPM     & 4404  & -    & RNA aptamer                                                 & large RNA                                               \\ \hline
       7OAX & V5Z     & 4404  & -    & RNA aptamer                                                 & large RNA                                               \\ \hline
-      8EYV & 747     & 1954  & -    & beetroot dimer bound to DFHO                                & large DScore (1.187) on Hariboss                      \\ \hline
+      8EYV & 747     & 1954  & -    & beetroot dimer bound to DFHO                                & large DScore (1.187) on Hariboss                        \\ \hline
     \end{tabular}
   \end{table}
 
