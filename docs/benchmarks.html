@@ -11,8 +11,36 @@
         src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
       </script>
       <script>
-        function imageChange(img, src){ document.querySelector(".image[name='" + img + "']").src = src; }
+        prot_pdb = "";
+        rna_pdb = "";
+        prot_pot = "";
+        rna_pot = "";
+
+        function setCurrentProtPDB(pdb) { 
+          prot_pdb = pdb; 
+          imageChange("prot", prot_pdb, prot_pot);
+        }
+        function setCurrentProtPot(potential) {
+          prot_pot = potential;
+          imageChange("prot", prot_pdb, prot_pot);
+        }
+        function setCurrentRnaPDB(pdb) { 
+          rna_pdb = pdb; 
+          imageChange("rna", rna_pdb, rna_pot);
+        }
+        function setCurrentRnaPot(potential) {
+          rna_pot = potential;
+          imageChange("rna", rna_pdb, rna_pot);
+        }
+
+        function imageChange(macro, pdb, potential){ 
+          src = "figures/" + macro + "/" + pdb + "-" + potential + ".png";
+          document.querySelector(".image[name='" + macro + "']").src = src;
+          caption = document.querySelector(".text-center[name='" + macro + "']")
+          caption.firstChild.data = "Current benchmark: " + pdb + " (" + potential + " potential).";
+        }
       </script>
+      
     </head>
     <body>
       <nav class="navbar">
@@ -25,11 +53,60 @@
 
       <div class="contents"> <h1>Benchmarks</h1>
         <h2>Protein benchmarks</h2>
-          [TODO: add interactive image to switch between HD versions of the benchmarks]
+          <figure>
+            <div class="line">
+              <button class="btn btn-primary my-1" onclick="setCurrentProtPDB('1bg0')">1bg0</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentProtPDB('1eby')">1eby</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentProtPDB('1ehe')">1ehe</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentProtPDB('1h7l')">1h7l</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentProtPDB('1iqj')">1iqj</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentProtPDB('1ofz')">1ofz</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentProtPDB('3dd0')">3dd0</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentProtPDB('3ee4')">3ee4</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentProtPDB('5m9w')">5m9w</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentProtPDB('6e9a')">6e9a</button>
+            </div>
+            <div class="line">
+              <button class="btn btn-primary my-1" onclick="setCurrentProtPot('stacking')">stacking</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentProtPot('hba')">hba</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentProtPot('hbd')">hbd</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentProtPot('hphob')">hphob</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentProtPot('apbs')">apbs</button>
+            </div>
+            <figcaption class="text-center" name="prot">...</figcaption>
+            <img class="image" src="" name="prot" , alt="Protein benchmark">
+          </figure>
 
         <h2>RNA benchmarks</h2>
-          [TODO: add interactive image to switch between HD versions of the benchmarks]
-
+          <figure>
+            <div class="line">
+              <button class="btn btn-primary my-1" onclick="setCurrentRnaPDB('1akx')">1akx</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentRnaPDB('1i9v')">1i9v</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentRnaPDB('2esj')">2esj</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentRnaPDB('4f8u')">4f8u</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentRnaPDB('5bjo')">5bjo</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentRnaPDB('5kx9')">5kx9</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentRnaPDB('6tf3')">6tf3</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentRnaPDB('7oax0')">7oax0</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentRnaPDB('7oax1')">7oax1</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentRnaPDB('8eyv')">8eyv</button>
+            </div>
+            <div class="line">
+              <button class="btn btn-primary my-1" onclick="setCurrentRnaPot('stacking')">stacking</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentRnaPot('hba')">hba</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentRnaPot('hbd')">hbd</button>
+              <button class="btn btn-primary my-1" onclick="setCurrentRnaPot('apbs')">apbs</button>
+            </div>
+            <figcaption class="text-center" name="rna">...</figcaption>
+            <img class="image" src="" name="rna", alt="RNA benchmark">
+          </figure>
+          
+          <script>
+            setCurrentProtPDB("3ee4");
+            setCurrentProtPot("hphob");
+            setCurrentRnaPDB("5bjo");
+            setCurrentRnaPot("stacking");
+          </script>
 
       </div>
     </body>
