@@ -118,3 +118,8 @@ b{
   overflow-x: scroll;
   flex-wrap: nowrap;
 }
+
+iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
