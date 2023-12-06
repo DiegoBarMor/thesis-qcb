@@ -1,2 +1,12 @@
 misc/
+
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.pdf
+*.toc
+*.gz
+
 desktop.ini
