@@ -16,11 +16,11 @@
         \caption{\label{fig:results/stacking_detection} Example of ligands being tagged as aromatic or not by the two detection methods.}
       \end{figure}
 
-      Some CIF files from the dataset had faulty SMILES strings (such as including the ligand name as a placeholder) or did not report correctly the aromaticity of the ligands. An example of the latter is the nucleic acid cytosine (CYT in figure \ref{fig:results/stacking_detection}), which is not properly identified as aromatic despite being a classic example of a biologically relevant aromatic group. This also was observed in uracyl and other pyrimidines.
+      Some CIF files from the dataset had faulty SMILES strings (such as including the ligand name as a placeholder) or did not report correctly the aromaticity of the ligands. An example of the latter is the nucleic acid cytosine (CYT in figure \ref{fig:results/stacking_detection}), which is not properly identified as aromatic despite being a classic example of a biologically relevant aromatic group. This also was observed in uracil and other pyrimidines.
 
-      The opposite situation also happened, where the SMILES string apparently contained aromatic atoms because lowercase symbols were found. However, this sometimes corresponded to unrelated heavy atoms. An example of this occurance is the ligand 1KH in figure \ref{fig:results/stacking_detection}, whose arsenic atom is represented by "As" in the SMILES string, so the first method recognized the lowercase "s" as an aromatic sulfur. The second method however immediatly discarded the ligand as it is acyclic.
+      The opposite situation also happened, where the SMILES string apparently contained aromatic atoms because lowercase symbols were found. However, this sometimes corresponded to unrelated heavy atoms. An example of this occurrence is the ligand 1KH in figure \ref{fig:results/stacking_detection}, whose arsenic atom is represented by "As" in the SMILES string, so the first method recognized the lowercase "s" as an aromatic sulfur. The second method however immediately discarded the ligand as it is acyclic.
 
-      Some other instances with complex combinations of aromatic and non-aromatic rings (oftentimes connected by one or two atoms) presented problems for the second method, while being correctly reported in the first method. For these reasons, these $1661$ were manually inspected to clarify whether aromaticity was present or not. At the end of this process, $18298$ ligands (accounting for $80.3 \% $ of the original dataset) were found to present a combined total of $34807$ aromatic groups (on average, 1.9 aromatic groups per ligand).
+      Some other instances with complex combinations of aromatic and non-aromatic rings (oftentimes connected by one or two atoms) presented problems for the second method, while being correctly reported in the first method. For these reasons, the $1661$ ambiguous ligands were manually inspected to clarify whether aromaticity was present or not. At the end of this process, $18298$ ligands (accounting for $80.3 \% $ of the original dataset) were found to present a combined total of $34807$ aromatic groups (on average, 1.9 aromatic groups per ligand).
 
     \subsubsection{Sampling of Aromatic Interactions}
       A total of $4843590$ interactions were sampled from the PDB dataset. The interaction datapoints were grouped according to their $\alpha$ and $\beta$ values. The average interaction distance for each group and their abundance in the dataset were inspected by means of a histogram (figure \ref{fig:results/stacking_sampling}.a).
@@ -33,7 +33,7 @@
         \caption{\label{fig:results/stacking_sampling} Interaction datapoints grouped by their $\alpha$ and $\beta$ values, with their average distance value reported as \textit{height} and amount of points for each group reported by \textit{color} (translucent yellow for few points, opaque black for many points). a) unfiltered interaction dataset, b) filtered dataset (no aminoacid-aminoacid interactions), c) filtered dataset focused on the range $\alpha \in [0,55], \beta \in [0,20]$.}
       \end{figure}
 
-      A high density of interaction datapoints can be observed at low $\beta$, high $\alpha$ values and relatively wide distances. This configuration mostly corresponds to base-pairing in PDB structures with nucleic acids, which can be further confirmed by filtering out \textbf{nucleic-nucleic} pairs (appendix figure \ref{fig:appx2/stacking_sampling}). Therefore, this region of points can be safely ignored.
+      A high density of interaction datapoints can be observed at low $\beta$, high $\alpha$ values and relatively long distances. This configuration mostly corresponds to base-pairing in PDB structures with nucleic acids, which can be further confirmed by filtering out \textbf{nucleic-nucleic} pairs (appendix figure \ref{fig:appx2/stacking_sampling}). Therefore, this region of points can be safely ignored.
 
       Another dense region of interaction datapoints can be observed spanning the range $\alpha \in [0,55], \beta \in [0,20]$. A total of $302651$ interactions are inside this range ($43 \%$ of the filtered datapoints). This range is also compatible with the theoretical configuration values of $\pi-\pi$ stacking potentials. Therefore, the empirical distribution of these values (figure \ref{fig:results/stacking_sampling}.c) will be used to define the model, suited to represent \textit{parallel-offset} stacking interactions specifically.
 
@@ -41,24 +41,24 @@
       Some important observations must be noted before defining the stacking model:
 
       \begin{itemize}
-        \item The histogram of the interactions of interest (figure \ref{fig:results/stacking_modeling}.a) reveals that varying the $\alpha$ value affects both the average distance of the points and their occurrence, while varying the $\beta$ value affects only the occurrence.
-        \item The distance and the $\alpha$ value depend only on the position and normal vector of the aromatic group and the surrounding points in space, implying only three dimensions of space are needed.
+        \item The histogram of the interactions of interest (figure \ref{fig:results/stacking_modelling}.a) reveals that varying the $\alpha$ value affects both the average distance of the points and their occurrence, while varying the $\beta$ value affects only the occurrence.
+        \item The distance and the $\alpha$ value depend only on the position and normal vector of the aromatic group and the surrounding points in space, implying only three dimensions of space are needed for calculating them.
         \item The $\beta$ value depends on the normal vector of both the actual aromatic group and the hypothetical aromatic group which interacts with it. This means that the $\beta$ value requires a \textit{$\beta$ angle} dimension, which raises the same issue found when theorizing the hydrogen bond potential model.
       \end{itemize}
 
-      Therefore, even if it would be ideal to use all three parameters when building the model, the model was defined to assume an ideal beta value of either $\beta \approx 0^{\circ}$ (theoretically) or $\beta \approx 7.5^{\circ}$ (empirically, figure \ref{fig:results/stacking_modeling}.a). The datapoints were then grouped considering only their $\alpha$ and distance values and their occurrence observed in the histogram (figure \ref{fig:results/stacking_modeling}.b).
+      Therefore, even if it would be ideal to use all three parameters when building the model, the model was defined to assume an ideal beta value of either $\beta \approx 0^{\circ}$ (theoretical) or $\beta \approx 7.5^{\circ}$ (empirical, figure \ref{fig:results/stacking_modelling}.a). The datapoints were then grouped considering only their $\alpha$, average distance and occurrence values observed in the histogram (figure \ref{fig:results/stacking_modelling}.b).
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=1\textwidth]{figures/results/stacking_modeling.png}
-        \caption{\label{fig:results/stacking_modeling} Empirical and modelled distribution of stacking interactions. a) same as figure \ref{fig:results/stacking_sampling}.c, b) same empirical datapoints, omitting the $\beta$ dimension, c) modelled datapoints.}
+        \includegraphics[width=1\textwidth]{figures/results/stacking_modelling.png}
+        \caption{\label{fig:results/stacking_modelling} Empirical and modelled distribution of stacking interactions. a) same as figure \ref{fig:results/stacking_sampling}.c, b) same empirical datapoints, omitting the $\beta$ dimension, c) modelled datapoints.}
       \end{figure}
 
       The empirical distribution resembles a skewed normal distribution. Given that the distortion is not extreme, an approximation was introduced and the model was empirically determined to have the shape of a \textbf{2D normal distribution}, with dimensions being distance and $\alpha$ angle (instead of just distance, which is the case of hydrogen bonds and hydrophobicity). Note however that the domain of the function still consists of three spatial dimensions, as $\alpha$ is only dependant on spatial coordinates and the \textit{normal vector} (which is not an input but rather a fixed parameter for each aromatic group) and it is calculated inside the function (analogous to how distance is calculated).
 
-      The parameters were similarly obtained from the data histogram: $\mu = \begin{bmatrix} 29.98 \\ 4.19 \end{bmatrix}$ from the empirical average and $\sigma^2 = \begin{bmatrix} 169.99 & 6.62 \\ 6.62 & 0.37 \end{bmatrix}$ from the empirical covariance matrix. The shape of the modelled probability function can be observed in figure \ref{fig:results/stacking_modeling}.c.
+      The parameters were similarly obtained from the data histogram: $\mu = \begin{bmatrix} 29.98 \\ 4.19 \end{bmatrix}$ from the empirical average and $\sigma^2 = \begin{bmatrix} 169.99 & 6.62 \\ 6.62 & 0.37 \end{bmatrix}$ from the empirical covariance matrix. The shape of the modelled probability function can be observed in figure \ref{fig:results/stacking_modelling}.c.
 
-      An isosurface representation of the output for a single aromatic group is presented in figure \ref{fig:results/visualize_stacking}.a. The stacking potential field of the aromatic group takes the shape of two slightly flattened tori (i.e. "donut" shape), both below and above the aromatic plane. This shape is consequence of the spatial constraints imposed by the optimal distance and $\alpha$ values of the model ($\mu$) and the spread of the distribution ($\sigma^2$). According to this visualization, a stacking interaction will probably occur if an aromatic pharmacophorse is placed in any point of the volume covered by these tori.
+      An isosurface representation of the output for a single aromatic group is presented in figure \ref{fig:results/visualize_stacking}.a. The stacking potential field of the aromatic group takes the shape of two slightly flattened tori (i.e. "donut" shape), both below and above the aromatic plane. This shape is consequence of the spatial constraints imposed by the optimal distance and $\alpha$ values of the model ($\mu$) and the spread of the distribution ($\sigma^2$). According to this visualization, a stacking interaction will probably occur if an aromatic pharmacophores is placed in any point of the volume covered by these tori.
 
       \begin{figure}[H]
         \centering
@@ -95,7 +95,7 @@
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.7\textwidth]{figures/results/apbs_christmas.png}
-      \caption{\label{fig:results/apbs_christmas} Visualization of the electrostatic potential under different conditions. a) cloud representation without trimming, b) cloud representation with trimming, c) cloud representation with trimming, log transformation applied, d) isosurfaces representation with trimming. PDB: 1IQJ. Grid resolution: 52x49x46. Rendered in UnityMol.}
+      \caption{\label{fig:results/apbs_christmas} Visualization of the electrostatic potential under different conditions. a) cloud representation without trimming, b) cloud representation with trimming, c) cloud representation with trimming, log transformation applied, d) isosurfaces representation with trimming. PDB:1IQJ. Grid resolution: 52x49x46. Rendered in UnityMol.}
     \end{figure}
 
     Even if enabling occupancy trimming removes the majority of high values (figure \ref{fig:results/logapbs_trimming}), the presence of only a single value around $1e2.5$ is enough to influence on the normalization of colors and negatively affect the cloud representation in the same way (figure \ref{fig:results/apbs_christmas}.b). This problem is solved by either displaying the logarithmic transformation of the APBS values (figure \ref{fig:results/apbs_christmas}.c) or by using isosurfaces for either the original or log-transformed APBS values (figure \ref{fig:results/apbs_christmas}.d).
@@ -109,30 +109,30 @@
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.6\textwidth]{figures/results/gui_sphere.png}
-      \caption{\label{fig:results/gui_sphere} Interactive visualization of the pocket sphere (PS) in UnityMol. a and b) protein represented as cartoon, atoms inside the PS are highlighted as licorice, c and d) protein represented as surface, atoms inside the PS are highlighted in yellow. PS radius is increased by 10 in (b) and (d). PDB: 1IQJ.}
+      \caption{\label{fig:results/gui_sphere} Interactive visualization of the pocket sphere (PS) in UnityMol. a and b) protein represented as cartoon, atoms inside the PS are highlighted as licorice, c and d) protein represented as surface, atoms inside the PS are highlighted in yellow. PS radius is increased by 10 in (b) and (d). PDB:1IQJ.}
     \end{figure}
 
   \subsection{Potentials Calculation}
-    For any potentials calculation, performing the sphere and occupancy trimming is fundamental, as otherwise the visualization gets saturated with irrelevant datapoints (figure \ref{fig:results/trimming_0}). The RNDS trimming can be considered as an optional step for futher polishing the visualization, at the expense of additional calculation time. An example of RNDS removing datapoints from a volume outside the pocket is presented in figure \ref{fig:results/trimming_1}. Further polishing can be performed by adding a treshold for the search distance, although this has to be done with care, to avoid removing relevant datapoints.
+    For any potentials calculation, performing the sphere and occupancy trimming is fundamental, as otherwise the visualization gets saturated with irrelevant datapoints (figure \ref{fig:results/trimming_0}). The RNDS trimming can be considered as an optional step for further polishing the visualization, at the expense of additional calculation time. An example of RNDS removing datapoints from a volume outside the pocket is presented in figure \ref{fig:results/trimming_1}. Further polishing can be performed by adding a threshold for the search distance, although this has to be done with care, to avoid removing relevant datapoints.
 
     \begin{figure}[H]
       \centering
       \includegraphics[width=1\textwidth]{figures/results/trimming_0.png}
-      \caption{\label{fig:results/trimming_0} Trimming steps for the hydrophobicity potential (1/2). a) no trimming, b) sphere trimming, c) sphere and occupancy trimming. PDB: 1EHE.}
+      \caption{\label{fig:results/trimming_0} Trimming steps for the hydrophobicity potential (1/2). a) no trimming, b) sphere trimming, c) sphere and occupancy trimming. PDB:1EHE.}
     \end{figure}
 
     \begin{figure}[H]
       \centering
       \includegraphics[width=1\textwidth]{figures/results/trimming_1.png}
-      \caption{\label{fig:results/trimming_1} Trimming steps for the hydrophobicity potential (2/2). a) sphere and occupancy trimming, b) sphere, occupancy and RNDS trimming (no search distance treshold) c) sphere, occupancy and RNDS trimming (search distance treshold set to 35). PDB: 1EHE.}
+      \caption{\label{fig:results/trimming_1} Trimming steps for the hydrophobicity potential (2/2). a) sphere and occupancy trimming, b) sphere, occupancy and RNDS trimming (no search distance threshold) c) sphere, occupancy and RNDS trimming (search distance threshold set to 35). PDB:1EHE.}
     \end{figure}
 
     Another important setting for the potentials calculation is the amount of points employed for calculating the grid, i.e. its resolution. A resolution of $50 \times 50 \times 50$ implies dealing with matrices of $125000$ datapoints, which are calculated relatively quickly (some seconds), but whose rendering consist of less intuitive shapes (figures \ref{fig:results/resolution}.a and \ref{fig:results/resolution}.c). A resolution of $100 \times 100 \times 100$ implies dealing with $1000000$ points, which increases the calculation time to the order of decaseconds, but which are displayed into better defined shapes and contours (figures \ref{fig:results/resolution}.b and \ref{fig:results/resolution}.d). It is also notable that the time for loading the matrix files and rendering the representations increases with the resolution, although not as extremely.
 
     \begin{figure}[H]
       \centering
-      \includegraphics[width=0.8\textwidth]{figures/results/resolution.png}
-      \caption{\label{fig:results/resolution} Effect of the resolution of the potential grids over the quality of the visualization. a) hydrogen bonds acceptor potential at resolution $50 \times 50 \times 50$, b) hydrogen bonds acceptor potential at resolution $100 \times 100 \times 100$, c) hydrophobic potential at resolution $50 \times 50 \times 50$, d) hydrophobic potential at resolution $100 \times 100 \times 100$. PDB: 1IQJ.}
+      \includegraphics[width=0.6\textwidth]{figures/results/resolution.png}
+      \caption{\label{fig:results/resolution} Effect of the resolution of the potential grids over the quality of the visualization. a) hydrogen bonds acceptor potential at resolution $50 \times 50 \times 50$, b) hydrogen bonds acceptor potential at resolution $100 \times 100 \times 100$, c) hydrophobic potential at resolution $50 \times 50 \times 50$, d) hydrophobic potential at resolution $100 \times 100 \times 100$. PDB:1IQJ.}
     \end{figure}
 
   \subsection{Potentials Visualization}
@@ -140,16 +140,16 @@
 
     \begin{figure}[H]
       \centering
-      \includegraphics[width=1\textwidth]{figures/results/reprs_0.png}
-      \caption{\label{fig:results/reprs_0} Different representations for visualizing the electrostatic potential. a) cloud representation, b) opaque and translucid isosurfaces, c) wireframe isosurfaces. PDB: 1EHE.}
+      \includegraphics[width=0.8\textwidth]{figures/results/reprs_0.png}
+      \caption{\label{fig:results/reprs_0} Different representations for visualizing the electrostatic potential. a) cloud representation, b) opaque and translucid isosurfaces, c) wireframe isosurfaces. PDB:1EHE.}
     \end{figure}
 
     In the case of the stacking potential, comparing the ligand position is even harder when using solid or wireframe isosurfaces, as it is difficult to distinguish the aromatic rings overlapping with the potential (figures \ref{fig:results/reprs_1}.c and \ref{fig:results/reprs_1}.d), while translucid and cloud are more appropriate for this purpose (figures \ref{fig:results/reprs_1}.a and \ref{fig:results/reprs_1}.b). Note however that, if the actual potential shape of is of interest and the ligand is disregarded, the solid and wireframe isosurfaces are a better choice. Also note that the cloud representation in figure \ref{fig:results/reprs_1}.a gives less relevance to low value subregions (which can be considered noise), while the translucid isosurface from figure \ref{fig:results/reprs_1}.b gives the same homogeneous color to all points, regardless of their potential value.
 
     \begin{figure}[H]
       \centering
-      \includegraphics[width=0.8\textwidth]{figures/results/reprs_1.png}
-      \caption{\label{fig:results/reprs_1} Different representations for visualizing the stacking potential. a) cloud representation, b) translucid isosurface, c) opaque isosurface, d) wireframe isosurface. PDB: 5KX9.}
+      \includegraphics[width=0.6\textwidth]{figures/results/reprs_1.png}
+      \caption{\label{fig:results/reprs_1} Different representations for visualizing the stacking potential. a) cloud representation, b) translucid isosurface, c) opaque isosurface, d) wireframe isosurface. PDB:5KX9.}
     \end{figure}
 
     Even if the hydrogen bond potential have some resemblances with the stacking potential in its calculation, the practicality of its representation differs. The cloud and translucid representations are usually vague and not very intuitive (figures \ref{fig:results/reprs_2}.a and \ref{fig:results/reprs_2}.b), while the solid and wireframe representations are most likely to be preferred (figures \ref{fig:results/reprs_2}.c and \ref{fig:results/reprs_2}.d). This is due to the fact that these potentials are closer to the actual surface of the target (while the stacking extends towards the pocket center), so the ligand or pharmacophore is less obstructed during the visualization. The spherical shapes from this potential are also very evident in the solid isosurfaces.
@@ -157,7 +157,7 @@
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.8\textwidth]{figures/results/reprs_2.png}
-      \caption{\label{fig:results/reprs_2} Different representations for visualizing the hydrogen bonds acceptor potential. a) cloud representation, b) translucid isosurface, c) opaque isosurface, d) wireframe isosurface. PDB: 1IQJ.}
+      \caption{\label{fig:results/reprs_2} Different representations for visualizing the hydrogen bonds acceptor potential. a) cloud representation, b) translucid isosurface, c) opaque isosurface, d) wireframe isosurface. PDB:1IQJ.}
     \end{figure}
 
     A final observation regarding the isosurface representations is that the user must deal with the \textit{isovalue} parameter, which can be unintuitive and generate confusion about the actual meaning of the rendered shapes. On the other hand, being able to change this parameter allows to better adjust each particular case, even if the underlying technical concept of an isovalue is not clear to the user. The cloud representation lacks this issue.
@@ -165,9 +165,9 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Benchmarking}
-  In this section, a highlight of the most interesting benchmark observations is given. A complete list of all potential visualization for all the benchmarks is provided in Appendix II. This complete list is also available at high definition in the appendix website at \url{https://diegobarmor.github.io/thesis-qcb/}.
+  In this section, a highlight of the most interesting benchmark observations is given. For each system, a 3D representation of the complete macromolecule (with its pocket highlighted in orange) and a 2D schema of the ligand are also provided. A complete list of all potential visualization for all the benchmarks is provided in Appendix II. This complete list is also available at high definition in the appendix website at \url{https://diegobarmor.github.io/thesis-qcb/}.
 
-  In the case of RNA systems, all of the 10 benchmarks present electronegative pockets (sometimes with few negligible positive points), so only observations regarding stacking and hydrogen bond potentials will be presented. For each system, the ligand atoms found to be relevant by PLIP (table \ref{tab:appx2/plip}) are emphasized, noting whether or not they overlap with regions of hydrogen bond potentials. In the case of stacking, the role of relevant RNA residues (according to PLIP) are also compared to what can be inferred from their respective stacking potential visualization.
+  In the case of RNA systems, all of the 10 benchmarks present electronegative pockets (sometimes with few negligible positive points), so only observations regarding stacking and hydrogen bond potentials will be discussed. For each system, the ligand atoms found to be relevant by PLIP (table \ref{tab:appx2/plip}) are emphasized, noting whether or not they overlap with regions of hydrogen bond potentials. In the case of stacking, the role of relevant RNA residues (according to PLIP) are also compared to what can be inferred from their respective stacking potential visualization.
 
   \pagebreak
   \subsection{Protein Systems}
@@ -183,7 +183,7 @@
 
       Electrostatic interactions are known to play an important role in the binding site of this protein. The negatively charged phosphate groups of the ligand interact with positively charged arginines, while aminoacids such as glutamate and aspartate form an electronegative cluster that interacts with a magnesium cation (necessary to stabilize the complex) \cite{benchmark_negative_2000}.
 
-      It can be observed in figure \ref{fig:benchmark/1bg0} that the phosphate group of the ligand occupies an electropositive region of the pocket, while the magnesium cation is accurately placed in an electronegative region provided by the highlighted glutamates. This is congruent with the expected electrostatic interactions. Furthermore, figure \ref{fig:appx_benchmark/1bg0} shows how the aromatic group of the ligand aligns with one of the few regions of stacking potentials, while multiple oxygen an nitrogen atoms overlap with gridpoints for hydrogen bond potentials. Most of the pocket is hydrophilic, which is where the ligand, NO3 group and the ion are located.
+      It can be observed in figure \ref{fig:benchmark/1bg0} that the phosphate group of the ligand occupies an electropositive region of the pocket, while the magnesium cation is accurately placed in an electronegative region provided by the highlighted glutamates. This is congruent with the expected electrostatic interactions. Furthermore, figure \ref{fig:appx_benchmark/1bg0} shows how the aromatic group of the ligand aligns with one of the few regions of stacking potentials, while multiple oxygen and nitrogen atoms overlap with gridpoints for hydrogen bond potentials. Most of the pocket is hydrophilic, which is where the ligand, NO3 group and the ion are located.
 
       \begin{figure}[H]
         \centering
@@ -223,7 +223,7 @@
         \end{subfigure}
       \end{figure}
 
-      The binding pocket of this protein is characterized by a positively charged cluster for of lysine and arginine residues, which plays an important role on how it interacts with the heme group ligand \cite{benchmark_positive_2001}. Indeed, the visualization of the electrostatic potential reveals positive charges in the region where the ligand should be placed. Furthermore, a negative charge can be observed overlapping with the cation in the middle of the heme group, which is to be expected (figure \ref{fig:benchmark/1ehe}).
+      The binding pocket of this protein is characterized by a positively charged cluster of lysine and arginine residues, which plays an important role on how it interacts with the heme group ligand \cite{benchmark_positive_2001}. Indeed, the visualization of the electrostatic potential reveals positive charges in the region where the ligand should be placed. Furthermore, a negative charge can be observed overlapping with the cation in the middle of the heme group, which is to be expected (figure \ref{fig:benchmark/1ehe}).
 
       Additional observations include the stacking potential slightly overlapping with one of the aromatic groups, while the hydrogen bond potentials are displayed on top of the ligand's heteroatoms. The hydrophobic main body of the ligand overlaps with a large region of hydrophobic potential, while the outside oxygen atoms are placed inside hydrophilic sections (figure \ref{fig:appx_benchmark/1ehe}).
 
@@ -286,9 +286,9 @@
         \end{subfigure}
       \end{figure}
 
-      The main interactions for this protein-carbohydrates complex is the hydrogen bonds formed in its binding pockets \cite{hbonds_2023}. Effectively, the hydrogen bond potentials visualization agrees with the specific hydrogen bonds previously reported (figure \ref{fig:benchmark/1ofz}).
+      The main interactions for this protein-carbohydrates complex are the hydrogen bonds formed in its binding pockets \cite{hbonds_2023}. Effectively, the hydrogen bond potentials visualization agrees with the specific hydrogen bonds previously reported (figure \ref{fig:benchmark/1ofz}).
 
-      Furthermore, Most of the pocket is hydrophilic, which makes sense for a carbohydrate ligand, and the pocket is completely electropositive. Although there are some regions of potential, the stacking interactions are irrelevant for this ligand (figure \ref{fig:appx_benchmark/1ofz}).
+      Furthermore, most of the pocket is hydrophilic, which makes sense for a carbohydrate ligand, and the pocket is completely electropositive. Although there are some regions of potential, the stacking interactions are irrelevant for this ligand (figure \ref{fig:appx_benchmark/1ofz}).
 
       \begin{figure}[H]
         \centering
@@ -307,7 +307,7 @@
         \end{subfigure}
       \end{figure}
 
-      Similar to PDB:1EBY, the binding affinity reported for this system is mostly given by hydrophobic and a couple of hydrogen bond interactions \cite{benchmark_strong_2021}. These previously reported hydrophobic interactions match the potentials in figure \ref{fig:benchmark/3dd0}.
+      Similar to PDB:1EBY, the binding affinity reported for this system is mostly given by a couple of hydrogen bonds and several hydrophobic interactions \cite{benchmark_strong_2021}. The previously reported hydrophobic interactions match the potentials in figure \ref{fig:benchmark/3dd0}.
 
       Additionally, the expected hydrogen bonds also correspond to the visualization of their respective potentials. However, the stacking potential does not overlap with the aromatic section of the ligand. Finally, the pocket is mostly electronegative, with the exception of some positive charges (figure \ref{fig:appx_benchmark/3dd0}).
 
@@ -349,7 +349,7 @@
         \end{subfigure}
       \end{figure}
 
-      Hydrophobicity and hydrogen bonds play a major role in this system's binding pocket, as reported by \cite{hydrophobic_2017}. The potentials visualization show the presence of mostly hydrophilic potential regions. Nevertheless, the hydrophobic groups of the ligand do match the hydrophobic regions described by the representation (figure \ref{fig:benchmark/5m9w}).
+      Hydrophobicity and hydrogen bonds play a major role in this system's binding pocket, as reported by \cite{hydrophobic_2017}. The potentials visualization shows the presence of mostly hydrophilic potential regions. Nevertheless, the hydrophobic groups of the ligand do match the hydrophobic regions described by the representation (figure \ref{fig:benchmark/5m9w}).
 
       Hydrogen bonds described in \cite{hydrophobic_2017} can also be inferred by observing the hydrogen bonds potentials of the system. Furthermore, the aromatic group of the ligand slightly overlaps with a large region of stacking potential. The pocket is mostly electronegative with some positive charges present (figure \ref{fig:appx_benchmark/5m9w}).
 
@@ -370,7 +370,7 @@
         \end{subfigure}
       \end{figure}
 
-      The pocket for this protein is reported to have a high binding affinity, which can be once again attributed to the presence of multiple hydrogen bonds and hydrophobic interactions \cite{benchmark_6e9a_2018}. The hydrogen bonds potentials visualized in figure \ref{fig:benchmark/6e9a} overlap with the expected heteroatoms for this interaction. The hydrophobic and hydrophilic regions also seem to coincide in some measure to their counterparts in the ligand, althought it is difficult to discern it correctly from the representations.
+      The pocket for this protein is reported to have a high binding affinity, which can be once again attributed to the presence of multiple hydrogen bonds and hydrophobic interactions \cite{benchmark_6e9a_2018}. The hydrogen bonds potentials visualized in figure \ref{fig:benchmark/6e9a} overlap with the expected heteroatoms for this interaction. The hydrophobic and hydrophilic regions also seem to coincide in some measure with their counterparts in the ligand, althought it is difficult to discern it correctly from the representations.
 
       As additional observations, the pocket has only two stacking potential regions, which do not coincide with the aromatic groups of its ligand. Moreover, the ligand is located in an electronegative region, while positive charges are more prevalent towards the extremes of the pocket (figure \ref{fig:appx_benchmark/6e9a}).
 
@@ -474,7 +474,7 @@
           \includegraphics[width=1\textwidth]{figures/results/ps_rna/5kx9.png}
         \end{subfigure}
         \begin{subfigure}[c]{0.3\textwidth} \centering
-          \psfig{file=figures/results/ligands/6YG.eps, width=1\textwidth}
+          \psfig{file=figures/results/ligands/747.eps, width=1\textwidth}
         \end{subfigure}
       \end{figure}
 
@@ -495,7 +495,7 @@
           \includegraphics[width=1\textwidth]{figures/results/ps_rna/6tf3.png}
         \end{subfigure}
         \begin{subfigure}[c]{0.3\textwidth} \centering
-          \psfig{file=figures/results/ligands/3AT.eps, width=1\textwidth}
+          \psfig{file=figures/results/ligands/6YG.eps, width=1\textwidth}
         \end{subfigure}
       \end{figure}
 
@@ -516,11 +516,11 @@
           \includegraphics[width=1\textwidth]{figures/results/ps_rna/7oax0.png}
         \end{subfigure}
         \begin{subfigure}[c]{0.3\textwidth} \centering
-          \psfig{file=figures/results/ligands/SPM.eps, width=1\textwidth}
+          \psfig{file=figures/results/ligands/3AT.eps, width=1\textwidth}
         \end{subfigure}
       \end{figure}
 
-      Another example of the ligand's aromatic group overlapping precisely on the predicted stacking potential region can be seen in figure \ref{fig:benchmark/6tf3}.a. In this case, residue 8 (adenine) performs parallel stacking on the aromatic group, as denoted by the well defined potential torus. For the hydrogen bond donor potential, N3 (index 1145) has a good overlap, while O2' (index 1135) is close to the potential but does not quite overlap (figure \ref{fig:benchmark/6tf3}.b). The hydrogen bond acceptor potential is again present in the system but its respective interaction is not described by PLIP (figure \ref{fig:appx_benchmark/6tf3}).
+      Another example of a ligand's aromatic group overlapping precisely on the predicted stacking potential region can be seen in figure \ref{fig:benchmark/6tf3}.a. In this case, residue 8 (adenine) performs parallel stacking on the aromatic group, as denoted by the well defined potential torus. For the hydrogen bond donor potential, N3 (index 1145) has a good overlap, while O2' (index 1135) is close to the potential but does not quite overlap (figure \ref{fig:benchmark/6tf3}.b). The hydrogen bond acceptor potential is again present in the system but its respective interaction is not described by PLIP (figure \ref{fig:appx_benchmark/6tf3}).
 
       \begin{figure}[H]
         \centering
@@ -537,7 +537,7 @@
           \includegraphics[width=1\textwidth]{figures/results/ps_rna/7oax1.png}
         \end{subfigure}
         \begin{subfigure}[c]{0.3\textwidth} \centering
-          \psfig{file=figures/results/ligands/V5Z.eps, width=1\textwidth}
+          \psfig{file=figures/results/ligands/SPM.eps, width=1\textwidth}
         \end{subfigure}
       \end{figure}
 
@@ -558,11 +558,11 @@
           \includegraphics[width=1\textwidth]{figures/results/ps_rna/5bjo.png}
         \end{subfigure}
         \begin{subfigure}[c]{0.3\textwidth} \centering
-          \psfig{file=figures/results/ligands/747.eps, width=1\textwidth}
+          \psfig{file=figures/results/ligands/V5Z.eps, width=1\textwidth}
         \end{subfigure}
       \end{figure}
 
-      The stacking potential becomes again relevant for this system, with residues 14 and 31 (both guanines) performing parallel stacking to two of the ligand's aromatic rings (figure \ref{fig:benchmark/7oax1}.a). Both N08 and O25 (indices 4459 and 4465) overlap (although slighlty offset) with the hydrogen bond donor potential (figure \ref{fig:benchmark/7oax1}.b). The relevant atom O12 (index 4464) overlaps with a dense region of hydrogen bond acceptor potential (figure \ref{fig:appx_benchmark/7oax1}).
+      The stacking potential becomes again relevant for this complex, with residues 14 and 31 (both guanines) performing parallel stacking to two of the ligand's aromatic rings (figure \ref{fig:benchmark/7oax1}.a). Both N08 and O25 (indices 4459 and 4465) overlap (although slighlty offset) with the hydrogen bond donor potential (figure \ref{fig:benchmark/7oax1}.b). The relevant atom O12 (index 4464) overlaps with a dense region of hydrogen bond acceptor potential (figure \ref{fig:appx_benchmark/7oax1}).
 
       \begin{figure}[H]
         \centering
@@ -583,7 +583,7 @@
         \end{subfigure}
       \end{figure}
 
-      The last RNA benchmark also presents a relevant stacking interaction, revealed both by PLIP and the potential visualization: residues 16 (adenine) and 17 (guanine) perform parallel stacking to one aromatic ring of the ligand, while residue 38 (uracyl) performs to the other ring (figure \ref{fig:benchmark/8eyv}.a). Futhermore, both N13 and N18 (indices 1993 and 1998) overlap nicely with the hydrogen bond donor potential (figure \ref{fig:benchmark/8eyv}.b). The hydrogen bond acceptor potential is present in the system but its respective interaction is not described by PLIP (figure \ref{fig:appx_benchmark/8eyv}).
+      The last RNA benchmark also presents a relevant stacking interaction, revealed both by PLIP and the potential visualization: residues 16 (adenine) and 17 (guanine) perform parallel stacking to one aromatic ring of the ligand, while residue 38 (uracyl) performs to the other ring (figure \ref{fig:benchmark/8eyv}.a). furthermore, both N13 and N18 (indices 1993 and 1998) overlap nicely with the hydrogen bond donor potential (figure \ref{fig:benchmark/8eyv}.b). The hydrogen bond acceptor potential is present in the system but its respective interaction is not described by PLIP (figure \ref{fig:appx_benchmark/8eyv}).
 
       \begin{figure}[H]
         \centering
