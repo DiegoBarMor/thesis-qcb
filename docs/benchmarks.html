@@ -1,9 +1,11 @@
 <!DOCTYPE html>
   <html>
     <head>
-      <title>CBP Molecular Dynamics</title>
+      <title>QCB Thesis- Benchmarks</title>
+      <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+      <link rel="stylesheet" href="https://raw.githack.com/DiegoBarMor/DiegoBarMor.github.io/refs/heads/main/docs/prisma.css">
       <link rel="stylesheet" type="text/css" href=style.css>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
       <script>
         prot_pdb = "";
         rna_pdb = "";
@@ -34,15 +36,15 @@
           caption.firstChild.data = "Current benchmark: " + pdb + " (" + potential + " potential).";
         }
       </script>
-
     </head>
+
     <body>
-      <nav class="navbar">
-        <div class="line">
-          <a class="btn" href="https://diegobarmor.github.io/thesis-qcb/index.html">Index</a>
-          <a class="btn" href="https://diegobarmor.github.io/thesis-qcb/document.html">Document</a>
-          <a class="btn" href="https://diegobarmor.github.io/thesis-qcb/gui.html">UnityMol GUI</a>
-          <a class="btn" href="https://diegobarmor.github.io/thesis-qcb/benchmarks.html">Benchmarks</a>
+      <nav>
+        <div>
+          <a class="button" href="https://diegobarmor.github.io/thesis-qcb/index.html">Index</a>
+          <a class="button" href="https://diegobarmor.github.io/thesis-qcb/document.html">Document</a>
+          <a class="button" href="https://diegobarmor.github.io/thesis-qcb/gui.html">UnityMol GUI</a>
+          <a class="button" href="https://diegobarmor.github.io/thesis-qcb/benchmarks.html">Benchmarks</a>
         </div>
       </nav>
 
@@ -50,23 +52,23 @@
         <h2>Protein benchmarks</h2>
           <figure>
             <div class="line">
-              <button class="btn btn-primary my-1" onclick="setCurrentProtPDB('1bg0')">1bg0</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentProtPDB('1eby')">1eby</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentProtPDB('1ehe')">1ehe</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentProtPDB('1h7l')">1h7l</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentProtPDB('1iqj')">1iqj</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentProtPDB('1ofz')">1ofz</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentProtPDB('3dd0')">3dd0</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentProtPDB('3ee4')">3ee4</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentProtPDB('5m9w')">5m9w</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentProtPDB('6e9a')">6e9a</button>
+              <button class="button" onclick="setCurrentProtPDB('1bg0')">1bg0</button>
+              <button class="button" onclick="setCurrentProtPDB('1eby')">1eby</button>
+              <button class="button" onclick="setCurrentProtPDB('1ehe')">1ehe</button>
+              <button class="button" onclick="setCurrentProtPDB('1h7l')">1h7l</button>
+              <button class="button" onclick="setCurrentProtPDB('1iqj')">1iqj</button>
+              <button class="button" onclick="setCurrentProtPDB('1ofz')">1ofz</button>
+              <button class="button" onclick="setCurrentProtPDB('3dd0')">3dd0</button>
+              <button class="button" onclick="setCurrentProtPDB('3ee4')">3ee4</button>
+              <button class="button" onclick="setCurrentProtPDB('5m9w')">5m9w</button>
+              <button class="button" onclick="setCurrentProtPDB('6e9a')">6e9a</button>
             </div>
             <div class="line">
-              <button class="btn btn-primary my-1" onclick="setCurrentProtPot('stacking')">stacking</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentProtPot('hba')">hba</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentProtPot('hbd')">hbd</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentProtPot('hphob')">hphob</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentProtPot('apbs')">apbs</button>
+              <button class="button" onclick="setCurrentProtPot('stacking')">stacking</button>
+              <button class="button" onclick="setCurrentProtPot('hba')">hba</button>
+              <button class="button" onclick="setCurrentProtPot('hbd')">hbd</button>
+              <button class="button" onclick="setCurrentProtPot('hphob')">hphob</button>
+              <button class="button" onclick="setCurrentProtPot('apbs')">apbs</button>
             </div>
             <figcaption class="text-center" name="prot">...</figcaption>
             <img class="image" src="" name="prot" , alt="Protein benchmark">
@@ -75,22 +77,22 @@
         <h2>RNA benchmarks</h2>
           <figure>
             <div class="line">
-              <button class="btn btn-primary my-1" onclick="setCurrentRnaPDB('1akx')">1akx</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentRnaPDB('1i9v')">1i9v</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentRnaPDB('2esj')">2esj</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentRnaPDB('4f8u')">4f8u</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentRnaPDB('5bjo')">5bjo</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentRnaPDB('5kx9')">5kx9</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentRnaPDB('6tf3')">6tf3</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentRnaPDB('7oax0')">7oax0</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentRnaPDB('7oax1')">7oax1</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentRnaPDB('8eyv')">8eyv</button>
+              <button class="button" onclick="setCurrentRnaPDB('1akx')">1akx</button>
+              <button class="button" onclick="setCurrentRnaPDB('1i9v')">1i9v</button>
+              <button class="button" onclick="setCurrentRnaPDB('2esj')">2esj</button>
+              <button class="button" onclick="setCurrentRnaPDB('4f8u')">4f8u</button>
+              <button class="button" onclick="setCurrentRnaPDB('5bjo')">5bjo</button>
+              <button class="button" onclick="setCurrentRnaPDB('5kx9')">5kx9</button>
+              <button class="button" onclick="setCurrentRnaPDB('6tf3')">6tf3</button>
+              <button class="button" onclick="setCurrentRnaPDB('7oax0')">7oax0</button>
+              <button class="button" onclick="setCurrentRnaPDB('7oax1')">7oax1</button>
+              <button class="button" onclick="setCurrentRnaPDB('8eyv')">8eyv</button>
             </div>
             <div class="line">
-              <button class="btn btn-primary my-1" onclick="setCurrentRnaPot('stacking')">stacking</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentRnaPot('hba')">hba</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentRnaPot('hbd')">hbd</button>
-              <button class="btn btn-primary my-1" onclick="setCurrentRnaPot('apbs')">apbs</button>
+              <button class="button" onclick="setCurrentRnaPot('stacking')">stacking</button>
+              <button class="button" onclick="setCurrentRnaPot('hba')">hba</button>
+              <button class="button" onclick="setCurrentRnaPot('hbd')">hbd</button>
+              <button class="button" onclick="setCurrentRnaPot('apbs')">apbs</button>
             </div>
             <figcaption class="text-center" name="rna">...</figcaption>
             <img class="image" src="" name="rna", alt="RNA benchmark">
