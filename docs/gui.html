@@ -2,27 +2,38 @@
   <html>
     <head>
       <title>QCB Thesis- UnityMol GUI</title>
-      <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
-      <link rel="stylesheet" href="https://raw.githack.com/DiegoBarMor/DiegoBarMor.github.io/refs/heads/main/docs/prisma.css">
+      <link rel="stylesheet" href="https://raw.githack.com/DiegoBarMor/chocomint-css/main/chocomint.min.css">
       <link rel="stylesheet" type="text/css" href=style.css>
-    </head>
+      </head>
 
     <body>
-      <nav>
-        <div class="nav-container">
-          <a href="https://diegobarmor.github.io/">
-            <img class="nav-icon" src="https://diegobarmor.github.io/icons/home.png" alt="Icon">
-          </a>
-          <div class="nav-buttons">
+      <header class="dynamic-navbar" id="navbar">
+        <nav class="chocomint-nav-container">
+          <abbr title="Home DiegoBarMor"><a href="https://diegobarmor.github.io/">
+              <img class="icon-neon" src="https://raw.githack.com/DiegoBarMor/chocomint-css/main/icons/home.png" alt="Icon">
+            </a></abbr>
+          <abbr title="Toggle BG Particles">
+            <img class="icon-neon" src="https://raw.githack.com/DiegoBarMor/chocomint-css/main/icons/particles.png" alt="Icon" onclick="toggle_particles()">
+          </abbr>
+          <abbr title="Toggle Theme">
+            <img class="icon-neon" src="https://raw.githack.com/DiegoBarMor/chocomint-css/main/icons/theme.png" alt="Icon" onclick="toggle_theme()">
+          </abbr>
+          <div class="chocomint-nav-buttons">
             <a class="button" href="https://diegobarmor.github.io/thesis-qcb/index.html">Index</a>
-            <a class="button" href="https://diegobarmor.github.io/thesis-qcb/document.html">Document</a>
-            <a class="button" href="https://diegobarmor.github.io/thesis-qcb/gui.html">UnityMol GUI</a>
-            <a class="button" href="https://diegobarmor.github.io/thesis-qcb/benchmarks.html">Benchmarks</a>
+            <select id="page-select">
+              <optgroup label="Section">
+                <option value="document">Document</option>
+                <option value="gui">UnityMol GUI</option>
+                <option value="benchmarks">Benchmarks</option>
+              </optgroup>
+            </select>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </header>
 
-      <div class="contents"> <h1>UnityMol Graphical User Interface</h1>
+      <main id="main">
+        <h1>UnityMol Graphical User Interface</h1>
+
         <div><h2>UnityMol: Pocket Sphere (Demo)</h2>
           <iframe src="https://www.youtube.com/embed/yp4W72_KoM8"></iframe>
         </div>
@@ -37,6 +48,13 @@
           </figure>
         </div>
 
-      </div>
+      </main>
+
+      <div id="bg-animation-container"></div>
+
     </body>
-  </html>
+
+    <script src="https://raw.githack.com/DiegoBarMor/chocomint-css/main/chocomint.min.js"></script>
+    <script src="navbar.js"></script>
+
+</html>
